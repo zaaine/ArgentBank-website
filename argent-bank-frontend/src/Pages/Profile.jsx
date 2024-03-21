@@ -1,15 +1,21 @@
 import React from "react";
 import Account from "../components/Account";
+import { useSelector } from "react-redux";
+import ProfileHeader from "../components/ProfileHeader";
+import Footer from "../components/Footer";
 
-const User = () => {
+const Profile = () => {
+  const userName = useSelector((state) => state.auth.userName);
+
   return (
     <div>
+      <ProfileHeader />
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {userName}!
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>
@@ -30,8 +36,9 @@ const User = () => {
           description="Current Balance"
         />
       </main>
+      <Footer />
     </div>
   );
 };
 
-export default User;
+export default Profile;
