@@ -31,6 +31,7 @@ const LoginForm = () => {
             id="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoFocus={true}
           />
         </div>
         <div className="input-wrapper">

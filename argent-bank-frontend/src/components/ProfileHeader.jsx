@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/authActions";
 
-const Header = () => {
+const ProfileHeader = () => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.auth.userName);
 
@@ -36,4 +36,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ProfileHeader;
