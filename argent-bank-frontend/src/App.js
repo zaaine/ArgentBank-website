@@ -15,11 +15,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/profile"
-          element={token ? <Profile /> : <Navigate to="/login" />}
-        />
         <Route element={<Layout />}>
+          <Route
+            path="/profile"
+            element={token ? <Profile /> : <Navigate to="/login" />}
+          />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/*" element={<Error />} />

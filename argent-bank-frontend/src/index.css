@@ -40,9 +40,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 5px 10px;
 }
-
+@media (min-width: 720px) {
+  .main-nav {
+    padding: 5px 20px;
+  }
+}
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -54,9 +58,15 @@ body {
 
 .main-nav-item {
   text-decoration: none;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-size: 11px;
 }
-
+@media (min-width: 720px) {
+  .main-nav-item {
+    margin-right: 0.5rem;
+    font-size: 18px;
+  }
+}
 .main-nav-item:hover {
   text-decoration: underline;
 }
@@ -307,5 +317,41 @@ body {
 
   .transaction-button {
     width: 200px;
+  }
+}
+.error-container {
+  display: flex;
+  padding-top: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+.error-container h1 {
+  color: #49a050;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 142.6%;
+  margin: 0px;
+}
+.error-container p {
+  color: #49a050;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 142.6%;
+  margin: 0px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+@media (min-width: 720px) {
+  .error-container h1 {
+    font-size: 250px;
+  }
+  .error-container p {
+    font-size: 35px;
   }
 }

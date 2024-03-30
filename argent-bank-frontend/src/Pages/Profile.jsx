@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Account from "../components/Account";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileHeader from "../components/ProfileHeader";
-import Footer from "../components/Footer";
 import { editUserName } from "../actions/authActions";
 const Profile = () => {
   const dispatch = useDispatch();
@@ -24,7 +22,6 @@ const Profile = () => {
 
   return (
     <div>
-      <ProfileHeader />
       <main className="main bg-dark">
         <div className="header">
           {!editing && (
@@ -94,7 +91,6 @@ const Profile = () => {
           description="Current Balance"
         />
       </main>
-      <Footer />
     </div>
   );
 };
