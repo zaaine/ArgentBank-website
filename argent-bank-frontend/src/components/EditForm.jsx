@@ -48,14 +48,6 @@ const EditForm = () => {
                   autoFocus={true}
                 />
               </div>
-              <div className="input-wrapper">
-                <label htmlFor="first-name">First name:</label>
-                <input type="text" id="first-name" value={""} disabled />
-              </div>
-              <div className="input-wrapper">
-                <label htmlFor="last-name">Last name:</label>
-                <input type="text" id="last-name" value={""} disabled />
-              </div>
               <div className="button-wrapper">
                 <button type="submit" className="sign-in-button">
                   Save
