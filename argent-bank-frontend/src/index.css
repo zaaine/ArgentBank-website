@@ -15,6 +15,7 @@ body {
 
 .main {
   flex: 1;
+  padding: 20px 0;
 }
 
 .bg-dark {
@@ -39,9 +40,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 5px 10px;
 }
-
+@media (min-width: 720px) {
+  .main-nav {
+    padding: 5px 20px;
+  }
+}
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
@@ -53,9 +58,15 @@ body {
 
 .main-nav-item {
   text-decoration: none;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+  font-size: 11px;
 }
-
+@media (min-width: 720px) {
+  .main-nav-item {
+    margin-right: 0.5rem;
+    font-size: 18px;
+  }
+}
 .main-nav-item:hover {
   text-decoration: underline;
 }
@@ -71,7 +82,7 @@ body {
 }
 
 .hero {
-  background-image: url("../img/bank-tree.jpeg");
+  background-image: url("./assets/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -130,7 +141,9 @@ body {
 
 @media (min-width: 920px) {
   .features {
-    flex-direction: row;
+    /* flex-direction: row; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -172,10 +185,11 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  margin-bottom: 3rem;
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  font-size: 1rem;
 }
 
 .input-remember {
@@ -191,6 +205,7 @@ body {
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
+  color: black;
 }
 
 .input-wrapper label {
@@ -200,6 +215,7 @@ body {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+  color: black;
 }
 
 .footer {
@@ -250,13 +266,27 @@ body {
   width: 100%;
   flex: 1;
 }
-
+.edit-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  color: black;
+}
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
   padding: 10px;
+}
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 
 .header {
@@ -287,5 +317,41 @@ body {
 
   .transaction-button {
     width: 200px;
+  }
+}
+.error-container {
+  display: flex;
+  padding-top: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+.error-container h1 {
+  color: #49a050;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 142.6%;
+  margin: 0px;
+}
+.error-container p {
+  color: #49a050;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 142.6%;
+  margin: 0px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+@media (min-width: 720px) {
+  .error-container h1 {
+    font-size: 250px;
+  }
+  .error-container p {
+    font-size: 35px;
   }
 }
