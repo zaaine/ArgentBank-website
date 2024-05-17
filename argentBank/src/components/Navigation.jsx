@@ -8,7 +8,7 @@ const Navigation = () => {
     <nav className="main-nav">
       <Logo />
       <NavLink
-        to="/Sign_In"
+        to="/SignIn"
         className={(nav) => (nav.isActive ? "main-nav-item" : "main-nav-item")}
       >
         <i className="fa fa-user-circle">
