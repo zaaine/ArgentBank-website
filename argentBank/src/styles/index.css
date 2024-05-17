@@ -13,8 +13,8 @@ html {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-height: 100vh;
 }
 
@@ -23,11 +23,11 @@ html {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 5px 20px;
 }
 .main-nav a {
@@ -51,7 +51,7 @@ html {
 }
 
 .hero {
-  background-image: url("../designs/img/bank-tree.webp");
+  background-image: url("../src/assets/designs/img/bank-tree.jpeg");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -108,21 +108,21 @@ html {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 @media (min-width: 920px) {
   .features {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 .features .feature-item {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding: 2.5rem;
 }
 .features .feature-item .feature-icon {
@@ -156,8 +156,8 @@ html {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .main-nav-logo .main-nav-logo-image {
   max-width: 100%;
@@ -189,4 +189,254 @@ html {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
-} /*# sourceMappingURL=index.css.map */
+}
+
+.sign-in-content {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  height: 385px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.sign-in-content .sign-in-icon {
+  font-size: 1.1rem;
+}
+.sign-in-content .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.sign-in-content .input-wrapper label {
+  font-weight: bold;
+}
+.sign-in-content .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.sign-in-content .input-remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.sign-in-content .input-remember label {
+  margin-left: 0.25rem;
+}
+.sign-in-content .sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #00bc77;
+}
+.sign-in-content .customer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0 0 0;
+  gap: 5px;
+}
+.sign-in-content .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+}
+
+.bg-dark {
+  background-color: #12002b;
+}
+
+.sign-up-content {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  height: 600px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.sign-up-content .sign-up-icon {
+  font-size: 1.1rem;
+}
+.sign-up-content .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.sign-up-content .input-wrapper label {
+  font-weight: bold;
+}
+.sign-up-content .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.sign-up-content .input-remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.sign-up-content .input-remember label {
+  margin-left: 0.25rem;
+}
+.sign-up-content .sign-up-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #00bc77;
+}
+
+.bg-dark {
+  background-color: #12002b;
+}
+
+.main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.main .header {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.main .edit-button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}
+.main .sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; /* 3 */
+}
+.main .account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid black;
+  background-color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+@media (min-width: 720px) {
+  .main .account {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+.main .account .account-content-wrapper {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.main .account .account-content-wrapper .account-title {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+.main .account .account-content-wrapper .account-amount {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.main .account .account-content-wrapper .account-amount-description {
+  margin: 0;
+}
+@media (min-width: 720px) {
+  .main .account .account-content-wrapper.cta {
+    -webkit-box-flex: 0;
+        -ms-flex: 0;
+            flex: 0;
+  }
+}
+.main .account .account-content-wrapper.cta .transaction-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+@media (min-width: 720px) {
+  .main .account .account-content-wrapper.cta .transaction-button {
+    width: 200px;
+  }
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top: 2px solid #ccc;
+  padding: 2rem 0 1.5rem;
+}
+
+.footer-text {
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=index.css.map */
