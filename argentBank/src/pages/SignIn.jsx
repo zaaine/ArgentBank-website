@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import Navigation from "../components/Navigation";
 
-const Login = () => {
+const SignIn = () => {
   return (
     <>
       <Navigation />
@@ -36,7 +36,7 @@ const Login = () => {
             </Link>
             <div className="customer">
               new customer ?{" "}
-              <Link to="/Sign_Up">
+              <Link to="/SignUp">
                 <p className="link">Sign Up</p>
               </Link>{" "}
               {/* Lien vers la page d'inscription */}
@@ -48,4 +48,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
