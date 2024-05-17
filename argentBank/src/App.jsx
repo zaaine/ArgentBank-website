@@ -1,10 +1,13 @@
 import React from "react";
-import { HashRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import { HashRouter, Routes } from "react-router-dom";
 
 function App() {
   return (
     <HashRouter>
-      <div>Test</div>
+      <Routes>
+        <Route path="/Home" exact element={<Home />} />
+      </Routes>
     </HashRouter>
   );
 }
