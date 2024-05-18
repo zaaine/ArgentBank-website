@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./header.scss";
+import "./header.scss";
 import logo from "../../assets/argentBankLogo.png";
 import { selectFirstName, selectToken } from "../../redux/selectors";
 import { getFirstName } from "../../redux/features/firstName.js";
@@ -9,7 +9,6 @@ import { getToken } from "../../redux/features/token.js";
 import { getLoginFetch } from "../../utils/api.js";
 
 export default function Header() {
-	console.log("Rendering Header component");
 	const firstName = useSelector(selectFirstName);
 	const token = useSelector(selectToken);
 	const dispatch = useDispatch();
@@ -32,31 +31,30 @@ export default function Header() {
 		}
 	}, [token, dispatch]);
 	return (
-		<nav className={styles.mainNav}>
+		<nav className="mainNav">
 			<Link to="/">
-				<img className={styles.mainNavLogoImage} src={logo} alt="Argent Bank Logo" />
-				<h1 className={styles.srOnly}>Argent Bank</h1>
+				<img className="mainNavLogoImage" src={logo} alt="Argent Bank Logo" />
+				<h1 className="srOnly">Argent Bank</h1>
 			</Link>
-			<div>
-				{token === null && (
-					<Link to="/login" className={styles.mainNavItem}>
+
+			{token === null && (
+				<Link to="/login" className="mainNavItem">
+					<i className="fa fa-user-circle"></i>
+					<span className="signIn">Sign In</span>
+				</Link>
+			)}
+			{token !== null && (
+				<>
+					<Link to="/profil" className="mainNavItem">
 						<i className="fa fa-user-circle"></i>
-						<span className={styles.signIn}>Sign In</span>
+						<span className="user"> {firstName}</span>
 					</Link>
-				)}
-				{token !== null && (
-					<>
-						<Link to="/profil" className={styles.mainNavItem}>
-							<i className="fa fa-user-circle"></i>
-							<span className={styles.user}> {firstName}</span>
-						</Link>
-						<Link to="/logout" className={styles.mainNavItem}>
-							<i className="fa fa-sign-out"></i>
-							Sign Out
-						</Link>
-					</>
-				)}
-			</div>
+					<Link to="/logout" className="mainNavItem">
+						<i className="fa fa-sign-out"></i>
+						Sign Out
+					</Link>
+				</>
+			)}
 		</nav>
 	);
 }

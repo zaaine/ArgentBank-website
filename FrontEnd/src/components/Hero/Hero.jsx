@@ -1,16 +1,16 @@
-import styles from "./hero.scss";
+import "./hero.scss";
 import PropTypes from "prop-types";
 
 export default function Hero({ title, subtitle1, subtitle2, subtitle3, text }) {
 	console.log(`Rendering Hero component with title: ${title}`);
 
 	return (
-		<section className={`${styles.hero}${styles.heroContent}`}>
-			<h2 className={styles.srOnly}>{title}</h2>
-			<p className={styles.subtitle}>{subtitle1}</p>
-			<p className={styles.subtitle}>{subtitle2}</p>
-			<p className={styles.subtitle}>{subtitle3}</p>
-			<p className={styles.text}>{text}</p>
+		<section className="heroContent">
+			<h2 className="srOnly">{title}</h2>
+			<p className="subtitle">{subtitle1}</p>
+			<p className="subtitle">{subtitle2}</p>
+			<p className="subtitle">{subtitle3}</p>
+			<p className="text">{text}</p>
 		</section>
 	);
 }

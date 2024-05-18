@@ -1,11 +1,10 @@
-import styles from "./footer.scss";
+import "./footer.scss";
 import PropTypes from "prop-types";
 
 export default function Footer({ text }) {
-	console.log("Rendering Footer component");
 	return (
-		<footer className={styles.footer}>
-			<p className={styles.footerText}>{text}</p>
+		<footer className="footer">
+			<p className="footerText">{text}</p>
 		</footer>
 	);
 }

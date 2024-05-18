@@ -1,13 +1,13 @@
-import styles from "./feature.scss";
+import "./feature.scss";
 import PropTypes from "prop-types";
 
 export default function Feature({ imgSrc, imgAlt, title, description }) {
 	console.log(`Rendering Feature component with title: ${title}`);
 
 	return (
-		<div className={styles.featureItem}>
-			<img src={imgSrc} alt={imgAlt} className={styles.featureIcon} />
-			<h3 className={styles.featureItemTitle}>{title}</h3>
+		<div className="featureItem">
+			<img src={imgSrc} alt={imgAlt} className="featureIcon" />
+			<h3 className="featureItemTitle">{title}</h3>
 			<p>{description}</p>
 		</div>
 	);

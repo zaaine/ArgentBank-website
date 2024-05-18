@@ -1,4 +1,4 @@
-import styles from "./home.scss";
+import "./home.scss";
 import Feature from "../../components/Feature/Feature";
 import Hero from "../../components/Hero/Hero";
 import iconChat from "../../assets/icon-chat.png";
@@ -9,15 +9,17 @@ export default function Home() {
 	console.log("Rendering Home component");
 	return (
 		<main>
-			<Hero
-				title="Promoted Content"
-				subtitle1="No fees."
-				subtitle2="No minimum deposit."
-				subtitle3="High interest rates."
-				text="Open a savings account with Argent Bank today!"
-			/>
-			<section className={styles.features}>
-				<h2 className={styles.srOnly}>Features</h2>
+			<div className="hero">
+                <Hero  
+                 title="Promoted Content"
+                 subtitle1="No fees."
+                 subtitle2="No minimum deposit."
+                 subtitle3="High interest rates."
+                 text="Open a savings account with Argent Bank today!"
+                />
+            </div>
+			<section className="features">
+				<h2 className="srOnly">Features</h2>
 				<Feature
 					imgSrc={iconChat}
 					imgAlt="Chat Icon"
