@@ -6,7 +6,6 @@ import iconMoney from "../../assets/icon-money.png";
 import iconSecurity from "../../assets/icon-security.png";
 
 export default function Home() {
-	console.log("Rendering Home component");
 	return (
 		<main>
 			<div className="hero">

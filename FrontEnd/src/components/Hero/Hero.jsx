@@ -2,8 +2,6 @@ import "./hero.scss";
 import PropTypes from "prop-types";
 
 export default function Hero({ title, subtitle1, subtitle2, subtitle3, text }) {
-	console.log(`Rendering Hero component with title: ${title}`);
-
 	return (
 		<section className="heroContent">
 			<h2 className="srOnly">{title}</h2>

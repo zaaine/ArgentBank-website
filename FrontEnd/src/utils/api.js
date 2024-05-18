@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const BASE_URL = "http://localhost:3001/api-docs/";
+const BASE_URL = "http://localhost:3001/api/v1/";
 const ERROR_MESSAGE = "Error. Please retry later.";
 
 // Fonction pour traiter les données de login

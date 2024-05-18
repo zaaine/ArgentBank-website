@@ -14,12 +14,9 @@ export default function Header() {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		if (token !== null) {
-			console.log("Token changed:", token);
 			getLoginFetch(token)
 				.then((obj) => {
-					console.log("User data:", obj);
 					dispatch(getFirstName(obj.firstName));
-					console.log("User id is null, logging out...");
 					if (obj.id === null) {
 						dispatch(getToken(null));
 						localStorage.removeItem("token");

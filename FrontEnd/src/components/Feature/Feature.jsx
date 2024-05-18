@@ -2,8 +2,6 @@ import "./feature.scss";
 import PropTypes from "prop-types";
 
 export default function Feature({ imgSrc, imgAlt, title, description }) {
-	console.log(`Rendering Feature component with title: ${title}`);
-
 	return (
 		<div className="featureItem">
 			<img src={imgSrc} alt={imgAlt} className="featureIcon" />

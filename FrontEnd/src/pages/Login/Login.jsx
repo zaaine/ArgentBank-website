@@ -6,8 +6,19 @@ import { useSelector,useDispatch } from "react-redux"
 import { getLogin } from '../../utils/api.js'
 import { getToken } from '../../redux/features/token.js'
 import { selectToken } from '../../redux/selectors'
-
-export default function Login() {
+ // Console log with the provided information
+ console.log(`
+ - First Name: Tony
+ - Last Name: Stark
+ - Email: tony@stark.com
+ - Password: password123
+ 
+ - First Name: Steve
+ - Last Name: Rogers
+ - Email: steve@rogers.com
+ - Password: password456
+ `)
+ export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [remember, setRemember] = useState(false)
