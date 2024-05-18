@@ -1,0 +1,23 @@
+html {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	max-width: 1440px;
+  
+	@media screen and (min-width: 1440px) {
+	  margin-left: auto;
+	  margin-right: auto;
+	  align-items: center;
+	  justify-content: center;
+	}
+  }
+  
+  body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+  }
+  

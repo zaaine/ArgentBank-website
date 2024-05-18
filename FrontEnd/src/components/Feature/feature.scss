@@ -1,0 +1,27 @@
+.featureIcon {
+    width: 60px;
+    border: 10px solid #00bc77;
+    border-radius: 50%;
+    padding: 1rem;
+}  
+.featureItem {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding: 0;
+}  
+.featureItemTitle {
+    color: #222;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 450px) {
+    .featureItem {
+        padding: 2.5rem;
+    } 
+    .featureIcon {
+        width: 100px;
+    }    
+}

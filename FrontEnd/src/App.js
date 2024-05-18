@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
+import Error from "./pages/Error/Error.jsx";
+import Profil from "./pages/Profil/Profil.jsx";
+import Logout from "./pages/Logout/Logout.jsx";
+import './styles/normalize.scss';
+import './styles/global.scss';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header /> 
+      <Routes> 
+        <Route path="/" element={<Home />} />  
+        <Route path="/login" element={<Login />} />  
+        <Route path="/profil" element={<Profil />} /> 
+        <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+      <Footer text="Copyright 2020 Argent Bank" /> 
+    </>
   );
 }
-
-export default App;
