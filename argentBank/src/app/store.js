@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice, userSlice } from "./slices";
+import { authSlice } from "./slices/authSlice";
+import { userSlice } from "./slices/userSlice";
 
 const store = configureStore({
   // ** Réducer principal du store **
