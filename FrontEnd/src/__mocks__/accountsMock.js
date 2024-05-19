@@ -1,4 +1,3 @@
-// mocked data for user account on profil page
 const ACCOUNTS_MOCKED = [
     {
       id: 134872901,

@@ -8,7 +8,7 @@ import { getFirstName } from "../../redux/features/firstName.js";
 import { setLastName } from "../../redux/features/lastName.js";
 import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import ACCOUNTS_MOCKED from '../../__mocks__/accountsMock.js';
-import Account from '../../components/Account/Account';
+import Account from '../../components/Account/Account.js';
 
 export default function Profil() {
   const token = useSelector(selectToken);
@@ -26,8 +26,8 @@ export default function Profil() {
       const fetchUser = async () => {
         try {
           const user = await getLoginFetch(token);
-          dispatch(getFirstName(firstName));
-          dispatch(setLastName(lastName));
+          dispatch(getFirstName(user.firstName));
+          dispatch(setLastName(user.lastName));
         } catch (error) {
           console.error('Error fetching user data:', error);
         }

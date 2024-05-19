@@ -2,10 +2,6 @@
     flex: 1;
 }
 
-main {
-    display: block;
-}
-
 .bgDark {
     background-color: #12002b;
 }
@@ -22,6 +18,14 @@ main {
 
 .editContainer {
     margin: 0 auto; // Centrer horizontalement
+
+    @media (min-width: 650px) {
+        width: 600px;
+    }
+
+    @media (max-width: 650px) {
+        min-width: 100%;
+    }
 }
 
 .editButton {
@@ -47,6 +51,12 @@ main {
         margin: 10px 5px;
         padding: 5px;
     }
+
+    @media (max-width: 650px) {
+        input {
+            min-width: 105px;
+        }
+    }
 }
 
 .buttomContainer {
@@ -57,6 +67,12 @@ main {
     button {
         min-width: 200px;
     }
+
+    @media (max-width: 650px) {
+        button {
+            min-width: 100px;
+        }
+    }
 }
 
 .error {
@@ -65,39 +81,15 @@ main {
 }
 
 .srOnly {
-    border: 0  ;
-    clip: rect(1px, 1px, 1px, 1px)  ;
-    -webkit-clip-path: inset(50%)  ;
-    clip-path: inset(50%)  ;
-    height: 1px  ;
-    margin: -1px  ;
-    overflow: hidden  ;
-    padding: 0  ;
-    position: absolute  ;
-    width: 1px  ;
-    white-space: nowrap  ;
-}
-
-@media (min-width: 650px) {
-    .editContainer {
-        width: 600px;
-    }
-}
-
-@media (max-width: 650px) {
-    .buttomContainer {
-        button {
-            min-width: 100px;
-        }
-    }
-
-    .inputContainer {
-        input {
-            min-width: 105px;
-        }
-    }
-
-    .editContainer {
-        min-width: 100%;
-    }
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
 }
