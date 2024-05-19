@@ -1,1 +1,1 @@
-export default function Error() {}
+export function Error() {}

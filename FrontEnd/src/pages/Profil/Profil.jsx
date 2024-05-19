@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { getLoginFetch, saveUserProfile } from '../../utils/api.js';
-import { getFirstName } from "../../redux/features/firstName.js";
+import { setFirstName } from "../../redux/features/firstName.js";
 import { setLastName } from "../../redux/features/lastName.js";
 import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import ACCOUNTS_MOCKED from '../../__mocks__/accountsMock.js';
 import Account from '../../components/Account/Account.js';
 
-export default function Profil() {
+export function Profil() {
   const token = useSelector(selectToken);
   const firstName = useSelector(selectFirstName);
   const lastName = useSelector(selectLastName);
@@ -26,7 +26,7 @@ export default function Profil() {
       const fetchUser = async () => {
         try {
           const user = await getLoginFetch(token);
-          dispatch(getFirstName(user.firstName));
+          dispatch(setFirstName(user.firstName));
           dispatch(setLastName(user.lastName));
         } catch (error) {
           console.error('Error fetching user data:', error);
