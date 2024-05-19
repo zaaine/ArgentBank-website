@@ -1,13 +1,13 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../features/authSlice";
+import { selectCurrentToken } from "./app/reducers/auth.reducer";
 
 // Pages
-import Layout from "../pages/Layout/Layout";
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import Profile from "../pages/Profile/Profile";
-import Error404 from "../pages/Error404/Error404";
+//import Layout from "../pages/Layout/Layout";
+import Home from "./pages/Home";
+import Login from "./components/FormUser";
+import Profile from "./pages/UserEdit";
+import Error404 from "./pages/Error404";
 
 /**
  * PrivateRoute returns the element passed in the parameter when the JWT token is provided
