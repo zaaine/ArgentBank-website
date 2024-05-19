@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "./pages/Home";
 import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 import HomeScreen from "./pages/Home";
