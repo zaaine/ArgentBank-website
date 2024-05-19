@@ -1,47 +1,54 @@
-// Définition de l'url de base de l'API
-const BASE_URL = "http://localhost:3001/api/v1";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Fonction asychrone pour l'authentification de l'utilisateur
-export async function authLogin(props) {
-  const response = await fetch(`${BASE_URL}/user/login`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
+/**
+ * Api setup from RTK Query
+ *
+ * Phase 1 : Authentication
+ * Three endpoints are provided, based on the Swagger API documentation (backend/swagger.yaml)
+ * The token is provided by Redux Store and add to the Header of HTTP requests
+ */
+export const api = createApi({
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:3001/api/v1",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token || localStorage.getItem("token");
+      if (!headers.has("Authorization") && token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
     },
-    body: JSON.stringify({
-      email: props.email,
-      password: props.password,
+  }),
+  // Phase 1 : Authentication endpoints
+  endpoints: (builder) => ({
+    login: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/user/login",
+          method: "POST",
+          body,
+        };
+      },
     }),
-  });
-  return await response.json();
-}
-
-// Fonction asynchrone pour récupérer les informations de profil de l'utilisateur
-export async function userProfile(token) {
-  const response = await fetch(`${BASE_URL}/user/profile`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return await response.json();
-}
-
-// Fonction asynchrone pour mettre à jour le nom d'utilisateur
-export async function updateUserProfile(token, username) {
-  const response = await fetch(`${BASE_URL}/user/profile`, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      userName: username,
+    getUser: builder.mutation({
+      query: () => {
+        return {
+          url: "/user/profile",
+          method: "POST",
+        };
+      },
     }),
-  });
-  return await response.json();
-}
+    setUserName: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/user/profile",
+          method: "PUT",
+          body,
+        };
+      },
+    }),
+  }),
+});
+
+export const { useLoginMutation, useGetUserMutation, useSetUserNameMutation } =
+  api;
