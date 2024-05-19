@@ -46,7 +46,7 @@ const FormNewUser = () => {
         })
       ).unwrap();
       setNotification("Registration successful. Redirecting...");
-      setTimeout(() => navigate("/sign-in"), 3000);
+      setTimeout(() => navigate("/Sign-in"), 3000);
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
       setNotification("Registration failed. Please try again.");
@@ -133,7 +133,7 @@ const FormNewUser = () => {
                 required
               />
             </div>
-            <button type="submit" className="sign-up-button">
+            <button type="submit" className="sign-in-button">
               Sign Up
             </button>
           </form>
