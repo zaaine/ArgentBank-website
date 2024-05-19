@@ -22,21 +22,24 @@ export function Profil() {
   const regex = /^[A-zÀ-ú-']{2,}$/;
 
   useEffect(() => {
+    let isMounted = true;
     if (token !== null) {
       const fetchUser = async () => {
         try {
           const user = await getLoginFetch(token);
-          dispatch(setFirstName(user.firstName));
-          dispatch(setLastName(user.lastName));
+          if (isMounted) {
+            dispatch(setFirstName(user.firstName));
+            dispatch(setLastName(user.lastName));
+          }
         } catch (error) {
-          console.error('Error fetching user data:', error);
         }
       };
       fetchUser();
     }
+    return () => { isMounted = false; };
   }, [token, dispatch]);
 
-  const handleEditSave = (e) => {
+  const handleEditSave = async (e) => {
     e.preventDefault();
     if (!regex.test(newFirstName) || !regex.test(newLastName)) {
       setProfilEdit(true);
@@ -44,7 +47,12 @@ export function Profil() {
     } else {
       if (newFirstName !== firstName || newLastName !== lastName) {
         const fullName = { firstName: newFirstName, lastName: newLastName };
-        saveUserProfile(token, fullName);
+        try {
+          await saveUserProfile(token, fullName);
+          dispatch(setFirstName(newFirstName));
+          dispatch(setLastName(newLastName));
+        } catch (error) {
+        }
       }
       setFormatErrorName('');
       setProfilEdit(false);
@@ -72,12 +80,14 @@ export function Profil() {
                     type="text"
                     id="firstName"
                     placeholder={firstName}
+                    value={newFirstName}
                     onChange={(e) => setNewFirstName(e.target.value)}
                   />
                   <input
                     type="text"
                     id="lastName"
                     placeholder={lastName}
+                    value={newLastName}
                     onChange={(e) => setNewLastName(e.target.value)}
                   />
                 </div>
@@ -116,7 +126,6 @@ export function Profil() {
           balanceType={data.balanceType}
         />
       ))}
-      <div className="buttonContainer"></div>
     </main>
   );
 }
@@ -125,12 +134,4 @@ Profil.propTypes = {
   token: PropTypes.string,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  ProfilEdit: PropTypes.bool,
-  newFirstName: PropTypes.string,
-  newLastName: PropTypes.string,
-  formatErrorName: PropTypes.string,
-  dispatch: PropTypes.func,
-  regex: PropTypes.object,
-  handleEditSave: PropTypes.func,
-  handleCancel: PropTypes.func,
 };
