@@ -1,75 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-//import { setLogin, setToken, setUser } from "../app/actions/user.action";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { FaUserCircle } from "react-icons/fa";
 
-export default function Form() {
-  const [email, setEmail] = useState(localStorage.getItem("email") || "");
-  const [password, setPassword] = useState(
-    localStorage.getItem("password") || ""
-  );
-  const [rememberMe, setRememberMe] = useState(
-    localStorage.getItem("rememberMe") === "true"
-  );
-  const [errorLoginMessage, setErrorLoginMessage] = useState(false);
+const FormUser = () => {
+  const { register, handleSubmit } = useForm();
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const response = await authLogin({
-        email: email,
-        password: password,
-      });
-
-      if (response.status === 200) {
-        dispatch(setLogin(true));
-        dispatch(setToken(response.body.token));
-        const profile = await userProfile(response.body.token);
-        const data = await profile.body;
-        dispatch(setUser(data));
-        navigate("/UserLogin");
-        console.log(data);
-        console.log(response.body.token);
-
-        if (rememberMe) {
-          localStorage.setItem("email", email);
-          localStorage.setItem("password", password);
-          localStorage.setItem("rememberMe", "true");
-        } else {
-          localStorage.removeItem("email");
-          localStorage.removeItem("password");
-          localStorage.setItem("rememberMe", "false");
-        }
-      }
-
-      if (response.status === 400) {
-        setErrorLoginMessage(true);
-        navigate("/SignIn");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  let errorMessage = null;
-  if (errorLoginMessage) {
-    errorMessage = (
-      <p
-        style={{
-          position: "fixed",
-          color: "red",
-          bottom: "240px",
-          left: "150px",
-        }}
-      >
-        Votre adresse email ou mot de passe est incorrect. Veuillez reessayer.
-      </p>
-    );
-  }
+  const submitForm = (data) => {
+    console.log(data.email);
+    console.log(data.password);
+  };
 
   return (
     <main className="main bg-dark">
@@ -78,24 +17,17 @@ export default function Form() {
           <FaUserCircle />
         </i>
         <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <div className="input-wrapper">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" id="email" {...register("email")} required />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password")}
               required
             />
           </div>
@@ -103,17 +35,17 @@ export default function Form() {
             <input
               type="checkbox"
               id="remember-me"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
+              {...register("remember-me")}
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className="sign-in-button">
             Sign in
           </button>
-          {errorMessage}
         </form>
       </section>
     </main>
   );
-}
+};
+
+export default FormUser;

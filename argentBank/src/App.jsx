@@ -1,46 +1,26 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "./app/reducers/auth.reducer";
-
-// Pages
-//import Layout from "../pages/Layout/Layout";
+import React from "react";
 import Home from "./pages/Home";
-import Login from "./components/FormUser";
-import Profile from "./pages/UserEdit";
-import Error404 from "./pages/Error404";
+import Logo from "./components/Logo";
+import Footer from "./components/Footer";
+import HomeScreen from "./pages/Home";
+import LoginScreen from "./pages/SignIn";
+import RegisterScreen from "./pages/SignUp";
+import ProfileScreen from "./pages/UserEdit";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
-/**
- * PrivateRoute returns the element passed in the parameter when the JWT token is provided
- * The token is accessed via Redux Store
- *
- * @param {JSX.Element} element The private element
- * @returns {JSX.Element | void} The private element or a redirection to the Login page
- */
-const PrivateRoute = ({ element }) => {
-  const token = useSelector(selectCurrentToken);
-  return token ? element : <Navigate to="/login" replace={true} />;
-};
-
-/**
- * App Router from react-router-v6
- *
- * All routes are nested inside the Layout component
- * An Error404 page is returned when the navigation fails
- */
-const App = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "login", element: <Login /> },
-      {
-        path: "profile",
-        element: <PrivateRoute element={<Profile />} />,
-      },
-      { path: "*", element: <Error404 /> },
-    ],
-  },
-]);
+function App() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/home" exact element={<HomeScreen />} />
+        <Route path="/home" exact element={<Logo />} />
+        <Route path="/login" exact element={<LoginScreen />} />
+        <Route path="/register" exact element={<RegisterScreen />} />
+        <Route path="/user-profile" exact element={<ProfileScreen />} />
+      </Routes>
+      <Footer />
+    </HashRouter>
+  );
+}
 
 export default App;

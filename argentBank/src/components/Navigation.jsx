@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import { FaUserCircle } from "react-icons/fa";
@@ -8,7 +7,7 @@ const Navigation = () => {
     <nav className="main-nav">
       <Logo />
       <NavLink
-        to="/SignIn"
+        to="/login"
         className={(nav) => (nav.isActive ? "main-nav-item" : "main-nav-item")}
       >
         <i className="fa fa-user-circle">

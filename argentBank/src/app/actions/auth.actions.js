@@ -1,36 +1,18 @@
-import axios from "axios";
-import { getUser } from "./user.action";
+import Axios from "axios";
+import { setToken } from "../reducers/auth.reducer";
 
-export const getToken = (email, password) => {
-  return async (dispatch) => {
-    try {
-      const res = await axios.post("http://localhost:3001/api/v1/user/login", {
-        email,
-        password,
-      });
+// GET TOKEN
 
-      const token = res.data.body.token;
-
-      dispatch({
-        type: "Get_TOKEN",
-        payload: token,
-      });
-
-      dispatch(getUser(token));
-    } catch (err) {
-      if (err.response) {
-        const message = err.response.data.message;
-
-        alert(message);
-      } else {
-        alert("Server is not responding. Please try again Later.");
-      }
-    }
-  };
-};
-
-export const rememberMe = () => {
-  return {
-    type: "REMEMBER_ME",
-  };
+export const loginUser = (userCredentials) => async (dispatch) => {
+  try {
+    const response = await Axios.post(
+      `http://localhost:3001/api/v1/user/login`,
+      userCredentials
+    );
+    const token = response.data.body.token;
+    dispatch(setToken(token));
+  } catch (error) {
+    alert("Error entering identifiers");
+    console.error("Error entering identifiers : ", error);
+  }
 };

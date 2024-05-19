@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
     <div className="main-nav-logo">
       <h1 className="sr-only">Argent Bank</h1>
-      <Link to="/Home/">
+      <Link to="/">
         <img
           className="main-nav-logo-image"
           src="../designs/img/argentBankLogo.png"

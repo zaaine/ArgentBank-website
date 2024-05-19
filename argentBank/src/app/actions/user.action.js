@@ -1,94 +1,53 @@
-import axios from "axios";
+import { setUserInfo, setNewUsername } from "../reducers/auth.reducer";
 
-// Get USer information
+// GET USER INFO
 
-export const getUser = (token) => {
-  const config = {
-    headers: {
+export async function getUserInfo(token, dispatch) {
+  try {
+    const headers = {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    },
-  };
+    };
 
-  return async (dispatch) => {
-    try {
-      const res = await axios.post(
-        "http://localhost:3001/api/v1/user/profile",
-        {},
-        config
-      );
+    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+      method: "POST",
+      headers: headers,
+    });
 
-      dispatch({
-        type: "GET_USER",
-        payload: res.data.body,
-      });
-    } catch (err) {
-      const message = err.response.data.message;
-      alert(message);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setUserInfo(data.body));
+      dispatch(setNewUsername(data.body.userName));
+    } else {
+      console.error("Profile request error : ", response.status);
     }
-  };
-};
+  } catch (error) {
+    console.error("Request error : ", error);
+  }
+}
 
-export const updateUser = (token, username) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+// UPDATE USERNAME
 
-  const data = {
-    userName: username,
-  };
+export async function updateUsername(token, newUserName, dispatch) {
+  try {
+    const requestBody = {
+      userName: newUserName,
+    };
 
-  return async (dispatch) => {
-    try {
-      const res = await axios.put(
-        "ht://localhost:3000/api/v1/user/profile",
-        data,
-        config
-      );
+    const request = await fetch(`http://localhost:3001/api/v1/user/profile`, {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestBody),
+    });
 
-      dispatch({
-        type: "UPDATE_USER",
-        payload: res.data.body,
-      });
-    } catch (err) {
-      const message = err.response.data.message;
-      alert(message);
-    }
-  };
-};
-
-// Logout User
-
-export const logoutUser = () => {
-  return async (dispatch) => {
-    try {
-      sessionStorage.removeItem("token");
-      localStorage.removeItem("token");
-      dispatch({
-        type: "USER_LOGOUT",
-      });
-    } catch (err) {
-      alert("Problème lors de la déconnexion");
-    }
-  };
-};
-
-// Add New User
-
-export const addUser = (email, password, firstName, lastName, userName) => {
-  return async () => {
-    try {
-      await axios.post("http://localhost:3001/api/v1/user/signup", {
-        email,
-        password,
-        firstName,
-        lastName,
-        userName,
-      });
-    } catch (err) {
-      const message = err.response.data.message;
-      alert(message);
-    }
-  };
-};
+    const data = await request.json();
+    dispatch(setNewUsername(data.body.userName));
+  } catch (error) {
+    alert("Username could not be modified");
+    console.error("Username could not be modified : ", error);
+  }
+}
