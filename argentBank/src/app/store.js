@@ -1,14 +1,16 @@
-// Import de la fonction configureStore de Redux Toolkit
 import { configureStore } from "@reduxjs/toolkit";
+import { authSlice, userSlice } from "./slices";
 
-// Import du réducteur authReducer depuis le fichier "authSlice.js"
-import authReducer from "./slice/authSlice";
-
-// Configuration du magasin Redux en utilisant configureStore
 const store = configureStore({
+  // ** Réducer principal du store **
   reducer: {
-    auth: authReducer, //Ajout du réducteur "authReducer" sous le nom "auth" dans le magasin
+    // ** Enregistrement du slice "auth" sous la propriété "auth" du store**
+    auth: authSlice,
+    // ** Enregistrement du slice "user" sous la propriété "user" du store**
+    user: userSlice,
   },
+  // ** Activation de l'extension Redux DevTools (pour le débogage) **
+  devTools: true,
 });
 
 // Export du magasin configuré
