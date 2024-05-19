@@ -96,12 +96,12 @@ const FormUser = () => {
             {/* Bouton de Connexion */}
             <p>
               {" "}
-              new customer ? <Link to="/sign-up">Sign Up</Link>{" "}
+              new customer ? <Link to="/Sign-up">Sign Up</Link>{" "}
               {/* Lien vers la page d'inscription */}
             </p>
           </form>
         </section>
-        <div className="notifiaction-container">
+        <div className="notification-container">
           {notification}
           {isLoading && <div className="spinner"></div>}{" "}
           {/* Affichage du spinner de chargement en cas de chargement */}

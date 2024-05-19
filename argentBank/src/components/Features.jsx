@@ -6,7 +6,7 @@ const Features = () => {
       <h2 className="sr-only">Features</h2>
       <div className="feature-item">
         <img
-          src="../designs/img/icon-chat.png"
+          src="./src/assets/img/icon-chat.png"
           alt="Chat Icon"
           className="feature-icon"
         />
@@ -18,7 +18,7 @@ const Features = () => {
       </div>
       <div className="feature-item">
         <img
-          src="../designs/img/icon-money.png"
+          src="./src/assets/img/icon-money.png"
           alt="Chat Icon"
           className="feature-icon"
         />
@@ -27,7 +27,7 @@ const Features = () => {
       </div>
       <div className="feature-item">
         <img
-          src="../designs/img/icon-security.png"
+          src="./src/assets/img/icon-security.png"
           alt="Chat Icon"
           className="feature-icon"
         />

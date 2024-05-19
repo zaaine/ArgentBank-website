@@ -51,7 +51,7 @@ html {
 }
 
 .hero {
-  background-image: url("../designs/img/bank-tree.webp");
+  background-image: url("./src/assets/img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -300,7 +300,10 @@ html {
   white-space: nowrap !important; /* 3 */
 }
 
-.sign-up-content {
+.main {
+  height: 100vh;
+}
+.main .sign-up-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: white;
@@ -311,10 +314,10 @@ html {
   padding: 2rem;
   border-radius: 10px;
 }
-.sign-up-content .sign-up-icon {
+.main .sign-up-content .sign-up-icon {
   font-size: 1.1rem;
 }
-.sign-up-content .input-wrapper {
+.main .sign-up-content .input-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -325,22 +328,22 @@ html {
   text-align: left;
   margin-bottom: 1rem;
 }
-.sign-up-content .input-wrapper label {
+.main .sign-up-content .input-wrapper label {
   font-weight: bold;
 }
-.sign-up-content .input-wrapper input {
+.main .sign-up-content .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
 }
-.sign-up-content .input-remember {
+.main .sign-up-content .input-remember {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.sign-up-content .input-remember label {
+.main .sign-up-content .input-remember label {
   margin-left: 0.25rem;
 }
-.sign-up-content .sign-up-button {
+.main .sign-up-content .sign-up-button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -359,94 +362,55 @@ html {
 }
 
 .main {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.main .header {
-  color: #fff;
-  margin-bottom: 2rem;
-}
-.main .edit-button {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
-}
-.main .sr-only {
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
-  -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important; /* 2 */
-  height: 1px !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
-  white-space: nowrap !important; /* 3 */
-}
-.main .account {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border: 1px solid black;
-  background-color: #fff;
-  width: 80%;
-  margin: 0 auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 1.5rem;
+}
+.main .sign-in-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  height: 385px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.main .sign-in-content .sign-in-icon {
+  font-size: 1.1rem;
+}
+.main .sign-in-content .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
-@media (min-width: 720px) {
-  .main .account {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-  }
-}
-.main .account .account-content-wrapper {
-  width: 100%;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.main .account .account-content-wrapper .account-title {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-  font-weight: normal;
-}
-.main .account .account-content-wrapper .account-amount {
-  margin: 0;
-  font-size: 2.5rem;
+.main .sign-in-content .input-wrapper label {
   font-weight: bold;
 }
-.main .account .account-content-wrapper .account-amount-description {
-  margin: 0;
+.main .sign-in-content .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
 }
-@media (min-width: 720px) {
-  .main .account .account-content-wrapper.cta {
-    -webkit-box-flex: 0;
-        -ms-flex: 0;
-            flex: 0;
-  }
+.main .sign-in-content .input-remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-.main .account .account-content-wrapper.cta .transaction-button {
+.main .sign-in-content .input-remember label {
+  margin-left: 0.25rem;
+}
+.main .sign-in-content .sign-in-button {
   display: block;
   width: 100%;
   padding: 8px;
@@ -456,9 +420,23 @@ html {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #00bc77;
 }
-@media (min-width: 720px) {
-  .main .account .account-content-wrapper.cta .transaction-button {
-    width: 200px;
-  }
+.main .sign-in-content .customer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0 0 0;
+  gap: 5px;
+}
+.main .sign-in-content .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+}
+
+.bg-dark {
+  background-color: #12002b;
 }/*# sourceMappingURL=index.css.map */

@@ -1,3 +1,7 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
 .sign-in-content {
     box-sizing: border-box;
     background-color: white;
@@ -61,6 +65,7 @@
             margin-top: 0px;
           }
   }
+}
 
   .bg-dark {
     background-color: #12002b;
