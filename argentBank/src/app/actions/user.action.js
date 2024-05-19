@@ -11,24 +11,22 @@ export const getUser = (token) => {
 
   return async (dispatch) => {
     try {
-      const res = await axios.post("http://localhost:3001/api/v1/user/profile",
+      const res = await axios.post(
+        "http://localhost:3001/api/v1/user/profile",
         {},
-        config);
-      
-    );
+        config
+      );
 
-dispatch({
-  type: "GET_USER",
-  payload: res.data.body,
-});
+      dispatch({
+        type: "GET_USER",
+        payload: res.data.body,
+      });
     } catch (err) {
       const message = err.response.data.message;
       alert(message);
     }
   };
 };
-
-// Update USer information
 
 export const updateUser = (token, username) => {
   const config = {
@@ -40,32 +38,33 @@ export const updateUser = (token, username) => {
   const data = {
     userName: username,
   };
-  
+
   return async (dispatch) => {
     try {
-      const res = await axios.put("ht://localhost:3000/api/v1/user/profile",
+      const res = await axios.put(
+        "ht://localhost:3000/api/v1/user/profile",
         data,
-        config);
-      
+        config
+      );
+
       dispatch({
         type: "UPDATE_USER",
         payload: res.data.body,
       });
-
     } catch (err) {
       const message = err.response.data.message;
-      alert(message)
+      alert(message);
     }
   };
 };
 
 // Logout User
 
-export const userLogout = () => {
+export const logoutUser = () => {
   return async (dispatch) => {
     try {
       sessionStorage.removeItem("token");
-      localStorage.removeItem("token);
+      localStorage.removeItem("token");
       dispatch({
         type: "USER_LOGOUT",
       });

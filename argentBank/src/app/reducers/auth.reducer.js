@@ -4,7 +4,7 @@ const initialState = {
 };
 
 // Définir le Réducer
-const AuthReducer = (state = initialState, action) => {
+export default function authReducer(state = initialState, action) {
   switch (action.type) {
     // SI l'action est de type SET_LOGIN
     case "GET_TOKEN":
@@ -30,6 +30,4 @@ const AuthReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
-
-export default userReducer;
+}
