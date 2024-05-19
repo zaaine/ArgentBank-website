@@ -12,6 +12,7 @@ import {
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [rememberMe, setRememberMe] = useState(false);
 
 	const token = useSelector(selectToken);
 	const loading = useSelector(selectLoading);
@@ -20,11 +21,20 @@ const Login = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+
+		// Validation basique côté client
+		if (!email || !password) {
+			alert("Email and password are required.");
+			return;
+		}
+
 		dispatch(login({ email, password }));
 	};
+
 	if (token) {
 		return <Navigate to="/profil" />;
 	}
+
 	return (
 		<main className="container">
 			<div className="main bgDark">
@@ -36,7 +46,12 @@ const Login = () => {
 							<label className="bold" htmlFor="username">
 								Username
 							</label>
-							<input type="text" id="username" onChange={(e) => setEmail(e.target.value)} />
+							<input
+								type="text"
+								id="username"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+							/>
 						</div>
 						<div className="inputWrapper">
 							<label className="bold" htmlFor="password">
@@ -45,6 +60,7 @@ const Login = () => {
 							<input
 								type="password"
 								id="password"
+								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
@@ -52,7 +68,8 @@ const Login = () => {
 							<input
 								type="checkbox"
 								id="remember-me"
-								// onChange={handleRemember} // Commented out because it's not used
+								checked={rememberMe}
+								onChange={(e) => setRememberMe(e.target.checked)}
 							/>
 							<label className="labelRemember" htmlFor="remember-me">
 								Remember me
@@ -68,7 +85,9 @@ const Login = () => {
 		</main>
 	);
 };
+
 export { Login };
+
 console.log(`
 			- First Name: Tony
 			- Last Name: Stark
