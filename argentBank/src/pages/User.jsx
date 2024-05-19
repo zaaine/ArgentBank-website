@@ -3,7 +3,7 @@ import NavigationUser from "../components/NavigationUser";
 import FormUser from "../components/FormUser";
 import DetailsUser from "../components/DetailsUser";
 
-const UserEdit = () => {
+const User = () => {
   return (
     <>
       <NavigationUser />
@@ -13,4 +13,4 @@ const UserEdit = () => {
   );
 };
 
-export default UserEdit;
+export default User;

@@ -177,6 +177,115 @@ html {
   white-space: nowrap !important; /* 3 */
 }
 
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.main .MissingPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin: 40px 0;
+  gap: 130px;
+}
+.main .MissingPage .error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 597px;
+  height: 150px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.main .MissingPage .error h1 {
+  color: White;
+  text-align: center;
+  font-size: 100px;
+  font-weight: 700;
+  line-height: 100%;
+  margin: 0;
+}
+.main .MissingPage p {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 146%;
+  margin: 0;
+  text-align: center;
+}
+.main .MissingPage .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 146%;
+  text-decoration-line: underline;
+  gap: 8px;
+}
+@media (max-width: 768px) {
+  .main .MissingPage {
+    margin: 113px 0px;
+    gap: 113px;
+  }
+  .main .MissingPage .error {
+    width: 198px;
+    height: 99px;
+  }
+  .main .MissingPage .error h1 {
+    font-size: 96px;
+  }
+  .main .MissingPage p {
+    font-size: 18px;
+    width: 65%;
+  }
+  .main .MissingPage .link {
+    font-size: 14px;
+  }
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top: 2px solid #ccc;
+  padding: 2rem 0 1.5rem;
+}
+
+.footer-text {
+  margin: 0;
+  padding: 0;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -189,77 +298,6 @@ html {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
-}
-
-.sign-in-content {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  height: 385px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
-  border-radius: 10px;
-}
-.sign-in-content .sign-in-icon {
-  font-size: 1.1rem;
-}
-.sign-in-content .input-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: left;
-  margin-bottom: 1rem;
-}
-.sign-in-content .input-wrapper label {
-  font-weight: bold;
-}
-.sign-in-content .input-wrapper input {
-  padding: 5px;
-  font-size: 1.2rem;
-}
-.sign-in-content .input-remember {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.sign-in-content .input-remember label {
-  margin-left: 0.25rem;
-}
-.sign-in-content .sign-in-button {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  text-decoration: underline;
-  text-decoration-color: #00bc77;
-}
-.sign-in-content .customer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 10px 0 0 0;
-  gap: 5px;
-}
-.sign-in-content .link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0px;
-}
-
-.bg-dark {
-  background-color: #12002b;
 }
 
 .sign-up-content {
@@ -423,20 +461,4 @@ html {
   .main .account .account-content-wrapper.cta .transaction-button {
     width: 200px;
   }
-}
-
-.footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-top: 2px solid #ccc;
-  padding: 2rem 0 1.5rem;
-}
-
-.footer-text {
-  margin: 0;
-  padding: 0;
 }/*# sourceMappingURL=index.css.map */
