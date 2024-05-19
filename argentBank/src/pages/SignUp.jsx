@@ -1,4 +1,4 @@
-import FormNewUser from "../components/FormUser";
+import FormNewUser from "../components/FormNewUser";
 import Navigation from "../components/Navigation";
 
 const SignUp = () => {

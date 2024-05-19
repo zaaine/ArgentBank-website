@@ -133,7 +133,7 @@ const FormNewUser = () => {
                 required
               />
             </div>
-            <button type="submit" className="sign-in-button">
+            <button type="submit" className="sign-up-button">
               Sign Up
             </button>
           </form>
