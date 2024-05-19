@@ -15,5 +15,3 @@ export default function Logout() {
     })
         return <Navigate to="/" /> 
 }
-
-
