@@ -8,7 +8,6 @@ const SignIn = () => {
     <>
       <Navigation />
       <FormUser />
-      <Footer />
     </>
   );
 };

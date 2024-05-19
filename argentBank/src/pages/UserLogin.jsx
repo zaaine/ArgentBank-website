@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 
-const User = () => {
+const UserLogin = () => {
   return (
     <>
       <Navigation />
@@ -55,4 +55,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default UserLogin;

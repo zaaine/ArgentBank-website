@@ -31,7 +31,7 @@ export default function Form() {
         const profile = await userProfile(response.body.token);
         const data = await profile.body;
         dispatch(setUser(data));
-        navigate("/userLogin");
+        navigate("/UserLogin");
         console.log(data);
         console.log(response.body.token);
 
@@ -48,7 +48,7 @@ export default function Form() {
 
       if (response.status === 400) {
         setErrorLoginMessage(true);
-        navigate("/login");
+        navigate("/SignIn");
       }
     } catch (error) {
       console.log(error);
@@ -59,13 +59,13 @@ export default function Form() {
   if (errorLoginMessage) {
     errorMessage = (
       <p style={{ color: "red" }}>
-        Error in Email or password! Please try again
+        Votre adresse email ou mot de passe est incorrect. Veuillez reessayer.
       </p>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="sign-in-content">
       <div className="input-wrapper">
         <label htmlFor="email">Email</label>
         <input
