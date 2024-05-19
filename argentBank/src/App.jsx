@@ -1,27 +1,46 @@
-import React from "react";
-import Home from "./pages/Home";
-import Logo from "./components/Logo";
-import Footer from "./components/Footer";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import UserLogin from "./pages/UserLogin";
-import UserEdit from "./pages/UserEdit";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "../features/authSlice";
 
-function App() {
-  return (
-    <HashRouter>
-      <Routes>
-        <Route path="/Home" exact element={<Home />} />
-        <Route path="/Home" exact element={<Logo />} />
-        <Route path="/SignIn" exact element={<SignIn />} />
-        <Route path="/User_Login" exact element={<UserLogin />} />
-        <Route path="/User_Edit" exact element={<UserEdit />} />
-        <Route path="/SignUp" exact element={<SignUp />} />
-      </Routes>
-      <Footer />
-    </HashRouter>
-  );
-}
+// Pages
+import Layout from "../pages/Layout/Layout";
+import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
+import Profile from "../pages/Profile/Profile";
+import Error404 from "../pages/Error404/Error404";
+
+/**
+ * PrivateRoute returns the element passed in the parameter when the JWT token is provided
+ * The token is accessed via Redux Store
+ *
+ * @param {JSX.Element} element The private element
+ * @returns {JSX.Element | void} The private element or a redirection to the Login page
+ */
+const PrivateRoute = ({ element }) => {
+  const token = useSelector(selectCurrentToken);
+  return token ? element : <Navigate to="/login" replace={true} />;
+};
+
+/**
+ * App Router from react-router-v6
+ *
+ * All routes are nested inside the Layout component
+ * An Error404 page is returned when the navigation fails
+ */
+const App = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "login", element: <Login /> },
+      {
+        path: "profile",
+        element: <PrivateRoute element={<Profile />} />,
+      },
+      { path: "*", element: <Error404 /> },
+    ],
+  },
+]);
 
 export default App;
