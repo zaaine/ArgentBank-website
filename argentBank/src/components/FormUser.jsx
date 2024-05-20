@@ -1,7 +1,34 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../app/services/authaction";
+import { useNavigate, Link } from "react-router-dom";
+
 // import PageTitle from "./PageTitle";
 import { FaUserCircle } from "react-icons/fa";
 
 const FormUser = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { token } = useSelector((state) => state.auth);
+
+  const handleLoginEvent = (event) => {
+    event.preventDefault();
+    let userCredentials = { email, password };
+    dispatch(loginUser(userCredentials));
+  };
+
+  useEffect(() => {
+    if (token) {
+      setEmail("");
+      setPassword("");
+      navigate("/user");
+    }
+  }, [token, navigate]);
+
   return (
     <>
       <main className="main bg-dark">
@@ -10,9 +37,7 @@ const FormUser = () => {
             <FaUserCircle />
           </i>
           <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            {" "}
-            {/* Formulaire de Conenxion */}
+          <form onSubmit={handleLoginEvent}>
             <div className="input-wrapper">
               <label htmlFor="email">Email</label>
               <input
@@ -40,8 +65,8 @@ const FormUser = () => {
               <input
                 type="checkbox"
                 id="remember-me"
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
+                // checked={rememberMe}
+                // onChange={handleRememberMeChange}
               />
               <label htmlFor="remember-me">Remember me</label>
             </div>
@@ -57,8 +82,8 @@ const FormUser = () => {
           </form>
         </section>
         <div className="notification-container">
-          {notification}
-          {isLoading && <div className="spinner"></div>}{" "}
+          {/* {notification} */}
+          {/* {isLoading && <div className="spinner"></div>} */}
           {/* Affichage du spinner de chargement en cas de chargement */}
         </div>
       </main>

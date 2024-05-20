@@ -1,4 +1,4 @@
-import { setUserInfo, setNewUsername } from "../Slices/authSlice";
+import { setUserInfo, setNewUsername } from "../slices/authSlice";
 
 // GET USER INFO
 

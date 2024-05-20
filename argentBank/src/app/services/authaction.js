@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { setToken } from "../Slices/authSlice";
+import { setToken } from "../slices/authSlice";
 
 // GET TOKEN
 

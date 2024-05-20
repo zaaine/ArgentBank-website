@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-
+import Account from "../components/Account";
+import Edit from "../components/Edit";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
