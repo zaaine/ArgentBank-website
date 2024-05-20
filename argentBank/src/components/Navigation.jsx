@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <nav className="main-nav">
       <Logo />
-      <div>
+      <div className="main-nav-items">
         {token ? (
           <div className="main-nav-logged">
             <div className="main-nav-logged-user">

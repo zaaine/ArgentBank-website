@@ -36,18 +36,60 @@ html {
   display: flex;
   font-weight: bold;
   color: #2c3e50;
-  gap: 5px;
+  gap: 7px;
 }
 .main-nav a .router-link-exact-active {
   color: #42b983;
 }
-
-.main-nav-item {
+.main-nav .main-nav-items .main-nav-logged {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+}
+.main-nav .main-nav-items .main-nav-logged .main-nav-logged-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.main-nav .main-nav-items .main-nav-logged .main-nav-logged-user .fa-user-circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.main-nav .main-nav-items .main-nav-logged .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
 }
-.main-nav-item:hover {
+.main-nav .main-nav-items .main-nav-logged .main-nav-item:hover {
   text-decoration: underline;
+}
+.main-nav .main-nav-items .main-nav-logged .main-nav-item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  color: #2c3e50;
+}
+.main-nav .main-nav-items .main-nav-logged .main-nav-item .fa-sign-out {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .hero {
