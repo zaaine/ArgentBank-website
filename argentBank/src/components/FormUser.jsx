@@ -25,7 +25,7 @@ const FormUser = () => {
     if (token) {
       setEmail("");
       setPassword("");
-      navigate("/user");
+      navigate("/User");
     }
   }, [token, navigate]);
 
