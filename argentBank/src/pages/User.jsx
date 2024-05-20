@@ -11,6 +11,8 @@ export default function User() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isActive, setIsActive] = useState(false);
+
   useEffect(() => {
     async function getData() {
       try {
@@ -39,9 +41,13 @@ export default function User() {
     setEditing(false);
   };
 
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <main className="main bg-dark">
-      <div className="greetings">
+      <div className=`greetings ${isActive ? 'active' : ''}`}>
         <div>
           {!editing && (
             <h1>
@@ -54,7 +60,7 @@ export default function User() {
         {editing ? (
           <Edit onCancel={handleCancel} />
         ) : (
-          <button className="edit-button" onClick={handleEditing}>
+          <button className="edit-button" onClick={() => {handleEditing(); handleClick();}}>
             Edit Name
           </button>
         )}
