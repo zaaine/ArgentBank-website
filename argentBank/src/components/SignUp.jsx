@@ -6,7 +6,7 @@ import { getUserInfo } from "../app/services/useraction";
 // import PageTitle from "../components/layout/PageTitle"; // Importation du composant PageTitle depuis le répertoire "../components/layout/PageTitle"
 import { FaUserCircle } from "react-icons/fa";
 
-const FormNewUser = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -144,4 +144,4 @@ const FormNewUser = () => {
   );
 };
 
-export default FormNewUser;
+export default SignUp;
