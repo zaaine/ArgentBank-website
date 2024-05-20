@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import Account from "../../components/Account/account";
-import Edit from "../../components/Edit/edit";
+
 import { useDispatch, useSelector } from "react-redux";
-import { getUserInfo } from "../../redux/CallApi/userCall";
+
 import { useNavigate } from "react-router-dom";
 
 export default function User() {
