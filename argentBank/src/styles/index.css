@@ -610,4 +610,42 @@ html {
 
 .bg-dark {
   background-color: #12002b;
+}
+
+.bg-light .greetings h1 {
+  color: #12002b;
+}
+.bg-light .greetings label {
+  position: relative;
+  color: #12002b;
+  right: 9px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.bg-light .greetings input {
+  border: 2px solid rgba(199, 196, 196, 0.865);
+  height: 25px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+  background-color: #fff;
+}
+.bg-light .greetings button {
+  background-color: #00bc77;
+  border: 1px solid #00bc77;
+  color: #fff;
+  height: 45px;
+  width: 130px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.bg-light .account {
+  background-color: #12002b;
+  color: #fff;
+}
+.bg-light .account .account-amount {
+  font-weight: normal !important;
+}
+.bg-light .account .account-content-wrapper.cta .transaction-button {
+  border: 1px solid red;
+  display: none;
 }/*# sourceMappingURL=index.css.map */
