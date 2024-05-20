@@ -47,7 +47,7 @@ export default function User() {
 
   return (
     <main className="main bg-dark">
-      <div className=`greetings ${isActive ? 'active' : ''}`}>
+      <div className={`greetings ${isActive ? "active" : ""}`}>
         <div>
           {!editing && (
             <h1>
@@ -60,7 +60,13 @@ export default function User() {
         {editing ? (
           <Edit onCancel={handleCancel} />
         ) : (
-          <button className="edit-button" onClick={() => {handleEditing(); handleClick();}}>
+          <button
+            className="edit-button"
+            onClick={() => {
+              handleEditing();
+              handleClick();
+            }}
+          >
             Edit Name
           </button>
         )}
