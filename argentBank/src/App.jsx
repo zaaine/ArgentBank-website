@@ -5,37 +5,24 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import User from "./pages/User";
 import ErrorPage from "./pages/ErrorPage";
-import PrivateRoute from "./components/PrivateRoute";
-import {
-  Navigate,
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route, HashRouter, Navigate } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <Routes>
         {/* Route normal de l'application */}
         <Route path="/Home" element={<Home />} />
         <Route path="/Home" element={<Logo />} />
         <Route path="/Sign-in" element={<SignIn />} />
         <Route path="/Sign-up" element={<SignUp />} />
-        <Route
-          path="/User"
-          element={
-            <PrivateRoute>
-              <User />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/Error404" element={<ErrorPage />} />
+        <Route path="/User" element={<User />} />
+        <Route path="/404" element={<ErrorPage />} />
         {/* Gestion des Routes non reconnus */}
-        <Route path="*" element={<Navigate to="/Error404" replace />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
       <Footer />
-    </Router>
+    </HashRouter>
   );
 }
 

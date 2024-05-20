@@ -1,6 +1,7 @@
-import { useState } from "react"; // Importation du hook useState depuis React
-import { useDispatch } from "react-redux"; // Importation du hook useDispatch depuis React
-import { useNavigate } from "react-router-dom"; // Importation du hook useNavigate depuis React Router
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getUserInfo } from "../app/services/useraction";
 
 // import PageTitle from "../components/layout/PageTitle"; // Importation du composant PageTitle depuis le répertoire "../components/layout/PageTitle"
 import { FaUserCircle } from "react-icons/fa";
@@ -37,7 +38,7 @@ const FormNewUser = () => {
     try {
       // Appel de l'action signupUser pour l'inscription
       await dispatch(
-        signupUser({
+        getUserInfo({
           email: formData.email,
           password: formData.password,
           firstName: formData.firstName,

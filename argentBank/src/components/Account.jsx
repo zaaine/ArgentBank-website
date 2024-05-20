@@ -6,14 +6,14 @@ export default function Account({
 }) {
   return (
     <section className="account">
-      <div className="account_content-wrapper">
-        <h3 className="account_title">
+      <div className="account-content-wrapper">
+        <h3 className="account-title">
           {title} {accountNumber}
         </h3>
-        <p className="account_amount">{amount}</p>
-        <p className="account_amount-description">{amountDescription}</p>
+        <p className="account-amount">{amount}</p>
+        <p className="account-amount-description">{amountDescription}</p>
       </div>
-      <div className="account_content-wrapper cta">
+      <div className="account-content-wrapper cta">
         <button className="transaction-button">View transactions</button>
       </div>
     </section>
