@@ -1,7 +1,7 @@
 import { useState } from "react"; // Importation du hook useState depuis React
 import { useDispatch } from "react-redux"; // Importation du hook useDispatch depuis React
 import { useNavigate } from "react-router-dom"; // Importation du hook useNavigate depuis React Router
-import { signupUser } from "../app/slice/authSlice"; // Importation de l'action signupUser depuis le module "../../redux/slices/authSlice"
+
 // import PageTitle from "../components/layout/PageTitle"; // Importation du composant PageTitle depuis le répertoire "../components/layout/PageTitle"
 import { FaUserCircle } from "react-icons/fa";
 

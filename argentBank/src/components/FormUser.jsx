@@ -1,51 +1,77 @@
 // import PageTitle from "./PageTitle";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { loginUser, fetchUserProfileAsync } from "../app/slice/authSlice";
+import { useNavigate } from "react-router-dom";
+
 import { FaUserCircle } from "react-icons/fa";
 
-const FormUser = () => {
-  const dispatch = useDispatch(); // Obtention de la fonction dispatch depuis Redux
-  const navigate = useNavigate(); // Obtention de la fonction navigate depuis React Router
-  const [notification, setNotification] = useState(""); // État pour gérer les notifications
-  const [email, setEmail] = useState(""); // État pour le nom d'utilisateur
-  const [password, setPassword] = useState(""); // État pour le mot de passe
-  const [rememberMe, setRememberMe] = useState(false); // État pour gérer la case à cocher "Se souvenir de moi"
-  const [isLoading, setIsLoading] = useState(true); // État pour gérer le chargementconst { register, handleSubmit } = useForm();
-
-  // Fonction pour gérer le changement de la case à cocher "Se souvenir de moi"
-  const handleRememberMeChange = (e) => {
-    setRememberMe(e.target.checked);
+const FormUser = ()  => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   };
 
-  // Fonction pour gérer la soumission du formulaire de connexion
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Empêche le comportement par défaut du formulaire (rechargement de la page)
+  const handleform = async (e) => {
+    e.preventDefault();
 
-    setIsLoading(true); // Active le loader
+    console / log('User data form', email, password)
+    
+    // ** Permet de garantir que les adresses email saisies sont valides et conformes au format standard **
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a_zA-Z0-9.-]+\.[a-ZA-Z]{2,}$/;
+
+    // ** Validation chanmsp vide
+    if (!email || !password) {
+      setErrorMessage("Veuillez remplir tous les champs");
+      setTimeout(() => setErrorMessage(""), 5000);
+      return;
+    }
+
+    // ** Validation email invalide
+    if (password.length < 6 || !emailRegex.test(email)) {
+      setErrorMessage("le mo de passe doit contenir au moins 6 caractères");
+      setTimeout(() => setErrorMessage(""), 5000);
+      return;
+    }
 
     try {
-      const token = await dispatch(
-        loginUser({ email: email, password })
-      ).unwrap(); // Appel de l'action loginUser avec les informations d'identification
-      if (rememberMe) {
-        localStorage.setItem("token", token); // Stockage du token dans le localStorage si "Se souvenir de moi" est activé
+      // ** appel de la fonction de connexion en passant l'email et le password **
+      const response = await login(email, password);
+
+      // ** Extraction du Token de la reponse **
+      const token = response.data.token;
+
+      console.log('login response', response)
+      console.log('login token', token)
+
+      if (response.status === 200) {
+        // ** Stockage du token dans le localStorage **
+        localStorage.setItem("authToken", token);
+
+        // ** Redirection vers la page d'accueil **
+        dispatch(
+          loginSuccess({
+            token,
+          })
+        );
+        navigate("/User");
       }
-      await dispatch(fetchUserProfileAsync()).unwrap(); // Appel de l'action fetchUserProfileAsync pour récupérer le profil utilisateur
-      setNotification("Successful login. Redirecting..."); // Affichage d'une notification de réussite
-      setTimeout(() => navigate("/user"), 3000); // Redirection vers la page utilisateur après 3 secondes
     } catch (error) {
-      console.error(
-        "Erreur lors de la connexion ou de la récupération du profil :",
-        error
-      );
-      setNotification("Login failed. Please try again."); // Affichage d'une notification d'échec
-      setTimeout(() => setNotification(""), 3000); // Suppression de la notification après 3 secondes
-    } finally {
-      setTimeout(() => setIsLoading(false), 3000); // Désactivation du loader après 3 secondes
+      //** dispatch l'action"LOGIN_FAIL" avec le message d'erreur */
+      dispatch({
+        type: "LOGIN_FAIL",
+        payload: error.message,
+      });
+      console.log("login error", error);
+
+      if (error.response && error.response.status === 400) {
+        setErrorMessage("Echec de l'authentification. Veuillez vérifier vis identifiants.")
+        setTimeout(() => setErrorMessage(""), 5000);
+      }
     }
-  };
+}
+ 
 
   return (
     <>

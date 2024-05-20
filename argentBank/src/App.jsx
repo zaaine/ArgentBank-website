@@ -13,10 +13,6 @@ import {
   Route,
 } from "react-router-dom";
 
-// Importation du gestionnaire de session
-import SessionHandler from "./components/SessionHandler";
-import { basename } from "./components/config";
-
 function App() {
   return (
     <Router basename={basename}>

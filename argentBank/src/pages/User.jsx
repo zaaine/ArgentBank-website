@@ -1,5 +1,5 @@
 // import PageTitle from "../components/layout/PageTitle"; // Importer le composant PageTitle depuis le chemin spécifié
-import { updateUserProfileAsync } from "../app/slice/authSlice"; // Importer l'action updateUserProfileAsync depuis le fichier d'authentification
+
 import { useDispatch, useSelector } from "react-redux"; // Importer les fonctions useDispatch et useSelector depuis react-redux
 import { useEffect, useState } from "react"; // Importer les fonctions useEffect et useState depuis React
 
