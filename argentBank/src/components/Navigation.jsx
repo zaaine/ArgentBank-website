@@ -1,8 +1,8 @@
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Logo from "./Logo";
 import { FaUserCircle } from "react-icons/fa";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { logout } from "../app/slices/authSlice";
 
 const Navigation = () => {
@@ -21,15 +21,29 @@ const Navigation = () => {
   return (
     <nav className="main-nav">
       <Logo />
-      <NavLink
-        to="/Sign-in"
-        className={(nav) => (nav.isActive ? "main-nav-item" : "main-nav-item")}
-      >
-        <i className="fa fa-user-circle">
-          <FaUserCircle />
-        </i>
-        Sign In
-      </NavLink>
+      <div>
+        {token ? (
+          <div className="main-nav-logged">
+            <div className="main-nav-logged-user">
+              <i className="fa fa-user-circle">
+                <FaUserCircle />
+              </i>
+              {user.userName}
+            </div>
+            <Link to="/Home" className="main-nav-item" onClick={switchLogout}>
+              <i className="fa fa-sign-out">
+                <FaArrowRightFromBracket />
+              </i>
+              Sign Out
+            </Link>
+          </div>
+        ) : (
+          <Link to="/Sign-in" className="main-nav-item">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
+        )}
+      </div>
     </nav>
   );
 };
