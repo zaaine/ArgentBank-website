@@ -64,11 +64,6 @@ html {
           align-items: center;
   gap: 10px;
 }
-.main-nav .main-nav-items .main-nav-logged .main-nav-logged-user .fa-user-circle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
 .main-nav .main-nav-items .main-nav-logged .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
@@ -87,6 +82,11 @@ html {
   color: #2c3e50;
 }
 .main-nav .main-nav-items .main-nav-logged .main-nav-item .fa-sign-out {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.main-nav .main-nav-items .fa-user-circle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

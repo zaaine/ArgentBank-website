@@ -27,32 +27,33 @@
           align-items: center;
           gap: 10px;
 
-          .fa-user-circle {
+        }
+        
+        .main-nav-item {
+          text-decoration: none;
+          margin-right: 0.5rem;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+          
+          a {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #2c3e50;
+            
+          }
+          
+          .fa-sign-out {
             display: flex;
           }
+          
         }
-
-        .main-nav-item {
-            text-decoration: none;
-            margin-right: 0.5rem;
-            
-            &:hover {
-                text-decoration: underline;
-              }
-
-              a {
-                display: flex;
-                align-items: center;
-                font-weight: bold;
-                color: #2c3e50;
-
-              }
-
-              .fa-sign-out {
-                display: flex;
-              }
-            }
         
+      }
+      .fa-user-circle {
+        display: flex;
       }
     }
 }
