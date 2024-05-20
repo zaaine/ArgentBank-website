@@ -46,8 +46,8 @@ export default function User() {
   };
 
   return (
-    <main className="main bg-dark">
-      <div className={`greetings ${isActive ? "active" : ""}`}>
+    <main className={`main ${isActive ? 'bg-light' : 'bg-dark'}`}>
+      <div className="greetings">
         <div>
           {!editing && (
             <h1>
