@@ -15,8 +15,7 @@ import {
 
 function App() {
   return (
-    <Router basename={basename}>
-      <SessionHandler />
+    <Router>
       <Routes>
         {/* Route normal de l'application */}
         <Route path="/Home" element={<Home />} />

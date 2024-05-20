@@ -1,78 +1,7 @@
 // import PageTitle from "./PageTitle";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
 import { FaUserCircle } from "react-icons/fa";
 
 const FormUser = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-};
-
-const handleform = async (e) => {
-  e.preventDefault();
-
-  console / log("User data form", email, password);
-
-  // ** Permet de garantir que les adresses email saisies sont valides et conformes au format standard **
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  // ** Validation chanmsp vide
-  if (!email || !password) {
-    setErrorMessage("Veuillez remplir tous les champs");
-    setTimeout(() => setErrorMessage(""), 5000);
-    return;
-  }
-
-  // ** Validation email invalide
-  if (password.length < 6) {
-    setErrorMessage("le mo de passe doit contenir au moins 6 caractères");
-    setTimeout(() => setErrorMessage(""), 5000);
-    return;
-  }
-
-  try {
-    // ** appel de la fonction de connexion en passant l'email et le password **
-    const response = await login(email, password);
-
-    // ** Extraction du Token de la reponse **
-    const token = response.data.token;
-
-    console.log("login response", response);
-    console.log("login token", token);
-
-    if (response.status === 200) {
-      // ** Stockage du token dans le localStorage **
-      localStorage.setItem("authToken", token);
-
-      // ** Redirection vers la page d'accueil **
-      dispatch(
-        loginSuccess({
-          token,
-        })
-      );
-      navigate("/User");
-    }
-  } catch (error) {
-    //** dispatch l'action"LOGIN_FAIL" avec le message d'erreur */
-    dispatch({
-      type: "LOGIN_FAIL",
-      payload: error.message,
-    });
-    console.log("login error", error);
-
-    if (error.response && error.response.status === 400) {
-      setErrorMessage(
-        "Echec de l'authentification. Veuillez vérifier vis identifiants."
-      );
-      setTimeout(() => setErrorMessage(""), 5000);
-    }
-  }
-
   return (
     <>
       <main className="main bg-dark">
