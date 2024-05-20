@@ -15,7 +15,7 @@ export default function User() {
     async function getData() {
       try {
         if (!token) {
-          navigate("/");
+          navigate("/User");
           return;
         }
 

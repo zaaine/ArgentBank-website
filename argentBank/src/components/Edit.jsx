@@ -29,7 +29,7 @@ export default function Edit({ onCancel }) {
     <>
       <form>
         <div className="edit-container">
-          <div className="input_wrapper">
+          <div className="input-wrapper">
             <h1>Edit user info</h1>
             <label htmlFor="username">User name:</label>
             <input
@@ -40,7 +40,7 @@ export default function Edit({ onCancel }) {
               autoComplete="on"
             />
           </div>
-          <div className="input_wrapper">
+          <div className="input-wrapper">
             <label htmlFor="firstname">First name:</label>
             <input
               type="text"
@@ -50,7 +50,7 @@ export default function Edit({ onCancel }) {
               disabled
             />
           </div>
-          <div className="input_wrapper">
+          <div className="input-wrapper">
             <label htmlFor="lastname">Last name:</label>
             <input
               type="text"
