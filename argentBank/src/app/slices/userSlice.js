@@ -15,7 +15,7 @@ const userSlice = createSlice({
   // ** Reducer pour gérer les actions liées à l'utilisateur**
   reducers: {
     userSuccess: (state, action) => {
-      // ** Mise à jour de l'état suite à une connexion réussie **
+      // ** Mise à jour de l'etat suite à une connexion réussie **
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.userName = action.payload.userName;
