@@ -8,6 +8,8 @@ import { setFirstName } from "../../redux/features/firstName.js";
 import { setLastName } from "../../redux/features/lastName.js";
 import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import Account from '../../components/Account/Account.js';
+import mockedTransactions from '../../__mocks__/mockedTransactions.js';
+
 
 export function Profil() {
   const token = useSelector(selectToken);
@@ -17,7 +19,7 @@ export function Profil() {
   const [newFirstName, setNewFirstName] = useState('');
   const [newLastName, setNewLastName] = useState('');
   const [formatErrorName, setFormatErrorName] = useState('');
-  const [accounts, setAccounts] = useState(mockedTransactions); // Initialiser avec des données mockées
+  const [accounts, setAccounts] = useState(''); // Initialiser avec des données mockées
   const dispatch = useDispatch();
   const regex = /^[A-zÀ-ú-']{2,}$/;
 
@@ -141,14 +143,25 @@ export function Profil() {
 
       <h2 className="srOnly">Accounts</h2>
 
-      {accounts.map((account) => (
-        <Account
-          key={account.transactionId} // Utilisez un identifiant unique pour chaque transaction
-          title={account.description} // Adaptez selon les propriétés de l'API
-          money={`$${account.amount}`}
-          balanceType={account.category} // Adaptez selon les propriétés de l'API
-        />
-      ))}
+      {accounts.length > 0 ? (
+        accounts.map((account) => (
+          <Account
+            key={account.transactionId}
+            title={account.title}
+            money={account.money}
+            balanceType={account.balanceType}
+          />
+        ))
+      ) : (
+        mockedTransactions.map((account) => (
+          <Account
+            key={account.transactionId}
+            title={account.title}
+            money={account.money}
+            balanceType={account.balanceType}
+          />
+        ))
+      )}
     </main>
   );
 }
