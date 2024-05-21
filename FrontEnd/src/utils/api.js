@@ -79,6 +79,79 @@ saveUserProfileData.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
+// Function to handle fetched transactions data
+export function getTransactionsData(data) {
+    if (data) {
+        if (data.body !== undefined) {
+            const obj = {
+                transactions: data.body.transactions,
+                status: data.status,
+                message: data.message,
+            };
+            return obj;
+        } else {
+            const obj = {
+                transactions: [],
+                status: 0,
+                message: "No transactions found",
+            };
+            return obj;
+        }
+    }
+}
+
+getTransactionsData.propTypes = {
+    data: PropTypes.object.isRequired,
+};
+
+// Function to handle fetched transaction by ID data
+export function getTransactionByIdData(data) {
+    if (data) {
+        if (data.body !== undefined) {
+            const obj = {
+                transaction: data.body,
+                status: data.status,
+                message: data.message,
+            };
+            return obj;
+        } else {
+            const obj = {
+                transaction: null,
+                status: 0,
+                message: "Transaction not found",
+            };
+            return obj;
+        }
+    }
+}
+
+getTransactionByIdData.propTypes = {
+    data: PropTypes.object.isRequired,
+};
+
+// Function to handle updated transaction data
+export function updateTransactionData(data) {
+    if (data) {
+        if (data.status !== 400 && data.status !== 401 && data.status !== 500) {
+            const obj = {
+                status: data.status,
+                message: data.message,
+            };
+            return obj;
+        } else {
+            const obj = {
+                status: data.status,
+                message: data.message,
+            };
+            return obj;
+        }
+    }
+}
+
+updateTransactionData.propTypes = {
+    data: PropTypes.object.isRequired,
+};
+
 // Function to perform login via the API
 export const getLogin = async (credentials) => {
     const API_URL = `${BASE_URL}user/login`;
@@ -160,4 +233,93 @@ export const saveUserProfile = async (token, userProfile) => {
 saveUserProfile.propTypes = {
     token: PropTypes.string.isRequired,
     userProfile: PropTypes.object.isRequired,
+};
+
+// Function to fetch all transactions for the current month via the API
+export const getTransactions = async (token, accountId, month) => {
+    const API_URL = `${BASE_URL}user/profile/${accountId}/transactions${month ? `?month=${month}` : ''}`;
+
+    try {
+        const transactionsResponse = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!transactionsResponse.ok) {
+            throw new Error(`HTTP error! status: ${transactionsResponse.status}`);
+        }
+        const transactionsResponseJson = await transactionsResponse.json();
+        return getTransactionsData(transactionsResponseJson);
+    } catch (error) {
+        alert(ERROR_MESSAGE);
+        return null;
+    }
+};
+
+getTransactions.propTypes = {
+    token: PropTypes.string.isRequired,
+    accountId: PropTypes.string.isRequired,
+    month: PropTypes.string,
+};
+
+// Function to fetch a transaction by ID via the API
+export const getTransactionById = async (token, accountId, transactionId) => {
+    const API_URL = `${BASE_URL}user/profile/${accountId}/transactions/${transactionId}`;
+
+    try {
+        const transactionResponse = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!transactionResponse.ok) {
+            throw new Error(`HTTP error! status: ${transactionResponse.status}`);
+        }
+        const transactionResponseJson = await transactionResponse.json();
+        return getTransactionByIdData(transactionResponseJson);
+    } catch (error) {
+        alert(ERROR_MESSAGE);
+        return null;
+    }
+};
+
+getTransactionById.propTypes = {
+    token: PropTypes.string.isRequired,
+    accountId: PropTypes.string.isRequired,
+    transactionId: PropTypes.string.isRequired,
+};
+
+// Function to update a transaction via the API
+export const updateTransaction = async (token, accountId, transactionId, transactionDetails) => {
+    const API_URL = `${BASE_URL}user/profile/${accountId}/transactions/${transactionId}`;
+
+    try {
+        const updateTransactionResponse = await fetch(API_URL, {
+            method: "PUT",
+            body: JSON.stringify(transactionDetails),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!updateTransactionResponse.ok) {
+            throw new Error(`HTTP error! status: ${updateTransactionResponse.status}`);
+        }
+        const updateTransactionResponseJson = await updateTransactionResponse.json();
+        return updateTransactionData(updateTransactionResponseJson);
+    } catch (error) {
+        alert(ERROR_MESSAGE);
+        return null;
+    }
+};
+
+updateTransaction.propTypes = {
+    token: PropTypes.string.isRequired,
+    accountId: PropTypes.string.isRequired,
+    transactionId: PropTypes.string.isRequired,
+    transactionDetails: PropTypes.object.isRequired,
 };
