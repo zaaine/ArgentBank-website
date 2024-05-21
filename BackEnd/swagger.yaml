@@ -238,6 +238,7 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
+
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -309,7 +310,6 @@ definitions:
           type: object
           properties:
           transactions:
-<<<<<<< HEAD
           $ref: '#/definitions/Transaction'
           example:
             - transactionId: 134872901
@@ -391,74 +391,6 @@ definitions:
                       transactionType: "Electronic"
                       category: "Food"
                       note: "lorem ipsum"    
-=======
-            type: array
-            items:
-              $ref: '#/definitions/Transaction'
-        example:
-          transactions:
-              - transactionId: 134872901
-                title: "Argent Bank Checking (x8349)"
-                money: "$2,082.79"
-                balanceType: "Available Balance"
-                TransactionDetail:
-                  - date: "2023-05-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-06-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-07-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-              - transactionId: 2473892010
-                title: "Argent Bank Savings (x6712)"
-                money: "$10,928.42"
-                balanceType: "Available Balance"
-                TransactionDetail:
-                  - date: "2023-05-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-06-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-07-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-              - transactionId: 345879287
-                title: "Argent Bank Credit Card (x8349)"
-                money: "$184.30"
-                balanceType: "Current Balance"
-                TransactionDetail:
-                  - date: "2023-05-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-06-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-                  - date: "2023-07-21T12:00:00Z"
-                    description: "Grocery Shopping"
-                    transactionType: "Electronic"
-                    category: "Food"
-                    note: "lorem ipsum"
-
->>>>>>> 0d957190ba9df2e37decddd02a67ffd1baefac3a
   TransactionResponse:
     type: object
     properties:
@@ -489,25 +421,27 @@ definitions:
       transactionId:
         type: string
         description: ID de la transaction
-      accountId:
+      title:
         type: string
-        description: ID du compte
+        description: Titre de la transaction
+      money:
+        type: string
+        description: Montant formaté de la transaction
+      balanceType:
+        type: string
+        description: Type de solde
+
+  TransactionDetail:
+    type: object
+    properties:
       date:
         type: string
         format: date-time
         description: Date de la transaction
       description:
         type: string
-        description: Description de la transaction
-      amount:
-        type: integer
-        format: int64
-        description: Montant de la transaction
-      balance:
-        type: number
-        format: double
-        description: Solde du compte après la transaction
-      type:
+        description: Description de la transaction      
+      transactionType:
         type: string
         description: Type de transaction
       category:
@@ -516,17 +450,7 @@ definitions:
         enum:
           - Food
           - House
-          - Car
-      notes:
-        type: string
-        description: Remarques sur la transaction
-
-  TransactionDetail:
-    type: object
-    properties:
-      category:
-        type: string
-        description: Catégorie de transaction
+          - Car      
       notes:
         type: string
         description: Remarques sur la transaction
