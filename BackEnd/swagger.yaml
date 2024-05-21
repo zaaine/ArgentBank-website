@@ -69,7 +69,7 @@ paths:
        # - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
@@ -94,7 +94,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
@@ -106,13 +106,13 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions module
-      summary: Finds all transactions for the current month
-      description: API for fetching have all the transactions of the current month 
+        - Transactions Module
+      summary: Fetch all transactions for the current month
+      description: API for fetching all transactions of the current month
       consumes:
-        - 'application/json'
+        - application/json
       produces:
-        - 'application/json'
+        - application/json
       parameters:
         - in: header
           type: string
@@ -121,7 +121,7 @@ paths:
           required: true
         - name: accountId
           in: path
-          description: Id of the account
+          description: ID of the account
           required: true
           type: string
         - name: month
@@ -144,7 +144,7 @@ paths:
             - December
       responses:
         '200':
-          description: current month transactions sucessfully loaded
+          description: Current month transactions successfully loaded
           schema:
             $ref: '#/definitions/TransactionsMonthResponse'
         '400':
@@ -160,11 +160,11 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions module
+        - Transactions Module
       summary: Get transaction by ID
-      description: API for fetching one transaction details
+      description: API for fetching details of a transaction
       produces:
-        - 'application/json'
+        - application/json
       parameters:
         - in: header
           type: string
@@ -173,18 +173,17 @@ paths:
           required: true
         - name: accountId
           in: path
-          description: Id of the account
+          description: ID of the account
           required: true
           type: string
         - name: transactionId
           in: path
-          description: Id of the transaction
+          description: ID of the transaction
           required: true
           type: string
-                
       responses:
         '200':
-          description: Transaction sucessfully loaded
+          description: Transaction successfully loaded
           schema:
             $ref: '#/definitions/TransactionResponse'
         '400':
@@ -199,11 +198,11 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions module
+        - Transactions Module
       summary: Update an existing transaction
-      description: API for updating transaction's details
+      description: API for updating transaction details
       produces:
-        - 'application/json'
+        - application/json
       parameters:
         - in: header
           type: string
@@ -212,12 +211,12 @@ paths:
           required: true
         - name: accountId
           in: path
-          description: Id of the account
+          description: ID of the account
           required: true
           type: string
         - name: transactionId
           in: path
-          description: Id of the transaction
+          description: ID of the transaction
           required: true
           type: string
         - in: body
@@ -228,7 +227,7 @@ paths:
             $ref: '#/definitions/TransactionDetail'
       responses:
         '200':
-          description: Transaction's details sucessfully modified
+          description: Transaction details successfully modified
           schema:
             $ref: '#/definitions/TransactionUpdateResponse'
         '400':
@@ -239,7 +238,6 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
-
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -264,7 +262,6 @@ definitions:
       userName:
         type: string
         description: Nom public de l'utilisateur
-
   Login:
     type: object
     properties:
@@ -274,7 +271,6 @@ definitions:
       password:
         type: string
         description: Mot de passe de l'utilisateur
-
   ApiResponse:
     type: object
     properties:
@@ -289,19 +285,17 @@ definitions:
             type: string
           email:
             type: string
-
   LoginResponse:
     type: object
     properties:
       token:
         type: string
-
   UserProfile:
     type: object
     properties:
       userName:
         type: string
-
+  
   TransactionsMonthResponse:
     type: object
     properties:
@@ -310,11 +304,12 @@ definitions:
         example: 200
       message:
         type: string
-        example: "Transactions récupérées avec succès"
+        example: Transactions récupérées avec succès
       body:
           type: object
           properties:
           transactions:
+<<<<<<< HEAD
           $ref: '#/definitions/Transaction'
           example:
             - transactionId: 134872901
@@ -396,6 +391,74 @@ definitions:
                       transactionType: "Electronic"
                       category: "Food"
                       note: "lorem ipsum"    
+=======
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        example:
+          transactions:
+              - transactionId: 134872901
+                title: "Argent Bank Checking (x8349)"
+                money: "$2,082.79"
+                balanceType: "Available Balance"
+                TransactionDetail:
+                  - date: "2023-05-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-06-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-07-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+              - transactionId: 2473892010
+                title: "Argent Bank Savings (x6712)"
+                money: "$10,928.42"
+                balanceType: "Available Balance"
+                TransactionDetail:
+                  - date: "2023-05-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-06-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-07-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+              - transactionId: 345879287
+                title: "Argent Bank Credit Card (x8349)"
+                money: "$184.30"
+                balanceType: "Current Balance"
+                TransactionDetail:
+                  - date: "2023-05-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-06-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+                  - date: "2023-07-21T12:00:00Z"
+                    description: "Grocery Shopping"
+                    transactionType: "Electronic"
+                    category: "Food"
+                    note: "lorem ipsum"
+
+>>>>>>> 0d957190ba9df2e37decddd02a67ffd1baefac3a
   TransactionResponse:
     type: object
     properties:
@@ -404,7 +467,7 @@ definitions:
         example: 200
       message:
         type: string
-        example: "Transaction chargée avec succès"
+        example: Transaction chargée avec succès
       schema:
         $ref: '#/definitions/Transaction'
 
@@ -416,7 +479,7 @@ definitions:
         example: 200
       message:
         type: string
-        example: "Détails de la transaction modifiés avec succès"
+        example: Détails de la transaction modifiés avec succès
       schema:
         $ref: '#/definitions/Transaction'
 
