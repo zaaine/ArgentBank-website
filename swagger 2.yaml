@@ -8,6 +8,7 @@ host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+  - https
 paths:
   /user/login:
     post:
@@ -101,6 +102,120 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/accounts/{account_Id}/transactions:
+    get:
+      security: 
+        - Bearer: [] 
+      tags:
+        - Partie 2 - Complémentaire
+      summary: Transaction API
+      description: API to get all transactions for a user
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+            default: Bearer <token>
+        - in: path
+          name: account_Id
+          description: account ID
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: All transactions retrieved successfullyUser profile retrieved successully
+          schema:
+            $ref: '#/definitions/AccountID'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/account/{account_id}/transaction/{transaction_id}:
+    get:
+      security: 
+        - Bearer: [] 
+      tags:
+        - Partie 2 - Complémentaire
+      summary: Transactions API
+      description: API to get a detail of a single transaction
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+            default: Bearer <token>
+        - in: path
+          name: transaction_id
+          type: integer
+          description: Transaction ID
+          required: true
+        - in: path
+          name: account_id
+          type: integer
+          description: Account ID
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: A single transaction retrieved successfully
+          schema:
+            $ref: '#/definitions/AccountResponse'
+        '400': 
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/{account_id}/transactions/{transaction_id}: 
+     put:
+       security: 
+         - Bearer: [] 
+       tags:
+         - Partie 2 - Complémentaire
+       summary: Transactions API
+       description: API for updating a category of transaction
+       parameters:
+         - in: header
+           name: Authorization
+           type: string
+           description: Attach Bearer JWT token
+           required: true
+           schema:
+             type: string
+             default: Bearer <token>
+         - in: path
+           name: transaction_id
+           type: integer
+           description: Transaction ID
+           required: true
+         - in: path
+           name: account_id
+           type: integer
+           description: Account ID
+           required: true
+         - in: body
+           name: body
+           description: Update account transaction attributes
+           required: true
+           schema:
+             $ref: '#/definitions/UserTransaction'
+       produces:
+         - application/json
+       responses:
+         '200':
+           description: updated transaction successfully
+           schema:
+             $ref: '#/definitions/CategoryResponse'
+         '400': 
+           description: Invalid Fields
+         '500':
+           description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -135,24 +250,113 @@ definitions:
   ApiResponse:
     type: object
     properties:
-      status:
+      id:
         type: integer
-      message:
+      date:
         type: string
-      body:
-        type: object
-        properties:
-          id:
-            type: string
-          email:
-            type: string
+      description:
+        type: string
+      amount:
+        type: number
+      balance:
+        type: number
   LoginResponse:
     type: object
     properties:
-      token:
+      id:
+        type: integer
+      date:
         type: string
+      description: 
+        type: string   
   UserProfile:
     type: object
     properties:
-      userName:
+      category:
         type: string
+      note:
+        type: string
+  UserTransaction:
+    type: object
+    properties:
+      category:
+        type: string
+      note:
+        type: string
+  CategoryResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+      date:
+        type: string
+        format: date-time
+      description: 
+        type: string
+        example: "Payment at starbucks"
+      amount:
+        type: number
+        format: int32
+        example: 50
+      balance:
+        type: number
+        format: float
+        example: 2032.79
+      transactionType:
+          type: string
+          example: "Electronic"
+      category:
+            type: string
+            example: "Grocery shopping"
+      note:
+            type: string
+            example: "Lorem ipsum"
+  AccountID:
+    type: object
+    properties:
+      id:
+        type: integer
+      date:
+        type: string
+        format: date-time
+      description:
+        type: string
+        example: "Payment at starbucks"
+      amount:
+        type: number
+        format: int32
+        example: 50
+      balance:
+        type: number
+        format: float
+        example: 2032.79
+  AccountResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+      date:
+        type: string
+        format: date-time
+      description: 
+        type: string
+        example: "Payment at starbucks"
+      amount:
+        type: number
+        format: int32
+        example: 50
+      balance:
+        type: number
+        format: float
+        example: 2032.79
+      transactionType:
+          type: string
+          example: "Electronic"
+      category:
+            type: string
+            example: "Food"  
+      note:
+            type: string
+            example: "Lorem ipsum"    
+            
+  
