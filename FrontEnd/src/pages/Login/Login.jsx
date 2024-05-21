@@ -87,15 +87,14 @@ const Login = () => {
 };
 
 export { Login };
-
 console.log(`
-			- First Name: Tony
-			- Last Name: Stark
-			- Email: tony@stark.com
-			- Password: password123
-			
-			- First Name: Steve
-			- Last Name: Rogers
-			- Email: steve@rogers.com
-			- Password: password456
-			`);
+		- First Name: Tony
+		- Last Name: Stark
+		- Email: tony@stark.com
+		- Password: password123
+		
+		- First Name: Steve
+		- Last Name: Rogers
+		- Email: steve@rogers.com
+		- Password: password456
+	`);
