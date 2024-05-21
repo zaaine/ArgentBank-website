@@ -68,3 +68,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### 2- Lancer le FrontEnd
+    - avec npm :
+      ```npm start```
+    - avec yarn :
+      ```yarn start```
+- Port : [http://localhost:3000/](http://localhost:3000/)
+
+## Installer les dépendances FrontEnd
+- Un éditeur de texte (exemple : [Visual Studio Code](https://code.visualstudio.com/))
+- [react](https://reactjs.org/)
+- [redux](https://redux.js.org/introduction/installation)
+- [react-redux](https://redux.js.org/introduction/installation)
+- [@reduxjs/toolkit](https://redux.js.org/introduction/installation)
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+- [prop-types](https://github.com/facebook/prop-types)
