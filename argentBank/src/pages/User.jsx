@@ -4,6 +4,7 @@ import Edit from "../components/Edit";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../app/services/useraction";
 import { useNavigate } from "react-router-dom";
+import PageTitle from '../components/PageTitle'
 
 export default function User() {
   const user = useSelector((state) => state.auth.user);
@@ -46,6 +47,8 @@ export default function User() {
   };
 
   return (
+    <>
+    <PageTitle title="ArgentBank - HomePage" />
     <main className={`main ${isActive ? 'bg-light' : 'bg-dark'}`}>
       <div className="greetings">
         <div>
@@ -91,5 +94,6 @@ export default function User() {
         amountDescription="Current Balance"
       />
     </main>
+    </>
   );
 }
