@@ -65,8 +65,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile retrieved successfully
@@ -94,7 +92,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successfully
+          description: User profile updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
@@ -115,25 +113,11 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: accountId
-          in: path
-          description: Id of the account
-          required: true
-          type: string
-        - name: money
-          in: path
-          description: Montant de la account (USD)
-          required: true
-          type: number
-        - name: balanceType
-          in: path
-          description: "balance of account"
-          required: true
-          type: string
-      operationId: getAllAccounts
+      produces:
+        - application/json
       responses:
         '200':
-          description: All accounts successfully loaded
+          description: User accounts retrieved successfully
           schema:
             $ref: '#/definitions/Accounts'
         '400':
@@ -144,14 +128,13 @@ paths:
           description: Account not found
         '500':
           description: Internal Server Error
-
   /user/profile/{accountId}/transactions/{currentMonth}:
     get:
       security:
         - Bearer: []
       tags:
-        - Transactions by Account Current Month
-      summary: Current Month Transactions API
+        - Transactions Module
+      summary: Get Current Month Transactions
       description: API for fetching the current month transactions
       parameters:
         - in: header
@@ -166,36 +149,21 @@ paths:
           type: string
         - in: path
           name: currentMonth
-          in: query
           description: Current month in YYYY-MM format
           required: true
           type: string
-          enum:
-           - January
-           - February
-           - March
-           - April
-           - May
-           - June
-           - July
-           - August
-            - September
-           - October
-           - November
-            - December
       produces:
         - application/json
       responses:
         '200':
           description: Transactions retrieved successfully
           schema:
-            $ref: '#/definitions/MonthResponseTransactions'
+            $ref: '#/definitions/TransactionsMonthResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
-  /user/profile/{accountId}/transactions/{TransactionId}:
+  /user/profile/{accountId}/transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -212,33 +180,32 @@ paths:
           required: true
           type: string
         - in: path
-          name: TransactionId
-          description: Id of the transaction
+          name: transactionId
+          description: ID of the transaction
           required: true
-          type: string  
+          type: string
       responses:
         '200':
           description: Transaction successfully loaded
           schema:
-            $ref: '#/definitions/TransactionDetail'
+            $ref: '#/definitions/TransactionId'
         '404':
           description: Transaction not found
         '500':
-          description: Internal Server Error  
+          description: Internal Server Error
     put:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      summary: Update an existing transaction by ID
-      description: Update an existing transaction by ID
-      operationId: updateTransaction
+        - Update transaction attributes
+      summary: Update Transaction
+      description: API for updating an existing transaction by ID
       parameters:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
-          type: string
           required: true
+          type: string
         - in: body
           name: body
           description: Update transaction attributes
@@ -249,18 +216,18 @@ paths:
               category:
                 type: string
                 description: Update category
-                example: "Food"
+                example: Food
               note:
                 type: string
                 description: Update note
-                example: "lorem ipsum"
+                example: Lorem ipsum
       produces:
         - application/json
       responses:
         '200':
           description: Transaction successfully updated
           schema:
-            $ref: '#/definitions/TransactionDetail'
+            $ref: '#/definitions/TransactionId'
         '404':
           description: Invalid TransactionId
         '500':
@@ -278,28 +245,28 @@ definitions:
     properties:
       email:
         type: string
-        description: Courriel de l'utilisateur
+        description: User email
       password:
         type: string
-        description: Mot de passe de l'utilisateur
+        description: User password
       firstName:
         type: string
-        description: Prénom de l'utilisateur
+        description: User first name
       lastName:
         type: string
-        description: Nom de famille de l'utilisateur
+        description: User last name
       userName:
         type: string
-        description: Nom public de l'utilisateur
+        description: User public name
   Login:
     type: object
     properties:
       email:
         type: string
-        description: Courriel de l'utilisateur
+        description: User email
       password:
         type: string
-        description: Mot de passe de l'utilisateur
+        description: User password
   ApiResponse:
     type: object
     properties:
@@ -324,54 +291,48 @@ definitions:
     properties:
       userName:
         type: string
-  
   Accounts:
     type: object
     properties:
       accountId:
         type: string
-        description: Titre de Account
-        example: "Argent Bank Checking (x8349)"
+        description: Title of Account
+        example: Argent Bank Checking (x8349)
       money:
         type: number
         format: float
-        description: Montant de la account (USD)
+        description: Account balance (USD)
         example: 2082.79
       balanceType:
         type: string
-        description: "balance of account"
-        example: "Available balance"
-  
+        description: Balance type of account
+        example: Available balance
   TransactionsMonthResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          example: 200
-        message:
-          type: string
-          format: string
-          example: transactions successfully recovered
-        accountId:
-         type: string
-        currentMonth: 
-          type: string
+    type: object
+    properties:
+      status:
+        type: integer
+        example: 200
+      message:
+        type: string
+        format: string
+        example: Transactions successfully recovered
         transactions:
-          type: array 
-          $ref: '#/definitions/TransactionId'
-
+          type: array
+          items:
+            $ref: '#/definitions/TransactionId'
   TransactionId:
     type: object
     properties:
       date:
         type: string
         format: date-time
-        description: Date de la transaction
-        example: "2023-05-21T12:00:00Z"
+        description: Transaction date
+        example: 2023-05-21T12:00:00Z
       descriptionTransaction:
         type: string
-        description: Description de la transaction
-        example: "Grocery Shopping"
+        description: Transaction description
+        example: Grocery Shopping
       amount:
         type: integer
         format: int64
@@ -387,17 +348,17 @@ definitions:
         properties:
           transactionType:
             type: string
-            description: Type de transaction
-            example: "Electronic"
+            description: Transaction type
+            example: Electronic
           category:
             type: string
-            description: Catégorie de transaction
-            example: "Food"
+            description: Transaction category
+            example: Food
             enum:
               - Food
               - House
               - Car
           note:
             type: string
-            description: Remarques sur la transaction
-            example: "Lorem ipsum"
+            description: Transaction notes
+            example: Lorem ipsum

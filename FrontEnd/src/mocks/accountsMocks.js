@@ -1,4 +1,4 @@
-const mockedTransactions = [
+const accountsMocks = [
     {
         accountId: "134872901",
         title: "Argent Bank Checking (x8349)",
@@ -267,4 +267,4 @@ const mockedTransactions = [
         ]
     }
 ];
-export default mockedTransactions;
+export default accountsMocks;

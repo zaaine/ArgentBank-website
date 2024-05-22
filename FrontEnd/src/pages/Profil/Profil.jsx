@@ -8,7 +8,7 @@ import { setFirstName } from "../../redux/features/firstName.js";
 import { setLastName } from "../../redux/features/lastName.js";
 import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import Account from '../../components/Account/Account.js';
-import mockedTransactions from '../../__mocks__/mockedTransactions.js';
+import accountsMocks from '../../mocks/accountsMocks.js';
 
 
 export function Profil() {
@@ -153,7 +153,7 @@ export function Profil() {
           />
         ))
       ) : (
-        mockedTransactions.map((account) => (
+        accountsMocks.map((account) => (
           <Account
             key={account.transactionId}
             title={account.title}
