@@ -1,4 +1,5 @@
 import { setUserInfo, setNewUsername } from "../slices/authSlice";
+import axios from "axios";
 
 // GET USER INFO
 
@@ -9,10 +10,13 @@ export async function getUserInfo(token, dispatch) {
       Authorization: `Bearer ${token}`,
     };
 
-    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "POST",
-      headers: headers,
-    });
+    const response = await axios.post(
+      "http://localhost:3001/api/v1/user/profile",
+      {
+        method: "POST",
+        headers: headers,
+      }
+    );
 
     if (response.ok) {
       const data = await response.json();
@@ -34,15 +38,18 @@ export async function updateUsername(token, newUserName, dispatch) {
       userName: newUserName,
     };
 
-    const request = await fetch(`http://localhost:3001/api/v1/user/profile`, {
-      method: "PUT",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(requestBody),
-    });
+    const request = await axios.put(
+      `http://localhost:3001/api/v1/user/profile`,
+      {
+        method: "PUT",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(requestBody),
+      }
+    );
 
     const data = await request.json();
     dispatch(setNewUsername(data.body.userName));

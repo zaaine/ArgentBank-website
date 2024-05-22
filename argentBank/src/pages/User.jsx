@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../app/services/useraction";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
+import e from "cors";
 
 export default function User() {
   const user = useSelector((state) => state.auth.user);
@@ -29,7 +30,7 @@ export default function User() {
       }
     }
 
-    getData();
+    getData(token);
   }, [token, navigate, dispatch]);
 
   const [editing, setEditing] = useState(false);
