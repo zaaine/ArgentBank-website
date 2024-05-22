@@ -9,6 +9,9 @@ import { FaUserCircle } from "react-icons/fa";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [notification, setNotification] = useState("");
+  const [rememberMe, SetRememberMe] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,18 +22,31 @@ const SignIn = () => {
     event.preventDefault();
     let userCredentials = { email, password };
     dispatch(loginUser(userCredentials));
+    // setIsLoading(true); Activer le Loader
   };
+
+  // Fonction pour gérer le changement de la case à cocher
+  const handleRememberMeChange = (e) => {
+    SetRememberMe(e.target.checked);
+  }
 
   useEffect(() => {
     if (token) {
       setEmail("");
       setPassword("");
-      navigate("/User");
+      setTimeout(() => navigate("/User"), 3000);
+      // localStorage.setItem("AuthToken", token); Stockage du token dans le LocalStorage
+      // setNotification("successfull login. Redirecting..."); Affichage d'une Notification de réussite
+    } else {
+      setNotification("Login failed; Please try again.");
+      setTimeout(() => setNotification(""), 3000)
     }
+    setTimeout(() => setIsLoading(false), 3000);
   }, [token, navigate]);
 
   return (
     <>
+    {/* <Pagetitle title="ArgentBank - SignIn Page"/> titre de la Page */}
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle">
@@ -82,6 +98,8 @@ const SignIn = () => {
           </form>
         </section>
         <div className="notification-container">
+          {/* {notification && ( */}
+          {/* <div className="notification"> */}
           {/* {notification} */}
           {/* {isLoading && <div className="spinner"></div>} */}
           {/* Affichage du spinner de chargement en cas de chargement */}
