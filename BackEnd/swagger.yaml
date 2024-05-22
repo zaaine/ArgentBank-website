@@ -106,47 +106,26 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions Module
-      summary: Fetch all transactions for the current month
-      description: API for fetching all transactions of the current month
-      consumes:
-        - application/json
-      produces:
-        - application/json
+        - Transaction
+      summary: Return a list of transactions
+      description: Get all transactions
       parameters:
         - in: header
-          type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - name: accountId
           in: path
-          description: ID of the account
+          description: Id of the account
           required: true
           type: string
-        - name: month
-          in: query
-          description: Month of the transaction (if no value, return the current month)
-          required: false
-          type: string
-          enum:
-            - January
-            - February
-            - March
-            - April
-            - May
-            - June
-            - July
-            - August
-            - September
-            - October
-            - November
-            - December
+      operationId: getAllTransactions
       responses:
         '200':
           description: Current month transactions successfully loaded
           schema:
-            $ref: '#/definitions/TransactionsMonthResponse'
+            $ref: '#/definitions/Transaction'
         '400':
           description: Invalid Fields
         '401':
@@ -160,36 +139,31 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions Module
-      summary: Get transaction by ID
-      description: API for fetching details of a transaction
-      produces:
-        - application/json
+        - Transaction
+      summary: Find transaction by ID
+      description: Returns a single transaction
+      operationId: getTransactionById
       parameters:
         - in: header
-          type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - name: accountId
           in: path
-          description: ID of the account
+          description: Id of the account
           required: true
           type: string
         - name: transactionId
           in: path
-          description: ID of the transaction
+          description: Id of the transaction
           required: true
           type: string
       responses:
         '200':
           description: Transaction successfully loaded
           schema:
-            $ref: '#/definitions/TransactionResponse'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Access not authorized
+            $ref: '#/definitions/TransactionDetail'
         '404':
           description: Transaction not found
         '500':
@@ -198,44 +172,35 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transactions Module
-      summary: Update an existing transaction
-      description: API for updating transaction details
-      produces:
-        - application/json
+        - Transaction
+      summary: Update an existing transaction by ID
+      description: Update an existing transaction by ID
+      operationId: updateTransaction
       parameters:
-        - in: header
-          type: string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - name: accountId
-          in: path
-          description: ID of the account
-          required: true
-          type: string
-        - name: transactionId
-          in: path
-          description: ID of the transaction
-          required: true
-          type: string
         - in: body
           name: body
           description: Update transaction attributes
           required: true
           schema:
-            $ref: '#/definitions/TransactionDetail'
+            type: object
+            properties:
+              category:
+                type: string
+                description: Update category
+                example: "Food"
+              note:
+                type: string
+                description: Update note
+                example: "lorem ipsum"
+      produces:
+        - application/json
       responses:
         '200':
-          description: Transaction details successfully modified
+          description: Transaction successfully updated
           schema:
-            $ref: '#/definitions/TransactionUpdateResponse'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Access not authorized
+            $ref: '#/definitions/TransactionDetail'
         '404':
-          description: Transaction not found
+          description: Invalid transactionId
         '500':
           description: Internal Server Error
 
@@ -244,6 +209,7 @@ securityDefinitions:
     type: apiKey
     name: Authorization
     in: header
+
 definitions:
   User:
     type: object
@@ -296,141 +262,26 @@ definitions:
     properties:
       userName:
         type: string
-  
-  TransactionsMonthResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-        example: 200
-      message:
-        type: string
-        example: Transactions récupérées avec succès
-      body:
-          type: object
-          properties:
-          transactions:
-          $ref: '#/definitions/Transaction'
-          example:
-            - transactionId: 134872901
-              title: "Argent Bank Checking (x8349)"
-              money: "$2,082.79"
-              balanceType: "Available Balance"
-              TransactionDetail:
-                - date: "2023-05-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-06-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-07-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-            - transactionId: 2473892010
-              title: "Argent Bank Savings (x6712)"
-              money: "$10,928.42"
-              balanceType: "Available Balance"
-              TransactionDetail:
-                - date: "2023-05-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-06-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-07-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-            - transactionId: 345879287
-              title: "Argent Bank Credit Card (x8349)"
-              money: "$184.30"
-              balanceType: "Current Balance"
-              TransactionDetail:
-                - date: "2023-05-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-06-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                - date: "2023-07-21T12:00:00Z"
-                  description: "Grocery Shopping"
-                  transactionType: "Electronic"
-                  category: "Food"
-                  note: "lorem ipsum"
-                  title: "Argent Bank Credit Card (x8349)"
-                  money: "$184.30"
-                  balanceType: "Current Balance"
-                  TransactionDetail:
-                    - date: "2023-05-21T12:00:00Z"
-                      description: "Grocery Shopping"
-                      transactionType: "Electronic"
-                      category: "Food"
-                      note: "lorem ipsum"
-                    - date: "2023-06-21T12:00:00Z"
-                      description: "Grocery Shopping"
-                      transactionType: "Electronic"
-                      category: "Food"
-                      note: "lorem ipsum"
-                    - date: "2023-07-21T12:00:00Z"
-                      description: "Grocery Shopping"
-                      transactionType: "Electronic"
-                      category: "Food"
-                      note: "lorem ipsum"    
-  TransactionResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-        example: 200
-      message:
-        type: string
-        example: Transaction chargée avec succès
-      schema:
-        $ref: '#/definitions/Transaction'
-
-  TransactionUpdateResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-        example: 200
-      message:
-        type: string
-        example: Détails de la transaction modifiés avec succès
-      schema:
-        $ref: '#/definitions/Transaction'
-
   Transaction:
     type: object
     properties:
       transactionId:
-        type: string
+        type: number
         description: ID de la transaction
+        example: 134872901
       title:
         type: string
         description: Titre de la transaction
+        example: "Argent Bank Checking (x8349)"
       money:
-        type: string
-        description: Montant formaté de la transaction
+        type: number
+        format: float
+        description: Montant de la transaction (USD)
+        example: 2082.79
       balanceType:
         type: string
-        description: Type de solde
-
+        description: "Available balance"
+        example: "Available balance"
   TransactionDetail:
     type: object
     properties:
@@ -438,19 +289,37 @@ definitions:
         type: string
         format: date-time
         description: Date de la transaction
-      description:
+        example: "2023-05-21T12:00:00Z"
+      descriptionTransaction:
         type: string
-        description: Description de la transaction      
-      transactionType:
-        type: string
-        description: Type de transaction
-      category:
-        type: string
-        description: Catégorie de transaction
-        enum:
-          - Food
-          - House
-          - Car      
-      notes:
-        type: string
-        description: Remarques sur la transaction
+        description: Description de la transaction
+        example: "Grocery Shopping"
+      amount:
+        type: integer
+        format: int64
+        description: Transaction amount
+        example: 50
+      balance:
+        type: integer
+        format: int64
+        description: Account balance after transaction
+        example: 2187.79
+      subProperties:
+        type: object
+        properties:
+          transactionType:
+            type: string
+            description: Type de transaction
+            example: "Electronic"
+          category:
+            type: string
+            description: Catégorie de transaction
+            example: "Food"
+            enum:
+              - Food
+              - House
+              - Car
+          note:
+            type: string
+            description: Remarques sur la transaction
+            example: "Lorem ipsum"
