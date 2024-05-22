@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserInfo } from "../app/services/useraction";
+import PageTitle from '../components/PageTitle'
 
 // import PageTitle from "../components/layout/PageTitle"; // Importation du composant PageTitle depuis le répertoire "../components/layout/PageTitle"
 import { FaUserCircle } from "react-icons/fa";
@@ -58,7 +59,7 @@ const SignUp = () => {
 
   return (
     <>
-      {/* <PageTitle title="ArgentBank - Sign-in Page" /> */}
+      {/* <PageTitle title="ArgentBank - SignUp Page" /> */}
       <main className="main bg-dark">
         <section className="sign-up-content">
           <i className="fa fa-user-circle sign-in-icon">
