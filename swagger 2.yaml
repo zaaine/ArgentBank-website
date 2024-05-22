@@ -116,9 +116,6 @@ paths:
           type: string
           description: Attach Bearer JWT token
           required: true
-          schema:
-            type: string
-            default: Bearer <token>
         - in: path
           name: account_Id
           description: account ID
@@ -148,9 +145,6 @@ paths:
           type: string
           description: Attach Bearer JWT token
           required: true
-          schema:
-            type: string
-            default: Bearer <token>
         - in: path
           name: transaction_id
           type: integer
@@ -168,11 +162,13 @@ paths:
           description: A single transaction retrieved successfully
           schema:
             $ref: '#/definitions/AccountResponse'
+        '401':
+          description : Unauthorized
         '400': 
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{account_id}/transactions/{transaction_id}: 
+  /user/accounts/{account_id}/transactions/{transaction_id}/category: 
      put:
        security: 
          - Bearer: [] 
@@ -186,9 +182,6 @@ paths:
            type: string
            description: Attach Bearer JWT token
            required: true
-           schema:
-             type: string
-             default: Bearer <token>
          - in: path
            name: transaction_id
            type: integer
@@ -208,14 +201,87 @@ paths:
        produces:
          - application/json
        responses:
-         '200':
+          '200':
            description: updated transaction successfully
            schema:
              $ref: '#/definitions/CategoryResponse'
-         '400': 
+          '401':
+            description : Unauthorized
+          '400': 
            description: Invalid Fields
-         '500':
+          '500':
            description: Internal Server Error
+  /user/accounts/{account_id}/transactions/{transaction_id}/note:
+    post :
+      security :
+        - Bearer: []
+      tags:
+        - Partie 2 - Complémentaire
+      summary: Add a note to a transaction
+      description: Add a note to a specific transaction in my API.
+      parameters :
+        - in: path 
+          name: accountID
+          description: ID of the user's bank account
+          required: true
+          type : integer
+        - in: path 
+          name: transactionID
+          description: ID of the user's bank account transaction
+          required: true
+          type : integer
+        - in: body
+          name: body
+          description: The note to add transaction.
+          required: true
+          schema:
+            $ref: '#/definitions/Note'
+      responses:
+        '200':
+          description: OK-successfully
+        '400':
+          description: Bad Request.   
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found.
+        '500':
+          description: Internal Server Error.
+  /user/accounts/{account_id}/transactions/{transaction_id}/{note_id}:
+    delete :
+      security :
+        - Bearer: []
+      tags:
+        - Partie 2 - Complémentaire
+      summary: Delete a note of a transaction
+      description: Delete a note to a specific transaction in my API.
+      parameters :
+        - in: path 
+          name: accountID
+          description: ID of the user's bank account
+          required: true
+          type : integer
+        - in: path 
+          name: transactionID
+          description: ID of the user's bank account transaction
+          required: true
+          type : integer
+        - in: path
+          name: noteID
+          description: The note to add transaction.
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: OK-successfully
+        '400':
+          description: Bad Request.   
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found.
+        '500':
+          description: Internal Server Error.
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -357,6 +423,12 @@ definitions:
             example: "Food"  
       note:
             type: string
-            example: "Lorem ipsum"    
+            example: "Lorem ipsum" 
+  Note:
+      properties:
+        Note:
+          type: string
+          example: lorem ipsum
+
             
   
