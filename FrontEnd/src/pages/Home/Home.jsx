@@ -8,7 +8,7 @@ import iconSecurity from "../../assets/icon-security.png";
 
 const Home = () => {
   return (
-	<main>
+    <main>
       <div className="hero">
         <Hero
           title="Promoted Content"
@@ -39,7 +39,8 @@ const Home = () => {
           description="We use top of the line encryption to make sure your data and money is always safe."
         />
       </section>
-	  </main>
+    </main>
   );
-}
-export {Home};
+};
+
+export default Home;

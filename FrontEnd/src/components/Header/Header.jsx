@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import "./header.scss";
+import { getLoginFetch } from "../../utils/api";
+import { selectFirstName, selectToken, selectLoading, selectError, clearToken, clearFirstName, clearLastName, setError, setFirstName } from "../../redux/reducers";
 import logo from "../../assets/argentBankLogo.png";
-import { selectFirstName, selectToken, selectLoading, selectError } from "../../redux/selectors";
-import { clearToken, setError } from "../../redux/features/token";
-import { setFirstName, clearFirstName } from "../../redux/features/firstName";
-import { clearLastName } from "../../redux/features/lastName";
-import { getLoginFetch } from "../../utils/api.js";
+import "./header.scss";
 
 export default function Header() {
   const firstName = useSelector(selectFirstName);
@@ -17,20 +14,23 @@ export default function Header() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token !== null) {
-      getLoginFetch(token)
-        .then((obj) => {
-          dispatch(setFirstName(obj.firstName));
-          if (obj.id === null) {
+    const fetchUserData = async () => {
+      if (token) {
+        try {
+          const userData = await getLoginFetch(token);
+          dispatch(setFirstName(userData.firstName));
+          if (!userData.id) {
             dispatch(clearToken());
             localStorage.removeItem("token");
           }
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Error fetching user:", error);
           dispatch(setError(error.message));
-        });
-    }
+        }
+      }
+    };
+
+    fetchUserData();
   }, [token, dispatch]);
 
   const handleLogout = () => {

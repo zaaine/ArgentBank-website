@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import {Home} from "./pages/Home/Home.jsx";
-import {Login} from "./pages/Login/Login.jsx";
-import {Error} from "./pages/Error/Error.jsx";
-import {Profil} from "./pages/Profil/Profil.jsx";
-import {Logout} from "./pages/Logout/Logout.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
+import Error from "./pages/Error/Error.jsx";
+import Profil from "./pages/Profil/Profil.jsx";
+import Logout from "./pages/Logout/Logout.jsx";
 import './styles/normalize.scss';
 import './styles/global.scss';
 
