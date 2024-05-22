@@ -71,3 +71,59 @@
     background-color: #12002b;
   }
 
+  .notification {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00bc77; // Utilisation de la nouvelle variable
+    color: white; // Utilisation de la nouvelle variable
+    padding: 10px; // Utilisation de la nouvelle variable
+    border-radius: 5px; // Utilisation de la nouvelle variable
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Utilisation de la nouvelle variable
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .spinner {
+      border: 4px solid white; // Utilisation de la nouvelle variable
+      width: 20px; // Utilisation de la nouvelle variable
+      height: 20px; // Utilisation de la nouvelle variable
+      border-radius: 50%;
+      border-left-color: #12002b; // Utilisation de la nouvelle variable
+      animation: spin 1s ease infinite;
+      margin-left: 10px;
+    }
+  }
+
+  .loader {
+    border: 20px solid #12002b; // Utilisation de la nouvelle variable
+    border-top: 20px solid #2c3e50; // Utilisation de la nouvelle variable
+    border-radius: 50%;
+    width: 200px; // Utilisation de la nouvelle variable
+    height: 200px; // Utilisation de la nouvelle variable
+    position: relative;
+    animation: spin 2s linear infinite;
+  }
+  
+  .loader-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #2c3e50; // Utilisation de la nouvelle variable
+    font-size: 1.8rem; // Utilisation de la nouvelle variable
+  }
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#12002b, 0.5); // Utilisation de la nouvelle variable
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+  }
