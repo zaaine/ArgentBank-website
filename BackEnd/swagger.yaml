@@ -101,14 +101,14 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/profile/{accountId}/transactions:
+  /user/profile/accounts:
     get:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      summary: Return a list of transactions
-      description: Get all transactions
+        - Alls accounts
+      summary: Get user accounts
+      description: search user accounts list
       parameters:
         - in: header
           name: Authorization
@@ -120,12 +120,22 @@ paths:
           description: Id of the account
           required: true
           type: string
-      operationId: getAllTransactions
+        - name: money
+          in: path
+          description: Montant de la account (USD)
+          required: true
+          type: number
+        - name: balanceType
+          in: path
+          description: "balance of account"
+          required: true
+          type: string
+      operationId: getAllAccounts
       responses:
         '200':
-          description: Current month transactions successfully loaded
+          description: All accounts successfully loaded
           schema:
-            $ref: '#/definitions/Transaction'
+            $ref: '#/definitions/Accounts'
         '400':
           description: Invalid Fields
         '401':
@@ -134,31 +144,78 @@ paths:
           description: Account not found
         '500':
           description: Internal Server Error
-  /user/profile/{accountId}/transactions/{transactionId}:
+
+  /user/profile/{accountId}/transactions/{currentMonth}:
     get:
       security:
         - Bearer: []
       tags:
-        - Transaction
-      summary: Find transaction by ID
-      description: Returns a single transaction
-      operationId: getTransactionById
+        - Transactions by Account Current Month
+      summary: Current Month Transactions API
+      description: API for fetching the current month transactions
       parameters:
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: accountId
-          in: path
-          description: Id of the account
+        - in: path
+          name: accountId
+          description: ID of the account
           required: true
           type: string
-        - name: transactionId
-          in: path
+        - in: path
+          name: currentMonth
+          in: query
+          description: Current month in YYYY-MM format
+          required: true
+          type: string
+          enum:
+           - January
+           - February
+           - March
+           - April
+           - May
+           - June
+           - July
+           - August
+            - September
+           - October
+           - November
+            - December
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transactions retrieved successfully
+          schema:
+            $ref: '#/definitions/MonthResponseTransactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+
+  /user/profile/{accountId}/transactions/{TransactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Details
+      summary: Get transaction details
+      description: API for fetching details of a transaction
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: TransactionId
           description: Id of the transaction
           required: true
-          type: string
+          type: string  
       responses:
         '200':
           description: Transaction successfully loaded
@@ -167,7 +224,7 @@ paths:
         '404':
           description: Transaction not found
         '500':
-          description: Internal Server Error
+          description: Internal Server Error  
     put:
       security:
         - Bearer: []
@@ -177,6 +234,11 @@ paths:
       description: Update an existing transaction by ID
       operationId: updateTransaction
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
         - in: body
           name: body
           description: Update transaction attributes
@@ -200,7 +262,7 @@ paths:
           schema:
             $ref: '#/definitions/TransactionDetail'
         '404':
-          description: Invalid transactionId
+          description: Invalid TransactionId
         '500':
           description: Internal Server Error
 
@@ -262,27 +324,43 @@ definitions:
     properties:
       userName:
         type: string
-  Transaction:
+  
+  Accounts:
     type: object
     properties:
-      transactionId:
-        type: number
-        description: ID de la transaction
-        example: 134872901
-      title:
+      accountId:
         type: string
-        description: Titre de la transaction
+        description: Titre de Account
         example: "Argent Bank Checking (x8349)"
       money:
         type: number
         format: float
-        description: Montant de la transaction (USD)
+        description: Montant de la account (USD)
         example: 2082.79
       balanceType:
         type: string
-        description: "Available balance"
+        description: "balance of account"
         example: "Available balance"
-  TransactionDetail:
+  
+  TransactionsMonthResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        message:
+          type: string
+          format: string
+          example: transactions successfully recovered
+        accountId:
+         type: string
+        currentMonth: 
+          type: string
+        transactions:
+          type: array 
+          $ref: '#/definitions/TransactionId'
+
+  TransactionId:
     type: object
     properties:
       date:
