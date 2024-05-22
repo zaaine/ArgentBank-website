@@ -10,13 +10,14 @@ export async function getUserInfo(token, dispatch) {
       Authorization: `Bearer ${token}`,
     };
 
-    const response = await axios.post(
-      "http://localhost:3001/api/v1/user/profile",
-      {
-        method: "POST",
-        headers: headers,
-      }
-    );
+    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (response.ok) {
       const data = await response.json();
