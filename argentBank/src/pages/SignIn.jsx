@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../app/services/authaction";
 import { useNavigate, Link } from "react-router-dom";
+import PageTitle from "../components/PageTitle";
 
 // import PageTitle from "./PageTitle";
 import { FaUserCircle } from "react-icons/fa";
@@ -10,8 +11,8 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState("");
-  const [rememberMe, SetRememberMe] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [rememberMe, SetRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,25 +29,30 @@ const SignIn = () => {
   // Fonction pour gérer le changement de la case à cocher
   const handleRememberMeChange = (e) => {
     SetRememberMe(e.target.checked);
-  }
+  };
 
   useEffect(() => {
     if (token) {
       setEmail("");
       setPassword("");
       setTimeout(() => navigate("/User"), 3000);
-      // localStorage.setItem("AuthToken", token); Stockage du token dans le LocalStorage
-      // setNotification("successfull login. Redirecting..."); Affichage d'une Notification de réussite
+      localStorage.setItem(
+        "AuthToken",
+        token
+      ); /* Stockage du token dans le LocalStorage */
+      setNotification(
+        "successfull login. Redirecting..."
+      ); /* Affichage d'une Notification de réussite */
     } else {
       setNotification("Login failed; Please try again.");
-      setTimeout(() => setNotification(""), 3000)
+      setTimeout(() => setNotification(""), 3000);
     }
     setTimeout(() => setIsLoading(false), 3000);
   }, [token, navigate]);
 
   return (
     <>
-    {/* <Pagetitle title="ArgentBank - SignIn Page"/> titre de la Page */}
+      <PageTitle title="ArgentBank - SignIn Page" />
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle">
@@ -81,8 +87,8 @@ const SignIn = () => {
               <input
                 type="checkbox"
                 id="remember-me"
-                // checked={rememberMe}
-                // onChange={handleRememberMeChange}
+                checked={rememberMe}
+                onChange={handleRememberMeChange}
               />
               <label htmlFor="remember-me">Remember me</label>
             </div>
@@ -98,11 +104,12 @@ const SignIn = () => {
           </form>
         </section>
         <div className="notification-container">
-          {/* {notification && ( */}
-          {/* <div className="notification"> */}
-          {/* {notification} */}
-          {/* {isLoading && <div className="spinner"></div>} */}
-          {/* Affichage du spinner de chargement en cas de chargement */}
+          {notification && (
+            <div className="notification">
+              {notification}
+              {isLoading && <div className="spinner"></div>}
+            </div>
+          )}
         </div>
       </main>
     </>
