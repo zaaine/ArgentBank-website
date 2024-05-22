@@ -4,7 +4,7 @@ import Edit from "../components/Edit";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../app/services/useraction";
 import { useNavigate } from "react-router-dom";
-import PageTitle from '../components/PageTitle'
+import PageTitle from "../components/PageTitle";
 
 export default function User() {
   const user = useSelector((state) => state.auth.user);
@@ -48,52 +48,52 @@ export default function User() {
 
   return (
     <>
-    <PageTitle title="ArgentBank - HomePage" />
-    <main className={`main ${isActive ? 'bg-light' : 'bg-dark'}`}>
-      <div className="greetings">
-        <div>
-          {!editing && (
-            <h1>
-              Welcome back
-              <br />
-              {user.userName}!
-            </h1>
+      <PageTitle title="ArgentBank - UserPage" />
+      <main className={`main ${isActive ? "bg-light" : "bg-dark"}`}>
+        <div className="greetings">
+          <div>
+            {!editing && (
+              <h1>
+                Welcome back
+                <br />
+                {user.userName}!
+              </h1>
+            )}
+          </div>
+          {editing ? (
+            <Edit onCancel={handleCancel} />
+          ) : (
+            <button
+              className="edit-button"
+              onClick={() => {
+                handleEditing();
+                handleClick();
+              }}
+            >
+              Edit Name
+            </button>
           )}
         </div>
-        {editing ? (
-          <Edit onCancel={handleCancel} />
-        ) : (
-          <button
-            className="edit-button"
-            onClick={() => {
-              handleEditing();
-              handleClick();
-            }}
-          >
-            Edit Name
-          </button>
-        )}
-      </div>
-      <h2 className="sr-only">Accounts</h2>
-      <Account
-        title="Argent Bank Checking"
-        accountNumber="x8349"
-        amount="$2,082.79"
-        amountDescription="Available Balance"
-      />
-      <Account
-        title="Argent Bank Savings"
-        accountNumber="x6712"
-        amount="$10,928.42"
-        amountDescription="Available Balance"
-      />
-      <Account
-        title="Argent Bank Credit Card"
-        accountNumber="x8349"
-        amount="$184.30"
-        amountDescription="Current Balance"
-      />
-    </main>
+        <h2 className="sr-only">Accounts</h2>
+        <Account
+          title="Argent Bank Checking"
+          accountNumber="x8349"
+          amount="$2,082.79"
+          amountDescription="Available Balance"
+        />
+        <Account
+          title="Argent Bank Savings"
+          accountNumber="x6712"
+          amount="$10,928.42"
+          amountDescription="Available Balance"
+        />
+        <Account
+          title="Argent Bank Credit Card"
+          accountNumber="x8349"
+          amount="$184.30"
+          amountDescription="Current Balance"
+        />
+      </main>
     </>
   );
 }
