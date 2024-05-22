@@ -12,7 +12,7 @@ export const loginUser = (userCredentials) => async (dispatch) => {
     const token = response.data.body.token;
     dispatch(setToken(token));
   } catch (error) {
-    alert("Error entering identifiers");
-    console.error("Error entering identifiers : ", error);
+    alert("Erreur lors de la Saisie des identifiants");
+    console.error("Erreur lors de la Saisie des identifiants : ", error);
   }
 };
