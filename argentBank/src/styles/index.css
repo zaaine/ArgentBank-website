@@ -18,6 +18,27 @@ html {
   min-height: 100vh;
 }
 
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
 .main-nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -422,6 +443,81 @@ html {
   background-color: #12002b;
 }
 
+.notification {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #00bc77;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.notification .spinner {
+  border: 4px solid white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-left-color: #12002b;
+  -webkit-animation: spin 1s ease infinite;
+          animation: spin 1s ease infinite;
+  margin-left: 10px;
+}
+
+.loader {
+  border: 20px solid #12002b;
+  border-top: 20px solid #2c3e50;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+.loader-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #2c3e50;
+  font-size: 1.8rem;
+}
+
+.loader-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(18, 0, 43, 0.5);
+  z-index: 1000;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
+
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -445,6 +541,39 @@ html {
 }
 .main .sign-up-content .sign-up-icon {
   font-size: 1.1rem;
+}
+.main .sign-up-content .notification-container .notification {
+  border: 2px solid red;
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #00bc77;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.main .sign-up-content .notification-container .notification .spinner {
+  border: 4px solid white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-left-color: #12002b;
+  -webkit-animation: spin 1s ease infinite;
+          animation: spin 1s ease infinite;
+  margin-left: 10px;
 }
 .main .sign-up-content .input-wrapper {
   display: -webkit-box;
