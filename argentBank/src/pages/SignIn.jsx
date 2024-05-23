@@ -38,16 +38,22 @@ const SignIn = () => {
       setTimeout(() => navigate("/User"), 3000);
       localStorage.setItem(
         "AuthToken",
-        token
+        token,
+        "Email",
+        email,
+        "Password",
+        password,
+        "RememberMe",
+        rememberMe
       ); /* Stockage du token dans le LocalStorage */
       setNotification(
         "Connexion résussie. Redirection..."
       ); /* Affichage d'une Notification de réussite */
     } else {
       setNotification("La Connexion a échoué. Veuillez réessayer.");
-      setTimeout(() => setNotification(""), 3000);
+      setTimeout(() => setNotification(""), 2000);
     }
-    setTimeout(() => setIsLoading(false), 3000);
+    setTimeout(() => setIsLoading(false), 2000);
   }, [token, navigate]);
 
   return (
