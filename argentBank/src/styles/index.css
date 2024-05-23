@@ -745,6 +745,12 @@ html {
   right: 10em;
   color: white;
 }
+.main .invisible {
+  border: 1px solid red;
+  display: none;
+  visibility: hidden;
+  color: blue;
+}
 .main .chevron1 {
   position: absolute;
   height: 4em;

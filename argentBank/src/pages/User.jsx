@@ -58,7 +58,7 @@ export default function User() {
               <h1>
                 Welcome back
                 <br />
-                {user.userName}!
+                {user.userName} !
               </h1>
             )}
           </div>
@@ -83,7 +83,7 @@ export default function User() {
           amount="$2,082.79"
           amountDescription="Available Balance"
         />
-        <FaChevronRight className="chevron" />
+        <FaChevronRight className="chevron visible" />
         <Account
           title="Argent Bank Savings"
           accountNumber="x6712"
@@ -97,7 +97,7 @@ export default function User() {
           amount="$184.30"
           amountDescription="Current Balance"
         />
-        <FaChevronRight className="chevron2" />
+        <FaChevronRight className="chevron2 " />
       </main>
     </>
   );

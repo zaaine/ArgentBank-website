@@ -104,6 +104,12 @@
     right: 10em;
     color: white;
 }
+  .invisible {
+    border: 1px solid red;
+    display: none;
+    visibility: hidden;
+    color: blue;
+  }
 
  .chevron1 {
     position: absolute;
