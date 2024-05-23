@@ -35,19 +35,21 @@ const SignIn = () => {
     if (token) {
       setEmail("");
       setPassword("");
-      setTimeout(() => navigate("/User"), 3000);
-      localStorage.setItem(
-        "AuthToken",
-        token
-      ); /* Stockage du token dans le LocalStorage */
+      setTimeout(() => navigate("/User"), 2000);
+      localStorage.setItem("AuthToken", token, {
+        rememberMe,
+      }); /* Stockage du token dans le LocalStorage */
       setNotification(
         "Connexion résussie. Redirection..."
       ); /* Affichage d'une Notification de réussite */
     } else {
-      setNotification("La Connexion a échoué. Veuillez réessayer.");
-      setTimeout(() => setNotification(""), 2000);
+      if (token && handleLoginEvent) {
+        setNotification("La Connexion a échoué. Veuillez réessayer.");
+        setTimeout(() => setNotification(""), 2000);
+      } else {
+        setTimeout(() => setIsLoading(false), 2000);
+      }
     }
-    setTimeout(() => setIsLoading(false), 2000);
   }, [token, navigate]);
 
   return (
