@@ -55,7 +55,7 @@ export async function updateUsername(token, newUserName, dispatch) {
     const data = await request.json();
     dispatch(setNewUsername(data.body.userName));
   } catch (error) {
-    alert("Username could not be modified");
-    console.error("Username could not be modified : ", error);
+    alert("Le nom de l'utilisateur n'a pas pu être modifié");
+    console.error("Le Nom de l'utilisateur n'a pas pu être modifié : ", error);
   }
 }
