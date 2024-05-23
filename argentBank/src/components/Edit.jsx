@@ -10,6 +10,7 @@ export default function Edit({ onCancel }) {
   const [newUserName, setUsername] = useState(user.userName);
   const [firstname, setFirstname] = useState(user.firstName);
   const [lastname, setLastname] = useState(user.lastName);
+  const [isActive, setIsActive] = useState(false);
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -23,6 +24,10 @@ export default function Edit({ onCancel }) {
       dispatch(setNewUsername(newUserName));
       onCancel();
     }
+  };
+
+  const handleClick = () => {
+    setIsActive(!isActive);
   };
 
   return (
@@ -66,7 +71,10 @@ export default function Edit({ onCancel }) {
           <button
             type="button"
             className="sign-in-button"
-            onClick={handleCancel}
+            onClick={() => {
+              handleCancel();
+              handleClick();
+            }}
           >
             Cancel
           </button>

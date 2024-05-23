@@ -654,6 +654,7 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -735,6 +736,30 @@ html {
     display: flex;
     width: 200px;
   }
+}
+.main .chevron {
+  position: absolute;
+  height: 4em;
+  width: 3em;
+  top: 23em;
+  right: 10em;
+  color: white;
+}
+.main .chevron1 {
+  position: absolute;
+  height: 4em;
+  width: 3em;
+  top: 33em;
+  right: 10em;
+  color: white;
+}
+.main .chevron2 {
+  position: absolute;
+  height: 4em;
+  width: 3em;
+  top: 43em;
+  right: 10em;
+  color: white;
 }
 
 .bg-dark {

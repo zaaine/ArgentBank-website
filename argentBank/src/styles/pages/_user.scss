@@ -1,6 +1,5 @@
 .main {
 
-  
   .greetings {
     flex-direction: column;
         color: white;
@@ -30,10 +29,10 @@
             /* 3 */
           }
         }
-        
 
         .account {
           display: flex;
+          position: relative;
           justify-content: space-between;
           align-items: center;
           border: 1px solid black;
@@ -97,6 +96,33 @@
       }
     }
   }
+  .chevron {
+    position: absolute;
+    height: 4em;
+    width: 3em;
+    top: 23em;
+    right: 10em;
+    color: white;
+}
+
+ .chevron1 {
+    position: absolute;
+    height: 4em;
+    width: 3em;
+    top: 33em;
+    right: 10em;
+    color: white;
+}
+
+ .chevron2 {
+    position: absolute;
+    height: 4em;
+    width: 3em;
+    top: 43em;
+    right: 10em;
+    color: white;
+}
+
 }
 
 .bg-dark {

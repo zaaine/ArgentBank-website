@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../app/services/useraction";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
+import { FaChevronRight } from "react-icons/fa6";
 import e from "cors";
 
 export default function User() {
@@ -82,18 +83,21 @@ export default function User() {
           amount="$2,082.79"
           amountDescription="Available Balance"
         />
+        <FaChevronRight className="chevron" />
         <Account
           title="Argent Bank Savings"
           accountNumber="x6712"
           amount="$10,928.42"
           amountDescription="Available Balance"
         />
+        <FaChevronRight className="chevron1" />
         <Account
           title="Argent Bank Credit Card"
           accountNumber="x8349"
           amount="$184.30"
           amountDescription="Current Balance"
         />
+        <FaChevronRight className="chevron2" />
       </main>
     </>
   );
