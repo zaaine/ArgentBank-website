@@ -10,7 +10,7 @@ export function getLoginData(data) {
             const obj = {
                 status: data.status,
                 message: data.message,
-                token: data.body.token,
+                token: data.token,
             };
             return obj;
         } else {
@@ -30,13 +30,13 @@ getLoginData.propTypes = {
 // Function to handle fetched user profile data
 export function getLoginFetchData(data) {
     if (data) {
-        if (data.body !== undefined) {
+        if (data.id !== undefined) {
             const obj = {
-                id: data.body.id,
+                id: data.id,
                 status: data.status,
-                email: data.body.email,
-                firstName: data.body.firstName,
-                lastName: data.body.lastName,
+                email: data.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
             };
             return obj;
         } else {
@@ -79,12 +79,37 @@ saveUserProfileData.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
+// Function to handle fetched accounts data
+export function getAccountsData(data) {
+    if (data) {
+        if (data !== undefined) {
+            const obj = {
+                accounts: data.accounts,
+                status: data.status,
+                message: data.message,
+            };
+            return obj;
+        } else {
+            const obj = {
+                accounts: [],
+                status: 0,
+                message: "No accounts found",
+            };
+            return obj;
+        }
+    }
+}
+
+getAccountsData.propTypes = {
+    data: PropTypes.object.isRequired,
+};
+
 // Function to handle fetched transactions data
 export function getTransactionsData(data) {
     if (data) {
-        if (data.body !== undefined) {
+        if (data.transactions !== undefined) {
             const obj = {
-                transactions: data.body.transactions,
+                transactions: data.transactions,
                 status: data.status,
                 message: data.message,
             };
@@ -107,9 +132,9 @@ getTransactionsData.propTypes = {
 // Function to handle fetched transaction by ID data
 export function getTransactionByIdData(data) {
     if (data) {
-        if (data.body !== undefined) {
+        if (data !== undefined) {
             const obj = {
-                transaction: data.body,
+                transaction: data,
                 status: data.status,
                 message: data.message,
             };
@@ -179,6 +204,33 @@ getLogin.propTypes = {
     credentials: PropTypes.object.isRequired,
 };
 
+// Function to sign up via the API
+export const signUp = async (userDetails) => {
+    const API_URL = `${BASE_URL}user/signup`;
+
+    try {
+        const signUpResponse = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify(userDetails),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!signUpResponse.ok) {
+            throw new Error(`HTTP error! status: ${signUpResponse.status}`);
+        }
+        const signUpResponseJson = await signUpResponse.json();
+        return saveUserProfileData(signUpResponseJson);
+    } catch (error) {
+        alert(ERROR_MESSAGE);
+        return null;
+    }
+};
+
+signUp.propTypes = {
+    userDetails: PropTypes.object.isRequired,
+};
+
 // Function to fetch the user profile via the API
 export const getLoginFetch = async (token) => {
     const API_URL = `${BASE_URL}user/profile`;
@@ -235,9 +287,36 @@ saveUserProfile.propTypes = {
     userProfile: PropTypes.object.isRequired,
 };
 
+// Function to fetch all user accounts via the API
+export const getAccounts = async (token) => {
+    const API_URL = `${BASE_URL}user/profile/accounts`;
+
+    try {
+        const accountsResponse = await fetch(API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!accountsResponse.ok) {
+            throw new Error(`HTTP error! status: ${accountsResponse.status}`);
+        }
+        const accountsResponseJson = await accountsResponse.json();
+        return getAccountsData(accountsResponseJson);
+    } catch (error) {
+        alert(ERROR_MESSAGE);
+        return null;
+    }
+};
+
+getAccounts.propTypes = {
+    token: PropTypes.string.isRequired,
+};
+
 // Function to fetch all transactions for the current month via the API
-export const getTransactions = async (token, accountId, month) => {
-    const API_URL = `${BASE_URL}user/profile/${accountId}/transactions${month ? `?month=${month}` : ''}`;
+export const getTransactions = async (token, accountId, currentMonth) => {
+    const API_URL = `${BASE_URL}user/profile/${accountId}/transactions/${currentMonth}`;
 
     try {
         const transactionsResponse = await fetch(API_URL, {
@@ -261,7 +340,7 @@ export const getTransactions = async (token, accountId, month) => {
 getTransactions.propTypes = {
     token: PropTypes.string.isRequired,
     accountId: PropTypes.string.isRequired,
-    month: PropTypes.string,
+    currentMonth: PropTypes.string.isRequired,
 };
 
 // Function to fetch a transaction by ID via the API
