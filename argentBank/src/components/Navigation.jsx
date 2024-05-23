@@ -15,6 +15,7 @@ const Navigation = () => {
   const switchLogout = (event) => {
     event.preventDefault();
     dispatch(logout());
+    localStorage.removeItem("AuthToken", token);
     navigate("/Home");
   };
 
