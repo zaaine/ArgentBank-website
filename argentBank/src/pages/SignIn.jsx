@@ -44,7 +44,7 @@ const SignIn = () => {
         "Connexion résussie. Redirection..."
       ); /* Affichage d'une Notification de réussite */
     } else {
-      setNotification("La Conenxion a échoué. Veuillez réessayer.");
+      setNotification("La Connexion a échoué. Veuillez réessayer.");
       setTimeout(() => setNotification(""), 3000);
     }
     setTimeout(() => setIsLoading(false), 3000);
