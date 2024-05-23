@@ -41,10 +41,10 @@ const SignIn = () => {
         token
       ); /* Stockage du token dans le LocalStorage */
       setNotification(
-        "successfull login. Redirecting..."
+        "Connexion résussie. Redirection..."
       ); /* Affichage d'une Notification de réussite */
     } else {
-      setNotification("Login failed; Please try again.");
+      setNotification("La Conenxion a échoué. Veuillez réessayer.");
       setTimeout(() => setNotification(""), 3000);
     }
     setTimeout(() => setIsLoading(false), 3000);

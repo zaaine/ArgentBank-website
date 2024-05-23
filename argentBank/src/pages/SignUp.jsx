@@ -32,7 +32,7 @@ const SignUp = () => {
     setIsLoading(true); // Activer le loader
 
     if (formData.password !== formData.confirmPassword) {
-      setNotification("The passwords do not match.");
+      setNotification("Le mot de Passe ne correspond pas.");
       return;
     }
 
@@ -47,11 +47,11 @@ const SignUp = () => {
           userName: formData.userName,
         })
       ).unwrap();
-      setNotification("Registration successful. Redirecting...");
+      setNotification("Inscription réussi. Redirection...");
       setTimeout(() => navigate("/Sign-in"), 3000);
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
-      setNotification("Registration failed. Please try again.");
+      setNotification("Echec de l'enregistrement. Veuillez réessayer.");
     } finally {
       setTimeout(() => setIsLoading(false), 3000);
     }
