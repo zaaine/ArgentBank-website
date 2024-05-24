@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getLogin } from "../../utils/api.js";
 
 const initialState = {
@@ -6,6 +6,22 @@ const initialState = {
   loading: false,
   error: null,
 };
+
+export const login = createAsyncThunk(
+  'token/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await getLogin(credentials);
+      if (response && response.token) {
+        return response.token;
+      } else {
+        return rejectWithValue("Login failed, no token received");
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const tokenSlice = createSlice({
   name: "token",
@@ -19,27 +35,24 @@ const tokenSlice = createSlice({
       state.value = null;
       localStorage.removeItem("token");
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.loading = false;
+        state.value = action.payload;
+        localStorage.setItem("token", action.payload);
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
 export const { setToken, clearToken, setLoading, setError } = tokenSlice.actions;
 export default tokenSlice.reducer;
-
-// Thunk async action creator to handle login
-export const login = (credentials) => async (dispatch) => {
-  try {
-    dispatch(setLoading(true));
-    const response = await getLogin(credentials);
-    dispatch(setToken(response.token));
-    dispatch(setLoading(false));
-  } catch (error) {
-    dispatch(setError(error.message));
-    dispatch(setLoading(false));
-  }
-};

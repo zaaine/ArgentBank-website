@@ -10,7 +10,6 @@ import { selectToken, selectFirstName, selectLastName } from '../../redux/select
 import Account from '../../components/Account/Account.js';
 import accountsMocks from '../../mocks/accountsMocks.js';
 
-
 export function Profil() {
   const token = useSelector(selectToken);
   const firstName = useSelector(selectFirstName);
@@ -19,7 +18,6 @@ export function Profil() {
   const [newFirstName, setNewFirstName] = useState('');
   const [newLastName, setNewLastName] = useState('');
   const [formatErrorName, setFormatErrorName] = useState('');
-  const [accounts, setAccounts] = useState(''); // Initialiser avec des données mockées
   const dispatch = useDispatch();
   const regex = /^[A-zÀ-ú-']{2,}$/;
 
@@ -38,27 +36,6 @@ export function Profil() {
         }
       };
       fetchUser();
-
-      const fetchAccountsData = async () => {
-        try {
-          const response = await fetch('http://localhost:3001/api/v1/user/profile/{accountId}/transactions', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (!response.ok) {
-            throw new Error('Failed to fetch accounts data');
-          }
-          const data = await response.json();
-          if (isMounted) {
-            setAccounts(data.body.transactions); // Mettre à jour l'état local avec les données récupérées
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      fetchAccountsData();
     }
     return () => { isMounted = false; };
   }, [token, dispatch]);
@@ -143,25 +120,14 @@ export function Profil() {
 
       <h2 className="srOnly">Accounts</h2>
 
-      {accounts.length > 0 ? (
-        accounts.map((account) => (
-          <Account
-            key={account.transactionId}
-            title={account.title}
-            money={account.money}
-            balanceType={account.balanceType}
-          />
-        ))
-      ) : (
-        accountsMocks.map((account) => (
-          <Account
-            key={account.transactionId}
-            title={account.title}
-            money={account.money}
-            balanceType={account.balanceType}
-          />
-        ))
-      )}
+      {accountsMocks.map((account) => (
+        <Account
+          key={account.accountId} // Assurez-vous que chaque compte a un id unique
+          title={account.title}
+          money={account.money}
+          balanceType={account.balanceType}
+        />
+      ))}
     </main>
   );
 }
