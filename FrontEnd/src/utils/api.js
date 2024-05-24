@@ -10,7 +10,7 @@ export function getLoginData(data) {
             const obj = {
                 status: data.status,
                 message: data.message,
-                token: data.token,
+                token: data.body.token,
             };
             return obj;
         } else {
@@ -30,13 +30,13 @@ getLoginData.propTypes = {
 // Function to handle fetched user profile data
 export function getLoginFetchData(data) {
     if (data) {
-        if (data.id !== undefined) {
+        if (data !== undefined) {
             const obj = {
-                id: data.id,
+                id: data.body.id,
                 status: data.status,
-                email: data.email,
-                firstName: data.firstName,
-                lastName: data.lastName,
+                email: data.body.email,
+                firstName: data.body.firstName,
+                lastName: data.body.lastName,
             };
             return obj;
         } else {
@@ -205,31 +205,30 @@ getLogin.propTypes = {
 };
 
 // Function to sign up via the API
-export const signUp = async (userDetails) => {
-    const API_URL = `${BASE_URL}user/signup`;
+// export const signUp = async (userDetails) => {
+//     const API_URL = `${BASE_URL}user/signup`;
 
-    try {
-        const signUpResponse = await fetch(API_URL, {
-            method: "POST",
-            body: JSON.stringify(userDetails),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!signUpResponse.ok) {
-            throw new Error(`HTTP error! status: ${signUpResponse.status}`);
-        }
-        const signUpResponseJson = await signUpResponse.json();
-        return saveUserProfileData(signUpResponseJson);
-    } catch (error) {
-        alert(ERROR_MESSAGE);
-        return null;
-    }
-};
-
-signUp.propTypes = {
-    userDetails: PropTypes.object.isRequired,
-};
+//     try {
+//         const signUpResponse = await fetch(API_URL, {
+//             method: "POST",
+//             body: JSON.stringify(userDetails),
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//         });
+//         if (!signUpResponse.ok) {
+//             throw new Error(`HTTP error! status: ${signUpResponse.status}`);
+//         }
+//         const signUpResponseJson = await signUpResponse.json();
+//         return saveUserProfileData(signUpResponseJson);
+//     } catch (error) {
+//         alert(ERROR_MESSAGE);
+//         return null;
+//     }
+// };
+// signUp.propTypes = {
+//     userDetails: PropTypes.object.isRequired,
+// };
 
 // Function to fetch the user profile via the API
 export const getLoginFetch = async (token) => {
