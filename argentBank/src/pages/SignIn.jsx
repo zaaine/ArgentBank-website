@@ -46,7 +46,7 @@ const SignIn = () => {
 
   // Fonction pour gérer le changement de la case à cocher
   const handleRememberMeChange = () => {
-    setRememberMe(!remeberMe);
+    setRememberMe(!rememberMe);
   };
 
   useEffect(() => {
