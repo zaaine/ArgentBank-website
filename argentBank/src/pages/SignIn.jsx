@@ -37,7 +37,7 @@ const SignIn = () => {
     /* Enregistrer les donénes du "Remember Me dans le localStorage */
     if (rememberMe) {
       localStorage.setItem("email", email);
-      localStorage.setItem("rememberMe", rememberME.toString());
+      localStorage.setItem("rememberMe", rememberMe.toString());
     } else {
       localStorage.removeItem("email");
       localStorage.removeItem("rememberMe");
