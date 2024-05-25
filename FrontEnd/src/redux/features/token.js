@@ -13,6 +13,9 @@ export const login = createAsyncThunk(
     try {
       const response = await getLogin(credentials);
       if (response && response.token) {
+        if (credentials.rememberMe) {
+          localStorage.setItem("token", response.token);
+        }
         return response.token;
       } else {
         return rejectWithValue("Login failed, no token received");
@@ -45,7 +48,10 @@ const tokenSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.value = action.payload;
-        localStorage.setItem("token", action.payload);
+        // Only store in localStorage if rememberMe was checked
+        if (state.rememberMe) {
+          localStorage.setItem("token", action.payload);
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;

@@ -1,5 +1,4 @@
 import './profil.scss';
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
@@ -22,28 +21,22 @@ export function Profil() {
   const regex = /^[A-zÀ-ú-']{2,}$/;
 
   useEffect(() => {
-    let isMounted = true;
-    if (token !== null) {
-      const fetchUser = async () => {
+    if (token) {
+      (async () => {
         try {
           const user = await getLoginFetch(token);
-          if (isMounted) {
-            dispatch(setFirstName(user.firstName));
-            dispatch(setLastName(user.lastName));
-          }
+          dispatch(setFirstName(user.firstName));
+          dispatch(setLastName(user.lastName));
         } catch (error) {
           console.error(error);
         }
-      };
-      fetchUser();
+      })();
     }
-    return () => { isMounted = false; };
   }, [token, dispatch]);
 
   const handleEditSave = async (e) => {
     e.preventDefault();
     if (!regex.test(newFirstName) || !regex.test(newLastName)) {
-      setProfilEdit(true);
       setFormatErrorName('At least 2 alphabetic characters');
     } else {
       if (newFirstName !== firstName || newLastName !== lastName) {
@@ -52,12 +45,12 @@ export function Profil() {
           await saveUserProfile(token, fullName);
           dispatch(setFirstName(newFirstName));
           dispatch(setLastName(newLastName));
+          setProfilEdit(false);
         } catch (error) {
           console.error(error);
         }
       }
       setFormatErrorName('');
-      setProfilEdit(false);
     }
   };
 
@@ -67,7 +60,7 @@ export function Profil() {
     setProfilEdit(false);
   };
 
-  if (token === null) return <Navigate to="/login" />;
+  if (!token) return <Navigate to="/login" />;
 
   return (
     <main className="main bgDark">
@@ -76,7 +69,7 @@ export function Profil() {
           <>
             <h1 className="title">Welcome back</h1>
             <div className="editContainer">
-              <form id="edit">
+              <form id="edit" onSubmit={handleEditSave}>
                 <div className="inputContainer">
                   <input
                     type="text"
@@ -95,7 +88,7 @@ export function Profil() {
                 </div>
                 <p className="error">{formatErrorName}</p>
                 <div className="buttonContainer">
-                  <button className="editButton" onClick={handleEditSave}>
+                  <button type="submit" className="editButton">
                     Save
                   </button>
                   <button className="editButton" onClick={handleCancel}>
@@ -131,9 +124,3 @@ export function Profil() {
     </main>
   );
 }
-
-Profil.propTypes = {
-  token: PropTypes.string,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-};
