@@ -4,14 +4,13 @@ import { loginUser } from "../app/services/authaction";
 import { useNavigate, Link } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
 
-
 import { FaUserCircle } from "react-icons/fa";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState("");
-  const [rememberMe, etRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const SignIn = () => {
       setEmail(storedEmail);
       setRememberMe(storedRemeberMe);
     }
-}, []);
+  }, []);
 
   const handleLoginEvent = (event) => {
     event.preventDefault();
@@ -35,14 +34,14 @@ const SignIn = () => {
     dispatch(loginUser(userCredentials));
     // setIsLoading(true); Activer le Loader
 
-	/* Enregistrer les donénes du "Remember Me dans le localStorage */
-	if (rememberMe) {
+    /* Enregistrer les donénes du "Remember Me dans le localStorage */
+    if (rememberMe) {
       localStorage.setItem("email", email);
       localStorage.setItem("rememberMe", rememberME.toString());
-      } else {
-        localStorage.removeItem("email");
-        localStorage.removeItem("rememberMe");
-}
+    } else {
+      localStorage.removeItem("email");
+      localStorage.removeItem("rememberMe");
+    }
   };
 
   // Fonction pour gérer le changement de la case à cocher
