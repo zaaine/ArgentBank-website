@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../app/services/useraction";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
-import { FaChevronRight } from "react-icons/fa6";
-import e from "cors";
 
 export default function User() {
   const user = useSelector((state) => state.auth.user);
