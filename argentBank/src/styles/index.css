@@ -737,36 +737,6 @@ html {
     width: 200px;
   }
 }
-.main .chevron {
-  position: absolute;
-  height: 4em;
-  width: 3em;
-  top: 23em;
-  right: 10em;
-  color: white;
-}
-.main .invisible {
-  border: 1px solid red;
-  display: none;
-  visibility: hidden;
-  color: blue;
-}
-.main .chevron1 {
-  position: absolute;
-  height: 4em;
-  width: 3em;
-  top: 33em;
-  right: 10em;
-  color: white;
-}
-.main .chevron2 {
-  position: absolute;
-  height: 4em;
-  width: 3em;
-  top: 43em;
-  right: 10em;
-  color: white;
-}
 
 .bg-dark {
   background-color: #12002b;

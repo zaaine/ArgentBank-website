@@ -12,7 +12,11 @@ export async function getUserInfo(token, dispatch) {
 
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
       method: "POST",
-      headers: headers,
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (response.ok) {
@@ -35,7 +39,7 @@ export async function updateUsername(token, newUserName, dispatch) {
       userName: newUserName,
     };
 
-    const request = await fetch.put(
+    const request = await axios.put(
       `http://localhost:3001/api/v1/user/profile`,
       {
         method: "PUT",

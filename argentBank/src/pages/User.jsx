@@ -42,14 +42,11 @@ export default function User() {
     setEditing(false);
   };
 
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
+ 
   return (
     <>
       <PageTitle title="ArgentBank - UserPage" />
-      <main className={`main ${isActive ? "bg-light" : "bg-dark"}`}>
+      <main className="bg-dark">
         <div className="greetings">
           <div>
             {!editing && (
