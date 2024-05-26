@@ -12,7 +12,7 @@ export default function Edit({ onCancel }) {
   const [lastname, setLastname] = useState(user.lastName);
   const [isActive, setIsActive] = useState(false);
 
-  const handleCancel = () => {
+  const handleCancel = (event) => {
     event.preventDefault();
     onCancel();
   };
