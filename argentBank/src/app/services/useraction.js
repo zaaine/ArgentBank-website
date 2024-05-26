@@ -5,7 +5,8 @@ import axios from "axios";
 
 export async function getUserInfo(token, dispatch) {
   try {
-    const headers = {
+    headers: {
+      accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     };
