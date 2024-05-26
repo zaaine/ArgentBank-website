@@ -12,8 +12,6 @@ export default function User() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [isActive, setIsActive] = useState(false);
-
   useEffect(() => {
     async function getData() {
       try {
@@ -42,15 +40,14 @@ export default function User() {
     setEditing(false);
   };
 
- 
   return (
     <>
       <PageTitle title="ArgentBank - UserPage" />
       <main className="bg-dark">
         <div className="greetings">
-          <div>
+          <div className="greetings-wrapper">
             {!editing && (
-              <h1>
+              <h1 className="greetings-title">
                 Welcome back
                 <br />
                 {user.userName} !
