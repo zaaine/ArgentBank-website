@@ -31,7 +31,7 @@ const Navigation = () => {
               </i>
               {user.userName}
             </div>
-            <Link to="/Home" className="main-nav-item" onClick={switchLogout}>
+            <Link to="/" className="main-nav-item" onClick={switchLogout}>
               <i className="fa fa-sign-out">
                 <FaArrowRightFromBracket />
               </i>

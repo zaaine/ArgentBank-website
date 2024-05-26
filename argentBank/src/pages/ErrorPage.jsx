@@ -11,7 +11,7 @@ const ErrorPage = () => {
           </div>
           <p>{"Oups! La page que vous demandez n'existe pas."}</p>{" "}
           {/* Message d'erreur affiché */}
-          <Link to="/Home" className="link">
+          <Link to="/" className="link">
             <FaHome />
             Retourner sur la page d’accueil{" "}
             {/* Lien pour retourner à la page d'accueil */}
