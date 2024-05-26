@@ -61,7 +61,6 @@ export default function User() {
               className="edit-button"
               onClick={() => {
                 handleEditing();
-                handleClick();
               }}
             >
               Edit Name

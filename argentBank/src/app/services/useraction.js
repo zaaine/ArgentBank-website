@@ -39,18 +39,15 @@ export async function updateUsername(token, newUserName, dispatch) {
       userName: newUserName,
     };
 
-    const request = await axios.put(
-      `http://localhost:3001/api/v1/user/profile`,
-      {
-        method: "PUT",
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(requestBody),
-      }
-    );
+    const request = await fetch(`http://localhost:3001/api/v1/user/profile`, {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestBody),
+    });
 
     const data = await request.json();
     dispatch(setNewUsername(data.body.userName));
