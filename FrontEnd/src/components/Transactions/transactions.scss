@@ -1,0 +1,63 @@
+.transactions {
+	.transactionMonth {
+	  margin-bottom: 1.5rem;
+	  h4 {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+		color: #00bc77;
+	  }
+	}
+	
+	.transactionDetail {
+	  display: flex;
+	  flex-direction: column;
+	  margin-bottom: 1rem;
+	  padding: 1rem;
+	  background-color: #f9f9f9;
+	  border-radius: 5px;
+	  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+	  p {
+		margin: 0.3rem 0;
+		font-size: 1rem;
+		color: #333;
+  
+		&:first-child {
+		  font-weight: bold;
+		  color: #12002b;
+		}
+	  }
+	}
+  }
+  
+  @media (min-width: 720px) {
+	.transactions {
+	  .transactionDetail {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+  
+		p {
+		  margin: 0 1rem;
+		  flex: 1;
+  
+		  &:first-child {
+			flex: 2;
+		  }
+		}
+	  }
+	}
+  }
+  
+  @media (max-width: 400px) {
+	.transactions {
+	  .transactionDetail {
+		padding: 0.5rem;
+  
+		p {
+		  font-size: 0.9rem;
+		}
+	  }
+	}
+  }
+  

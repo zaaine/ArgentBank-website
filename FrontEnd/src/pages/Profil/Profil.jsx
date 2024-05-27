@@ -115,7 +115,7 @@ export function Profil() {
 
       {accountsMocks.map((account) => (
         <Account
-          key={account.accountId} // Assurez-vous que chaque compte a un id unique
+          key={account.accountId}
           title={account.title}
           money={account.money}
           balanceType={account.balanceType}

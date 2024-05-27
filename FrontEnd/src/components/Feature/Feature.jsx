@@ -9,22 +9,19 @@ export const Feature = ({ title, icon, image, description }) => {
     return (
         <div className="featureItem">
             <h3 className="featureItemTitle">{title}</h3>
-            <img src={image} alt={`${icon} icon`} className="featureIcon" />
-            <p>
-                {description}
-            </p>
+            <img src={image} alt={`${icon} icon`} className="featureIcon" loading="lazy" />
+            <p>{description}</p>
         </div>
     );
 };
 
 Feature.propTypes = {
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    icon: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
 };
 
-// Utilisation des images importées directement
 export const featuresMock = [
     {
         title: 'You are our #1 priority',

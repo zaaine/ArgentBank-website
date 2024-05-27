@@ -1,13 +1,13 @@
 import "./login.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/features/token.js";
+import { login } from "../../redux/features/token";
 import { Navigate } from "react-router-dom";
 import {
   selectToken,
   selectLoading,
   selectError,
-} from "../../redux/selectors.js";
+} from "../../redux/selectors";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,14 +31,15 @@ const Login = () => {
     dispatch(login({ email, password, rememberMe }));
   };
 
-  if (token) { return <Navigate to="/profil" />;
+  if (token) {
+    return <Navigate to="/profil" />;
   }
 
   return (
     <main className="container">
       <div className="main bgDark">
         <section className="signInContent">
-          <i className="fa fa-user-circle"></i>
+          <i className="fa fa-user-circle" aria-hidden="true"></i>
           <h1 className="title">Sign In</h1>
           <form onSubmit={handleSubmit}>
             <div className="inputWrapper">
@@ -50,6 +51,7 @@ const Login = () => {
                 id="username"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="inputWrapper">
@@ -61,6 +63,7 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
             <div className="inputRemember">
@@ -74,7 +77,7 @@ const Login = () => {
                 Remember me
               </label>
             </div>
-            {error && <div className="error">{error}</div>}
+            {error && <div className="error" role="alert">{error}</div>}
             <button type="submit" className="signInButton" disabled={loading}>
               {loading ? "Loading..." : "Sign In"}
             </button>
@@ -84,6 +87,7 @@ const Login = () => {
     </main>
   );
 };
+
 export { Login };
 console.log(`
 		- First Name: Tony

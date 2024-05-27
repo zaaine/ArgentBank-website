@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of Navigate
+import { useNavigate } from "react-router-dom";
 import { clearToken } from "../../redux/features/token.js";
 import { clearFirstName } from "../../redux/features/firstName.js";
 import { clearLastName } from "../../redux/features/lastName.js";

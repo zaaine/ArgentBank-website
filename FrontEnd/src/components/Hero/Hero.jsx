@@ -1,7 +1,8 @@
 import "./hero.scss";
+import React from 'react';
 import PropTypes from "prop-types";
 
-export default function Hero({ title, subtitle1, subtitle2, subtitle3, text }) {
+const Hero = ({ title, subtitle1, subtitle2, subtitle3, text }) => {
 	return (
 		<section className="heroContent">
 			<h2 className="srOnly">{title}</h2>
@@ -11,7 +12,8 @@ export default function Hero({ title, subtitle1, subtitle2, subtitle3, text }) {
 			<p className="text">{text}</p>
 		</section>
 	);
-}
+};
+
 Hero.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle1: PropTypes.string.isRequired,
@@ -19,3 +21,5 @@ Hero.propTypes = {
 	subtitle3: PropTypes.string.isRequired,
 	text: PropTypes.string.isRequired,
 };
+
+export default Hero;
