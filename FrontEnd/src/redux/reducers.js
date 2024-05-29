@@ -1,4 +1,3 @@
-// reducers.js
 import { createSlice } from '@reduxjs/toolkit';
 import { login } from './actions';
 

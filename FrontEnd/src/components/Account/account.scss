@@ -1,5 +1,6 @@
 .account {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	border: 1px solid black;
@@ -45,6 +46,19 @@
 	background-color: #00bc77;
 	color: #fff;
   }
+  .row {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center;
+}
+  .accountContentWrapper {
+	flex: 1; 
+}
+.transactionDetails {
+	flex-basis: 100%;
+	display: grid; 
+}
   
   @media (min-width: 720px) {
 	.account {

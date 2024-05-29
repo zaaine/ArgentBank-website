@@ -9,7 +9,7 @@ const accountsMocks = [
                 transactionsMonth: "January",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -20,7 +20,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -36,7 +36,7 @@ const accountsMocks = [
                 transactionsMonth: "February",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -47,7 +47,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -63,7 +63,7 @@ const accountsMocks = [
                 transactionsMonth: "March",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -74,7 +74,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -98,7 +98,7 @@ const accountsMocks = [
                 transactionsMonth: "January",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -109,7 +109,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -125,7 +125,7 @@ const accountsMocks = [
                 transactionsMonth: "February",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -136,7 +136,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -152,7 +152,7 @@ const accountsMocks = [
                 transactionsMonth: "March",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -163,7 +163,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -187,7 +187,7 @@ const accountsMocks = [
                 transactionsMonth: "January",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -198,7 +198,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -214,7 +214,7 @@ const accountsMocks = [
                 transactionsMonth: "February",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -225,7 +225,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -241,7 +241,7 @@ const accountsMocks = [
                 transactionsMonth: "March",
                 transactionDetail: [
                     { 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",
@@ -252,7 +252,7 @@ const accountsMocks = [
                         }
                     },
 					{ 
-                        date: "2023-05-21T12:00:00Z",
+                        date: "2023-05-21 ",
                         TransactionDescription: "Grocery Shopping",
                         amount: "50",
                         balance: "$2187.79",

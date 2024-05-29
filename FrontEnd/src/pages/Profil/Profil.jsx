@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { getLoginFetch, saveUserProfile } from '../../utils/api/user.js';
-import { setFirstName } from "../../redux/reducers.js";
-import { setLastName } from "../../redux/reducers.js";
+import { setFirstName, setLastName } from '../../redux/reducers.js';
 import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import Account from '../../components/Account/Account.js';
 import accountsMocks from '../../mocks/accountsMocks.js';
@@ -119,6 +118,7 @@ export function Profil() {
           title={account.title}
           money={account.money}
           balanceType={account.balanceType}
+          transactions={account.transactions}
         />
       ))}
     </main>
