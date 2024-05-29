@@ -1,47 +1,80 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './transactions.scss';
-import accountsMocks from '../../mocks/accountsMocks.js';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import TransactionDetail from "./TransactionDetail";
+import "./transactions.scss";
 
-export default function Transactions({ transactions }) {
-  return (
-    <div className="transactions">
-      {transactions.map((month, index) => (
-        <div key={index} className="transactionMonth">
-          <h4>{month.transactionsMonth}</h4>
-          {month.transactionDetail.map((transaction, idx) => (
-            <div key={idx} className="transactionDetail">
-              <p>{transaction.TransactionDescription}</p>
-              <p>{transaction.amount}</p>
-              <p>{transaction.balance}</p>
-              <p>{transaction.subProperties.transactionType}</p>
-              <p>{transaction.subProperties.category}</p>
-              <p>{transaction.subProperties.note}</p>
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
+const Transactions = ({ transactions }) => {
+	const [displaySubProperties, setDisplaySubProperties] = useState({});
+
+	const handleDisplaySubProperties = (index) => {
+		setDisplaySubProperties((prevState) => ({
+			...prevState,
+			[index]: !prevState[index],
+		}));
+	};
+
+	return (
+		<table className="transactions">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Balance</th>
+				</tr>
+			</thead>
+			<tbody>
+				{transactions.map((month, monthIndex) => (
+					<React.Fragment key={monthIndex}>
+						{month.transactionDetail.map((detail, detailIndex) => (
+							<React.Fragment key={detailIndex}>
+								<tr>
+									<td>{detail.date}</td>
+									<td>{detail.TransactionDescription}</td>
+									<td>{detail.amount}</td>
+									<td>{detail.balance}</td>
+									<td>
+										<button
+											onClick={() => handleDisplaySubProperties(`${monthIndex}-${detailIndex}`)}
+											className={`fa ${displaySubProperties[`${monthIndex}-${detailIndex}`] ? "fa-times" : "fa-angle-right"}`}
+										></button>
+									</td>
+								</tr>
+								{displaySubProperties[`${monthIndex}-${detailIndex}`] && (
+									<tr>
+										<td colSpan="5">
+											<TransactionDetail subProperties={detail.subProperties} />
+										</td>
+									</tr>
+								)}
+							</React.Fragment>
+						))}
+					</React.Fragment>
+				))}
+			</tbody>
+		</table>
+	);
+};
 
 Transactions.propTypes = {
-  transactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      transactionsMonth: PropTypes.string.isRequired,
-      transactionDetail: PropTypes.arrayOf(
-        PropTypes.shape({
-          date: PropTypes.string.isRequired,
-          TransactionDescription: PropTypes.string.isRequired,
-          amount: PropTypes.string.isRequired,
-          balance: PropTypes.string.isRequired,
-          subProperties: PropTypes.shape({
-            transactionType: PropTypes.string.isRequired,
-            category: PropTypes.string.isRequired,
-            note: PropTypes.string.isRequired,
-          }).isRequired,
-        })
-      ).isRequired,
-    })
-  ).isRequired,
+	transactions: PropTypes.arrayOf(
+		PropTypes.shape({
+			transactionsMonth: PropTypes.string.isRequired,
+			transactionDetail: PropTypes.arrayOf(
+				PropTypes.shape({
+					date: PropTypes.string.isRequired,
+					TransactionDescription: PropTypes.string.isRequired,
+					amount: PropTypes.string.isRequired,
+					balance: PropTypes.string.isRequired,
+					subProperties: PropTypes.shape({
+						transactionType: PropTypes.string.isRequired,
+						category: PropTypes.string.isRequired,
+						note: PropTypes.string.isRequired,
+					}).isRequired,
+				}).isRequired
+			).isRequired,
+		}).isRequired
+	).isRequired,
 };
+
+export default Transactions;
