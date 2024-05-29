@@ -1,15 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { thunk } from 'redux-thunk'; 
+import {thunk} from 'redux-thunk';
 import logger from 'redux-logger';
-import firstNameReducer from './features/firstName';
-import lastNameReducer from './features/lastName';
-import tokenReducer from './features/token';
+import { tokenReducer, firstNameReducer, lastNameReducer } from './reducers';
 
 export const store = configureStore({
   reducer: {
+    token: tokenReducer,
     firstName: firstNameReducer,
     lastName: lastNameReducer,
-    token: tokenReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk, logger),
 });

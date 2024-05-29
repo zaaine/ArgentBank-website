@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import "./header.scss";
 import logo from "../../assets/argentBankLogo.png";
 import { selectFirstName, selectToken, selectLoading, selectError } from "../../redux/selectors";
-import { clearToken, setError } from "../../redux/features/token";
-import { setFirstName, clearFirstName } from "../../redux/features/firstName";
-import { clearLastName } from "../../redux/features/lastName";
-import { getLoginFetch } from "../../utils/api.js";
+import { clearToken, setError } from "../../redux/reducers.js";
+import { setFirstName, clearFirstName } from "../../redux/reducers.js";
+import { clearLastName } from "../../redux/reducers.js";
+import { getLoginFetch } from "../../utils/api/user.js";
 
 export default function Header() {
   const firstName = useSelector(selectFirstName);

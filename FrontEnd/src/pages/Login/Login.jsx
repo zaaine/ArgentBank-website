@@ -1,7 +1,7 @@
 import "./login.scss";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/features/token";
+import { login } from "../../redux/actions";
 import { Navigate } from "react-router-dom";
 import {
   selectToken,
