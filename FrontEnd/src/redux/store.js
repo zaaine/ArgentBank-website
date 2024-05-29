@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { thunk } from 'redux-thunk'; 
 import logger from 'redux-logger';
 import firstNameReducer from './features/firstName';
