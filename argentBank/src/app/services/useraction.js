@@ -1,5 +1,4 @@
 import { setUserInfo, setNewUsername } from "../slices/authSlice";
-import axios from "axios";
 
 // GET USER INFO
 

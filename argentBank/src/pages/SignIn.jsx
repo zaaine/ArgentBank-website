@@ -21,10 +21,10 @@ const SignIn = () => {
   useEffect(() => {
     /* Récupérer les données du "RemeberMe" depuis le LocalStorage */
     const storedEmail = localStorage.getItem("email");
-    const storedRemeberMe = localStorage.getItem("rememberMe") === "true";
+    const storedRememberMe = localStorage.getItem("rememberMe") === "true";
     if (storedEmail) {
       setEmail(storedEmail);
-      setRememberMe(storedRemeberMe);
+      setRememberMe(storedRememberMe);
     }
   }, []);
 
@@ -34,7 +34,7 @@ const SignIn = () => {
     dispatch(loginUser(userCredentials));
     // setIsLoading(true); Activer le Loader
 
-    /* Enregistrer les donénes du "Remember Me dans le localStorage */
+    /* Enregistrer les données du "RememberMe dans le localStorage */
     if (rememberMe) {
       localStorage.setItem("email", email);
       localStorage.setItem("rememberMe", rememberMe.toString());
