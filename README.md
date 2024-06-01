@@ -1,17 +1,17 @@
 # Argent Bank API
 
-This codebase contains the code needed to run the backend for Argent Bank.
+Cette Base de code contient le code nécessaire pour éxécuter le backend Argent Bank.
 
 ## Getting Started
 
 ### Prerequisites
 
-Argent Bank uses the following tech stack:
+Argent Bank utilise la pile technologique suivante:
 
 - [Node.js v12](https://nodejs.org/en/)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
+Veuillez vous assurer que vous disposez des bonnes versions et téléchargez les deux packages. Vous pouvez le vérifier en utilisant les commandes suivantes dans votre Terminal:
 
 ```bash
 # Check Node.js version
@@ -23,10 +23,10 @@ mongo --version
 
 ### Instructions
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+1. Forkez ce depôt
+1. Clonez le dépôt sur votre Ordinateur
+1. Ouvrez une fenêtre de Terminal dans le projet cloné
+1. Exécutez les commandes suivantes:
 
 ```bash
 # Install dependencies
@@ -39,11 +39,11 @@ npm run dev:server
 npm run populate-db
 ```
 
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
+Votre serveur devrait maintenant fonctionner sur http://locahost:3001 et vous aurez deux utilisateurs dans votre base de données MongoDB !
 
 ## Populated Database Data
 
-Once you run the `populate-db` script, you should have two users in your database:
+Une fois que vous avez exécuté le script `populate-db`, vous devriez avec deux utilisateurs dans votre base de données :
 
 ### Tony Stark
 
@@ -61,12 +61,11 @@ Once you run the `populate-db` script, you should have two users in your databas
 
 ## API Documentation
 
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
+Pour en savoir plus sur le fonctionnement de l'API, une fois que vous avez démarré votre environnement local, vous pouvez visiter : http://localhost:3001/api-docs
 
 ## Design Assets
+Du HTML et CSS statiques ont été créés pour la majeure partie du site et se trouvent dans : `/designs`.
 
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
+Pour certaines fonctionnalités dynmiques, comme le basculement de l'édition utilisateur, il existe une maquette dans `/designs/wireframes/edit-user-name.png`.
 
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
-
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+Et pour le modèle API que vous proposerez pour les transactions, le wireframe se trouve dans `/designs/wireframes/transactions.png`.

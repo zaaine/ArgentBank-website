@@ -1,0 +1,129 @@
+.main {
+  display: flex;
+  flex-direction: column;
+
+.sign-in-content {
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    height: 385px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 10px;
+
+    .sign-in-icon {
+        font-size: 1.1rem;
+      }
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-bottom: 1rem;
+
+        label {
+            font-weight: bold;
+          }
+
+        input {
+            padding: 5px;
+            font-size: 1.2rem;
+          }
+      }
+
+      .input-remember {
+        display: flex;
+
+        label {
+            margin-left: 0.25rem;
+          }
+        }
+
+        .sign-in-button {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            border-color: #00bc77;
+            background-color: #00bc77;
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: #00bc77;
+          }
+
+          .customer {
+            display: flex;
+            margin: 10px 0 0 0;
+            gap: 5px;
+          }
+
+          .link {
+            display: flex;
+            margin-top: 0px;
+          }
+  }
+}
+
+  .bg-dark {
+    background-color: #12002b;
+  }
+
+  .notification {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00bc77;
+    color: white; 
+    padding: 10px; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .spinner {
+      border: 4px solid white; // Utilisation de la nouvelle variable
+      width: 20px; // Utilisation de la nouvelle variable
+      height: 20px; // Utilisation de la nouvelle variable
+      border-radius: 50%;
+      border-left-color: #12002b; // Utilisation de la nouvelle variable
+      animation: spin 1s ease infinite;
+      margin-left: 10px;
+    }
+  }
+
+  .loader {
+    border: 20px solid #12002b; // Utilisation de la nouvelle variable
+    border-top: 20px solid #2c3e50; // Utilisation de la nouvelle variable
+    border-radius: 50%;
+    width: 200px; // Utilisation de la nouvelle variable
+    height: 200px; // Utilisation de la nouvelle variable
+    position: relative;
+    animation: spin 2s linear infinite;
+  }
+  
+  .loader-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #2c3e50; // Utilisation de la nouvelle variable
+    font-size: 1.8rem; // Utilisation de la nouvelle variable
+  }
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#12002b, 0.5); // Utilisation de la nouvelle variable
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+  }

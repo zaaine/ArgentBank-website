@@ -1,0 +1,75 @@
+.main {
+  display: flex;
+
+.MissingPage {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 40px 0;
+  gap: 130px;
+
+  .error {
+    display: flex;
+    width: 597px;
+    height: 150px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+
+    h1 {
+      color: White;
+      text-align: center;
+      font-size: 100px;
+      font-weight: 700;
+      line-height: 100%;
+      margin: 0;
+    }
+  }
+
+  p {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 146%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 146%;
+    text-decoration-line: underline;
+    gap: 8px;
+  }
+
+  @media (max-width: 768px) {
+    margin: 113px 0px;
+    gap: 113px;
+
+    .error {
+      width: 198px;
+      height: 99px;
+      h1 {
+        font-size: 96px;
+      }
+    }
+
+    p {
+      font-size: 18px;
+      width: 65%;
+    }
+
+    .link {
+      font-size: 14px;
+    }
+  }
+}
+}
