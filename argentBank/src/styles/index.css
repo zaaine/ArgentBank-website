@@ -619,12 +619,28 @@ html {
   background-color: #12002b;
 }
 
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 main .greetings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   color: white;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 0vw;
 }
 main .greetings .greetings-wrapper .greetings-title {
   color: white;
@@ -639,7 +655,11 @@ main .greetings .edit-button {
   margin-top: -10px;
   margin-bottom: 7px;
 }
-main .edit-container {
+main .greetings form {
+  position: relative;
+  right: 710px;
+}
+main .greetings form .edit-container {
   position: relative;
   background-color: white;
   border-radius: 5px;
@@ -648,7 +668,7 @@ main .edit-container {
   color: black;
   margin-bottom: 10px;
 }
-main .edit-container .sign-in-button {
+main .greetings form .edit-container .sign-in-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: white;
@@ -659,7 +679,7 @@ main .edit-container .sign-in-button {
   margin-left: 20px;
   border-radius: 5px;
 }
-main .edit-container .input-wrapper label {
+main .greetings form .edit-container .input-wrapper label {
   margin-right: 5px;
 }
 

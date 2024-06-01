@@ -1,8 +1,13 @@
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .greetings {
+    display: flex;
     color: white;
     flex-direction: column;
+    width: 0vw;
     
     .greetings-wrapper {
       
@@ -21,34 +26,40 @@ main {
     margin-top: -10px;
     margin-bottom: 7px;
   }
-}
-.edit-container {
-  position: relative;
-  background-color: white;
-  border-radius: 5px;
-  width: 340px;
-  left: 540px;
-  color: black;
-  margin-bottom: 10px;
+  
+  form {
+    position: relative;
+    right: 710px;
 
-.sign-in-button {
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: white;
-    font-weight: bold;
-    padding: 8px;
-    margin-top: 10px;
-    margin-bottom: 6px;
-    margin-left: 20px;
-    border-radius: 5px;
-  }
-
-  .input-wrapper {
-    label {
-      margin-right: 5px;
+    .edit-container {
+      position: relative;
+      background-color: white;
+      border-radius: 5px;
+      width: 340px;
+      left: 540px;
+      color: black;
+      margin-bottom: 10px;
+    
+    .sign-in-button {
+        border-color: #00bc77;
+        background-color: #00bc77;
+        color: white;
+        font-weight: bold;
+        padding: 8px;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        margin-left: 20px;
+        border-radius: 5px;
+      }
+    
+      .input-wrapper {
+        label {
+          margin-right: 5px;
+        }
+      }
+      
     }
   }
-  
 }
 
 
