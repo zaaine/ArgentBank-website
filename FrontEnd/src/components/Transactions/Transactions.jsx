@@ -14,8 +14,8 @@ const Transactions = ({ transactions }) => {
 	};
 
 	return (
-		<table className="transactions">
-			<thead>
+		<table>
+			<thead className="transaction">
 				<tr>
 					<th>Date</th>
 					<th>Description</th>
@@ -23,7 +23,7 @@ const Transactions = ({ transactions }) => {
 					<th>Balance</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody className="transactionDetail">
 				{transactions.map((month, monthIndex) => (
 					<React.Fragment key={monthIndex}>
 						{month.transactionDetail.map((detail, detailIndex) => (
@@ -40,8 +40,9 @@ const Transactions = ({ transactions }) => {
 										></button>
 									</td>
 								</tr>
+
 								{displaySubProperties[`${monthIndex}-${detailIndex}`] && (
-									<tr>
+									<tr className="trasnDe">
 										<td colSpan="5">
 											<TransactionDetail subProperties={detail.subProperties} />
 										</td>

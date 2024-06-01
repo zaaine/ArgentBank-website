@@ -19,10 +19,9 @@ const Account = ({ title, money, balanceType, transactions }) => {
 					<p className="accountAmountDescription">{balanceType}</p>
 				</div>
 				<div className="moreInf">
-					<button
-						onClick={handleDisplayTransactions}
-						className={`fa ${displayTransactions ? "fa-times" : "fa-angle-right"}`}
-					></button>
+					<button onClick={handleDisplayTransactions} className="transactionButton">
+						{displayTransactions ? <i className="fa fa-times"></i> : "View transactions"}
+					</button>
 				</div>
 			</div>
 			{displayTransactions && (

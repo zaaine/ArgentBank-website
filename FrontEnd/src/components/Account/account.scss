@@ -4,11 +4,11 @@
 	justify-content: space-between;
 	align-items: center;
 	border: 1px solid black;
-	background-color: #fff;
+	gap: 10px;
 	width: 80%;
 	margin: 0 auto 2rem;
 	flex-direction: column;
-	padding: 1.5rem;
+	//padding: 1.5rem;
 	box-sizing: border-box;
 	text-align: left;
   }
@@ -47,10 +47,12 @@
 	color: #fff;
   }
   .row {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	align-items: center;
+    padding: 1.5rem;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
   .accountContentWrapper {
 	flex: 1; 
@@ -68,10 +70,6 @@
 	.accountContentWrapper.cta {
 	  flex: 0;
 	}
-  
-	.transactionButton {
-	  width: 200px;
-	}
   }
   
   @media (max-width: 400px) {
@@ -79,4 +77,6 @@
 	  font-size: 2rem;
 	}
   }
-  
+  i.fa.fa-times {
+    padding: 10px;
+}
