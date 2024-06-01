@@ -16,7 +16,7 @@ const Navigation = () => {
     event.preventDefault();
     dispatch(logout());
     localStorage.removeItem("AuthToken", token);
-    navigate("/Home");
+    navigate("/");
   };
 
   return (
