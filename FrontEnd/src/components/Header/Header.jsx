@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./header.scss";
 import logo from "../../assets/argentBankLogo.png";
-import { selectFirstName, selectToken, selectLoading, selectError } from "../../redux/selectors";
+import { selectUserName, selectToken, selectLoading, selectError } from "../../redux/selectors";
 import { clearToken, setError } from "../../redux/reducers.js";
-import { setFirstName, clearFirstName } from "../../redux/reducers.js";
-import { clearLastName } from "../../redux/reducers.js";
+import { setUserName, clearUserName } from "../../redux/reducers.js";
 import { getLoginFetch } from "../../utils/api/user.js";
 
 export default function Header() {
-  const firstName = useSelector(selectFirstName);
+  const userName = useSelector(selectUserName);
   const token = useSelector(selectToken);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -20,7 +19,7 @@ export default function Header() {
     if (token !== null) {
       getLoginFetch(token)
         .then((obj) => {
-          dispatch(setFirstName(obj.firstName));
+          dispatch(setUserName(obj.userName));
           if (obj.id === null) {
             dispatch(clearToken());
             localStorage.removeItem("token");
@@ -35,8 +34,7 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(clearToken());
-    dispatch(clearFirstName());
-    dispatch(clearLastName());
+    dispatch(clearUserName());
     localStorage.removeItem("token");
   };
 
@@ -55,7 +53,7 @@ export default function Header() {
         <>
           <Link to="/profil" className="mainNavItem">
             <i className="fa fa-user-circle"></i>
-            <span className="user">{firstName}</span>
+            <span className="user">{userName}</span>
           </Link>
           <Link to="/" className="mainNavItem" onClick={handleLogout}>
             <i className="fa fa-sign-out"></i>

@@ -45,6 +45,19 @@ const tokenSlice = createSlice({
 
 const initialNameState = { value: "" };
 
+const userNameSlice = createSlice({
+	name: "userName",
+	initialState: initialNameState,
+	reducers: {
+	  setUserName: (state, action) => {
+		state.value = action.payload;
+	  },
+	  clearUserName: (state) => {
+		state.value = "";
+	  },
+	},
+  });
+
 const firstNameSlice = createSlice({
   name: "firstName",
   initialState: initialNameState,
@@ -72,9 +85,11 @@ const lastNameSlice = createSlice({
 });
 
 export const { setToken, clearToken, setLoading, setError } = tokenSlice.actions;
+export const { setUserName, clearUserName } = userNameSlice.actions;
 export const { setFirstName, clearFirstName } = firstNameSlice.actions;
 export const { setLastName, clearLastName } = lastNameSlice.actions;
 
 export const tokenReducer = tokenSlice.reducer;
+export const userNameReducer = userNameSlice.reducer;
 export const firstNameReducer = firstNameSlice.reducer;
 export const lastNameReducer = lastNameSlice.reducer;

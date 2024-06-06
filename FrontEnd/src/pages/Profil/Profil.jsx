@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { getLoginFetch, saveUserProfile } from '../../utils/api/user.js';
-import { setFirstName, setLastName } from '../../redux/reducers.js';
-import { selectToken, selectFirstName, selectLastName } from '../../redux/selectors.js';
+import { setUserName, setLastName , setFirstName} from '../../redux/reducers.js';
+import { selectToken, selectUserName, selectFirstName, selectLastName } from '../../redux/selectors.js';
 import Account from '../../components/Account/Account.js';
 import accountsMocks from '../../mocks/accountsMocks.js';
 
@@ -12,9 +12,9 @@ export function Profil() {
   const token = useSelector(selectToken);
   const firstName = useSelector(selectFirstName);
   const lastName = useSelector(selectLastName);
+  const userName = useSelector(selectUserName);
   const [profilEdit, setProfilEdit] = useState(false);
-  const [newFirstName, setNewFirstName] = useState('');
-  const [newLastName, setNewLastName] = useState('');
+  const [newUsername, setNewUsername] = useState('');
   const [formatErrorName, setFormatErrorName] = useState('');
   const dispatch = useDispatch();
   const regex = /^[A-zÀ-ú-']{2,}$/;
@@ -24,8 +24,9 @@ export function Profil() {
       (async () => {
         try {
           const user = await getLoginFetch(token);
-          dispatch(setFirstName(user.firstName));
-          dispatch(setLastName(user.lastName));
+          dispatch(setUserName(user.userName));
+		  dispatch(setFirstName(user.firstName));
+		  dispatch(setLastName(user.lastName));
         } catch (error) {
           console.error(error);
         }
@@ -35,21 +36,20 @@ export function Profil() {
 
   const handleEditSave = async (e) => {
     e.preventDefault();
-    if (!regex.test(newFirstName) || !regex.test(newLastName)) {
+    if (!regex.test(newUsername)) {
       setFormatErrorName('At least 2 alphabetic characters');
     } else {
-      if (newFirstName !== firstName || newLastName !== lastName) {
-        const fullName = { firstName: newFirstName, lastName: newLastName };
-        try {
-          await saveUserProfile(token, fullName);
-          dispatch(setFirstName(newFirstName));
-          dispatch(setLastName(newLastName));
-          setProfilEdit(false);
-        } catch (error) {
-          console.error(error);
-        }
+      const updatedProfile = {
+        userName: newUsername || userName
+      };
+      try {
+        await saveUserProfile(token, updatedProfile);
+        dispatch(setUserName(updatedProfile.userName));
+        setProfilEdit(false);
+        setFormatErrorName('');
+      } catch (error) {
+        console.error(error);
       }
-      setFormatErrorName('');
     }
   };
 
@@ -70,19 +70,18 @@ export function Profil() {
             <div className="editContainer">
               <form id="edit" onSubmit={handleEditSave}>
                 <div className="inputContainer">
-                  <input
+				<label>First Name:</label>
+               <input type="text" value={firstName} disabled/>
+               
+               <label>Last Name:</label>
+               <input type="text" value={lastName} disabled />
+			   <label>New Username:</label>
+				  <input
                     type="text"
-                    id="firstName"
-                    placeholder={firstName}
-                    value={newFirstName}
-                    onChange={(e) => setNewFirstName(e.target.value)}
-                  />
-                  <input
-                    type="text"
-                    id="lastName"
-                    placeholder={lastName}
-                    value={newLastName}
-                    onChange={(e) => setNewLastName(e.target.value)}
+                    id="userName"
+                    placeholder={userName}
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
                   />
                 </div>
                 <p className="error">{formatErrorName}</p>

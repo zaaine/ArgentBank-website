@@ -11,6 +11,7 @@ export function getLoginFetchData(data) {
       email: data.body.email,
       firstName: data.body.firstName,
       lastName: data.body.lastName,
+	  userName: data.body.userName
     };
   } else {
     return {
@@ -19,6 +20,7 @@ export function getLoginFetchData(data) {
       email: "",
       firstName: "",
       lastName: "",
+	  userName: ""
     };
   }
 }
