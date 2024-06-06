@@ -130,8 +130,9 @@ paths:
           description: Account not found
         '500':
           description: Internal Server Error
-  /user/profile/{accountId}/transactions/{currentMonth}:
+  /transactions/{currentMonth}:
     get:
+      description: Retrieve details of a specific transaction
       security:
         - Bearer: []
       tags:
@@ -158,15 +159,18 @@ paths:
         - application/json
       responses:
         '200':
-          description: Transactions retrieved successfully
+          description: Success. Returns the details of the transactions for the specified month.
           schema:
             $ref: '#/definitions/TransactionsMonthResponse'
-        '400':
-          description: Invalid Fields
+        '401':
+          description: Unauthorized. Invalid or missing token.
+        '404':
+          description: Transactions not found.
         '500':
-          description: Internal Server Error
-  /user/profile/{accountId}/transactions/{transactionId}:
+          description: Server error.
+  /transactions/{transactionId}:
     get:
+      description: Retrieve details of a specific transaction
       security:
         - Bearer: []
       tags:
@@ -188,14 +192,15 @@ paths:
           type: string
       responses:
         '200':
-          description: Transaction successfully loaded
-          schema:
-            $ref: '#/definitions/TransactionId'
+          description: Success. Returns the details of the specified transaction.
+        '401':
+          description: Unauthorized. Invalid or missing token.
         '404':
-          description: Transaction not found
+          description: Transaction not found.
         '500':
-          description: Internal Server Error
+          description: Server error.
     put:
+      description: Update or add information of a specific transaction
       security:
         - Bearer: []
       tags:
@@ -227,13 +232,75 @@ paths:
         - application/json
       responses:
         '200':
-          description: Transaction successfully updated
-          schema:
-            $ref: '#/definitions/TransactionId'
+          description: Success. Returns the details of the updated transaction.
+        '401':
+          description: Unauthorized. Invalid or missing token.
         '404':
-          description: Invalid TransactionId
+          description: Transaction not found.
         '500':
-          description: Internal Server Error
+          description: Server error.
+    delete:
+      description: Delete information of a specific transaction
+      security:
+        - tokenAuth: []
+      tags:
+        - Transactions Module
+      summary: Delete Transaction
+      description: API for deleting a transaction by ID  
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID of the transaction to delete
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Success. The transaction has been deleted successfully.
+        '401':
+          description: Unauthorized. Invalid or missing token.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Server error.
+    post:
+      description: Add information related to a specific transaction
+      security:
+        - tokenAuth: []
+      tags:
+        - Transactions Module
+      summary: Add Transaction Information
+      description: API for adding information to an existing transaction by ID
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: ID of the transaction to add information
+          required: true
+          type: string
+        - in: body
+          name: info
+          description: Object representing the information to be added
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      produces:
+        - application/json
+      responses:
+        '201':
+          description: Success. The information has been added successfully.
+        '400':
+          description: Bad request. Please check the provided data.
+        '401':
+          description: Unauthorized. Invalid or missing token.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Server error.
+
 securityDefinitions:
   Bearer:
     type: apiKey
