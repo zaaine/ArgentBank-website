@@ -22,7 +22,9 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const result = await dispatch(login({ email, password }));
+        console.log(result); // Vérifie le résultat de l'action
         if (login.fulfilled.match(result)) {
+            console.log("Login successful, navigating to /userProfile");
             navigate("/userProfile");
         } else {
             alert(error);

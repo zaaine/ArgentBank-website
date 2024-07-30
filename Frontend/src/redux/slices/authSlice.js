@@ -9,10 +9,14 @@ export const login = createAsyncThunk(
         "http://localhost:3001/api/v1/user/login",
         { email, password }
       );
-
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      return token;
+      console.log("Server response:", response.data); // Vérifie la réponse du serveur
+      const { token } = response.data.body; // Extraction  du token
+      if (token) {
+        localStorage.setItem("token", token);
+        return token;
+      } else {
+        throw new Error("Token is missing in the response");
+      }
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");
     }
@@ -32,9 +36,14 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
-      state.token = action.payload;
-    });
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        state.token = action.payload;
+        state.error = null;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.error = action.payload;
+      });
   },
 });
 
