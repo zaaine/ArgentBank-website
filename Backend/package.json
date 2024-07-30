@@ -28,6 +28,8 @@
     "server": "node ./server/server.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.4",
+    "sass": "^1.77.8"
   }
 }
