@@ -1,19 +1,39 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./app/App";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
-const container = document.getElementById('root');
+import { Login } from "./components/login/login";
+import { UserProfile } from "./components/userProfile/UserProfile";
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  PrivateRoute,
+  Redirect,
+} from "react-router-dom";
+
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/login">
+          <Login setIsAuthenticated={setIsAuthenticated} />
+        </Route>
+        <PrivateRoute
+          path="/user"
+          component={UserProfile}
+          isAuthenticated={isAuthenticated}
+        />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   </React.StrictMode>
 );
 
