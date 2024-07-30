@@ -9,14 +9,12 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { Login } from "../components/login/login";
-import { PrivateRoute } from "../components/login/login";
-
+import Home from "../components/home/Home";
+import Login from "../components/login/Login";
+import PrivateRoute from "../components/login/PrivateRoute";
 import { UserProfile } from "../components/userProfile/UserProfile";
 
 import "./App.css";
-// import "../css/main.sass";
-import Home from "../components/home/Home";
 
 function App() {
   return (
@@ -25,10 +23,10 @@ function App() {
 
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/user"
+            path="/userProfile"
             element={<PrivateRoute component={UserProfile} />}
           />
           <Route path="*" element={<Navigate to="/" />} />
