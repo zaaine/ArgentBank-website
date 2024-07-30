@@ -2,13 +2,14 @@ import React from "react";
 import { Route, Navigate } from "react-router-dom";
 import Header from "../../features/header/Header";
 import Footer from "../../features/footer/Footer";
+import SignIn from "../../features/signIn/SignIn";
 
 export function Login() {
   return (
     <div>
       <Header />
 
-      <p> Page Login </p>
+      <SignIn />
 
       <Footer />
     </div>
