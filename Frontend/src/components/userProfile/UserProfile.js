@@ -1,15 +1,13 @@
 import React from "react";
-
-import Footer from "../../features/footer/Footer";
 import Header from "../../features/header/Header";
+import UserAccounts from "../userAccounts/UserAccounts";
+import Footer from "../../features/footer/Footer";
 
 function UserProfile() {
   return (
     <div>
       <Header />
-
-      <p> Page Profile user </p>
-
+      <UserAccounts />
       <Footer />
     </div>
   );
