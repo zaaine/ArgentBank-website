@@ -60,6 +60,10 @@ body {
   text-decoration: underline;
 }
 
+.spacer {
+  margin: 0 10px; /* Ajouter une marge horizontale entre les éléments */
+}
+
 .main-nav-logo {
   display: flex;
   align-items: center;

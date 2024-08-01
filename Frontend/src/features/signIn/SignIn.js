@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import "../../css/main.css";
+import { fetchUserProfile } from "../../redux/slices/userProfileSlice";
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -25,6 +26,7 @@ export default function SignIn() {
         console.log(result); // Vérifie le résultat de l'action
         if (login.fulfilled.match(result)) {
             console.log("Login successful, navigating to /userProfile");
+            await dispatch(fetchUserProfile()); // charge les noms et prénoms dans le header et composant.
             navigate("/userProfile");
         } else {
             alert(error);

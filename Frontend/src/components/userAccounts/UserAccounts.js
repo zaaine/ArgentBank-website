@@ -1,8 +1,9 @@
 import React from "react";
 import "../../css/main.css";
+import { useSelector } from "react-redux";
 
 export default function UserAccounts() {
-  const user = "TOD"; // sera remplacé par le nom de l'utilisateur aprés création de l'appel API
+  const userProfile = useSelector((state) => state.userProfile);
 
   return (
     <main className="main bg-dark">
@@ -10,7 +11,7 @@ export default function UserAccounts() {
         <h1>
           Welcome back
           <br />
-          {user}!
+          {userProfile.firstName} {userProfile.lastName}!
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>
