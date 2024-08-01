@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import argentBankLogo from "../../assets/img/argentBankLogo.png";
-
+import UserAuthButtton from "../userAuthButton/UserAuthButton";
 import "../../css/main.css";
 
 export default function Header() {
@@ -16,9 +16,11 @@ export default function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
 
-            <Link className="main-nav-item" to="/Login">
+            {/* <Link className="main-nav-item" to="/Login">
                 <i className="fa fa-user-circle"></i> Sign In{" "}
-            </Link>
+            </Link> */}
+
+            <UserAuthButtton />
         </div>
     );
 }
