@@ -20,7 +20,7 @@ export default function UserAuthButtton() {
     return token ? (
         <Link className="main-nav-item" onClick={handleSignOut}>
             <i className="fa fa-user-circle"></i>
-            {userProfile.firstName}
+            {userProfile.userName}
             <span className="spacer"></span>
             <i className="fa fa-sign-out"></i>
             Sign Out

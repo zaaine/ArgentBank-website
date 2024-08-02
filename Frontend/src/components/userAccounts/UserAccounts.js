@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/main.css";
 import { useSelector } from "react-redux";
+import EditProfile from "../../features/editProfile/EditProfile";
 
 export default function UserAccounts() {
   const userProfile = useSelector((state) => state.userProfile);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const toggleEditForm = () => {
+    setIsEditing(!isEditing);
+  };
 
   return (
     <main className="main bg-dark">
@@ -13,8 +19,13 @@ export default function UserAccounts() {
           <br />
           {userProfile.firstName} {userProfile.lastName}!
         </h1>
-        <button className="edit-button">Edit Name</button>
+        <button className="edit-button" onClick={toggleEditForm}>
+          Edit Name
+        </button>
       </div>
+      {/* gestion du formulaire pour edition username */}
+      {isEditing && <EditProfile closeForm={toggleEditForm} />}
+
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">
