@@ -36,21 +36,20 @@ export const fetchUserProfile = createAsyncThunk(
   }
 );
 
+const initialState = {
+  id: null,
+  email: null,
+  firstName: "",
+  userName: "",
+  error: null,
+};
+
 const userProfileSlice = createSlice({
   name: "userProfile",
-  initialState: {
-    id: null,
-    email: null,
-    firstName: "",
-    userName: "",
-    error: null,
-  },
+  initialState: initialState,
   reducers: {
     clearUserProfile: (state) => {
-      state.id = null;
-      state.email = null;
-      state.firstName = "";
-      state.lastName = "";
+      state = initialState;
       localStorage.removeItem("userProfile");
       localStorage.removeItem("token");
     },
