@@ -53,6 +53,14 @@ const userProfileSlice = createSlice({
       localStorage.removeItem("userProfile");
       localStorage.removeItem("token");
     },
+
+    setUserName: (state, action) => {
+      state.userName = action.payload;
+      const userProfileState =
+        JSON.parse(localStorage.getItem("userProfile")) || {};
+      userProfileState.userName = action.payload;
+      localStorage.setItem("userProfile", JSON.stringify(userProfileState));
+    },
   },
 
   extraReducers: (builder) => {
@@ -71,5 +79,5 @@ const userProfileSlice = createSlice({
   },
 });
 
-export const { clearUserProfile } = userProfileSlice.actions;
+export const { clearUserProfile, setUserName } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

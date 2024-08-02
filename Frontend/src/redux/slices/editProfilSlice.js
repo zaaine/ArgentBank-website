@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { setUserName } from "./userProfileSlice";
 
 export const updateUserName = createAsyncThunk(
   "user/updateUserName",
-  async (newUserName, { rejectWithValue, getState }) => {
+  async (newUserName, { rejectWithValue, getState, dispatch }) => {
     try {
       const state = getState();
       const token = state.auth.token || localStorage.getItem("token");
@@ -25,6 +26,7 @@ export const updateUserName = createAsyncThunk(
 
       if (response.status === 200) {
         console.log("Profile updated successfully");
+        dispatch(setUserName(newUserName));
         return { userName: newUserName };
       } else {
         return rejectWithValue("failled to update user Name");
@@ -57,12 +59,6 @@ const editProfileSlice = createSlice({
       .addCase(updateUserName.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-
-        // Accède à l'état utilisateur et met à jour le userName
-        const userProfileState =
-          JSON.parse(localStorage.getItem("userProfile")) || {};
-        userProfileState.userName = action.payload.userName;
-        localStorage.setItem("userProfile", JSON.stringify(userProfileState));
       })
       .addCase(updateUserName.rejected, (state, action) => {
         state.loading = false;
