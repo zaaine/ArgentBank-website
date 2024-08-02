@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
         localStorage.setItem("token", token);
         return token;
       } else {
-        throw new Error("Token is missing in the response");
+        throw new Error("Token is missing in the response"); // faire une rejectwithvalue
       }
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");

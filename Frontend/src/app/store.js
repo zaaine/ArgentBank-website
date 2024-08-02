@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
+// import thunk from "redux-thunk";
 import authSlice from "../redux/slices/authSlice";
 import userProfileReducer from "../redux/slices/userProfileSlice";
 
@@ -8,5 +8,5 @@ export const store = configureStore({
     auth: authSlice,
     userProfile: userProfileReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });

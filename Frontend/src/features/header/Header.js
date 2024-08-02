@@ -16,10 +16,6 @@ export default function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
 
-            {/* <Link className="main-nav-item" to="/Login">
-                <i className="fa fa-user-circle"></i> Sign In{" "}
-            </Link> */}
-
             <UserAuthButtton />
         </div>
     );

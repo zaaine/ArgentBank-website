@@ -13,24 +13,23 @@ import Home from "../components/home/Home";
 import Login from "../components/login/Login";
 import PrivateRoute from "../components/login/PrivateRoute";
 import UserProfile from "../components/userProfile/UserProfile";
-
-import "./App.css";
+import Layout from "../features/layout/Layout";
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="App"></div>
-
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/userProfile"
-            element={<PrivateRoute component={UserProfile} />}
-          />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/userProfile"
+              element={<PrivateRoute component={UserProfile} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Layout>
       </Router>
     </Provider>
   );
