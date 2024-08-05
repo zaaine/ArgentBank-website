@@ -312,6 +312,10 @@ body {
   margin-bottom: 2rem;
 }
 
+.read-only{
+  background-color: #CFD1CC;
+}
+
 .button-group {
   display: flex;
   justify-content: space-between;
