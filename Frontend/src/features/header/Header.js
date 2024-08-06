@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import argentBankLogo from "../../assets/img/argentBankLogo.png";
+import argentBankLogo from "../../assets/img/argentBankLogo.webp";
 import UserAuthButtton from "../userAuthButton/UserAuthButton";
 import "../../css/main.css";
 

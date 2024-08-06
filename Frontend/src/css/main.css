@@ -76,7 +76,7 @@ body {
 }
 
 .hero {
-  background-image: url("../assets/img/bank-tree.jpeg");
+  background-image: url("../assets/img/bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -109,6 +109,8 @@ body {
   .hero {
     height: 400px;
     background-position: 0% 33%;
+    max-height: 50vh;
+    min-height: 400px;
   }
 
   .hero-content {
@@ -136,6 +138,8 @@ body {
 @media (min-width: 920px) {
   .features {
     flex-direction: row;
+    height: 30vh;
+    margin-top: 10vh;
   }
 }
 
