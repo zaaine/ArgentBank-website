@@ -4,7 +4,7 @@ info:
   description: API to manage user banking transactions
   version: "1.0.0"
 host: localhost:3001
-basePath: /api/v1
+basePath: /api/v2
 schemes:
   - http
 paths:
