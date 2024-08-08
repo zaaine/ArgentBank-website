@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  title: ArgentBank API - Documentation Transaction
+  description: API to manage user banking transactions
+  version: 1.0.0
+paths:
+  /user/accounts/transactions:
+    get:
+      summary: View all transactions for the current month, grouped by account
+      description: Returns all transactions for the current month grouped by specific account.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWT token for authentication
+        - in: query
+          name: month
+          required: true
+          schema:
+            type: string
+            example: "2024-08"
+          description: Month for which to retrieve transactions
+      responses:
+        "200":
+          description: List of transactions of current month
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: "Transactions retrieved successfully"
+                  body:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accountId:
+                          type: string
+                        transactionId:
+                          type: string
+                        date:
+                          type: string
+                        amount:
+                          type: number
+                        balance:
+                          type: number
+                        description:
+                          type: string
+                        category:
+                          type: string
+                        note:
+                          type: string
+        "400":
+          description: Invalid Fields (Token failed)
+        "401":
+          description: No existing transactions
+        "500":
+          description: Internal Server Error
+
+  /user/accounts/transactions/{transactionId}:
+    parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the transaction
+    get:
+      summary: Retrieve transaction details
+      description: view the details of a transaction in another view
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWT token for authentication
+      responses:
+        "200":
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: "Transaction retrieved successfully"
+                  body:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      amount:
+                        type: number
+                      date:
+                        type: string
+                      description:
+                        type: string
+                      category:
+                        type: string
+                      note:
+                        type: string
+        "400":
+          description: Invalid Fields (Token failed)
+        "401":
+          description: Invalid Fields (transactionId)
+        "500":
+          description: Internal Server Error
+    post:
+      summary: Add information to a transaction
+      description: Adds information to a specific transaction.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWT token for authentication
+      requestBody:
+        description: Information to add
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                note:
+                  type: string
+      responses:
+        "200":
+          description: Information added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: "Information added successfully"
+                  body:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      category:
+                        type: string
+                      note:
+                        type: string
+        "400":
+          description: Invalid Fields (Token failed)
+        "401":
+          description: Invalid Fields (transactionId)
+        "500":
+          description: Internal Server Error
+    put:
+      summary: Edit transaction information
+      description: Updates information for a specific transaction.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWT token for authentication
+      requestBody:
+        description: Information to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                note:
+                  type: string
+      responses:
+        "200":
+          description: Informations mises à jour avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: "Information updated successfully"
+                  body:
+                    type: object
+                    properties:
+                      transactionId:
+                        type: string
+                      category:
+                        type: string
+                      note:
+                        type: string
+        "400":
+          description: Invalid Fields (Token failed)
+        "401":
+          description: Invalid Fields (transactionId)
+        "500":
+          description: Internal Server Error
+    delete:
+      summary: Delete transaction information
+      description: Removes specific information from a transaction (category and/or note).
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWT token for authentication
+      responses:
+        "200":
+          description: Information successfully deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: "Information successfully deleted"
+        "400":
+          description: Invalid Fields (Token failed)
+        "401":
+          description: Invalid Fields (transactionId)
+        "500":
+          description: Internal Server Error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
