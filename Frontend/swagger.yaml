@@ -1,62 +1,64 @@
-openapi: 3.0.0
+swagger: "2.0"
 info:
-  title: ArgentBank API - Documentation Transaction
+  title: Bank Argent API - Transaction Documentation
   description: API to manage user banking transactions
-  version: 1.0.0
+  version: "1.0.0"
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
 paths:
   /user/accounts/transactions:
     get:
+      tags:
+        - Transaction Module
       summary: View all transactions for the current month, grouped by account
       description: Returns all transactions for the current month grouped by specific account.
       parameters:
         - name: Authorization
           in: header
           required: true
-          schema:
-            type: string
+          type: string
           description: JWT token for authentication
-        - in: query
-          name: month
+        - name: month
+          in: query
           required: true
-          schema:
-            type: string
-            example: "2024-08"
+          type: string
+          example: "2024-08"
           description: Month for which to retrieve transactions
       responses:
         "200":
           description: List of transactions of current month
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 0
-                  message:
-                    type: string
-                    example: "Transactions retrieved successfully"
-                  body:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        accountId:
-                          type: string
-                        transactionId:
-                          type: string
-                        date:
-                          type: string
-                        amount:
-                          type: number
-                        balance:
-                          type: number
-                        description:
-                          type: string
-                        category:
-                          type: string
-                        note:
-                          type: string
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 0
+              message:
+                type: string
+                example: "Transactions retrieved successfully"
+              body:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    accountId:
+                      type: string
+                    transactionId:
+                      type: string
+                    date:
+                      type: string
+                    amount:
+                      type: number
+                    balance:
+                      type: number
+                    description:
+                      type: string
+                    category:
+                      type: string
+                    note:
+                      type: string
         "400":
           description: Invalid Fields (Token failed)
         "401":
@@ -69,48 +71,46 @@ paths:
       - name: transactionId
         in: path
         required: true
-        schema:
-          type: string
+        type: string
         description: ID of the transaction
     get:
+      tags:
+        - Transaction Module
       summary: Retrieve transaction details
-      description: view the details of a transaction in another view
+      description: View the details of a transaction in another view
       parameters:
         - name: Authorization
           in: header
           required: true
-          schema:
-            type: string
+          type: string
           description: JWT token for authentication
       responses:
         "200":
           description: Transaction details
-          content:
-            application/json:
-              schema:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 0
+              message:
+                type: string
+                example: "Transaction retrieved successfully"
+              body:
                 type: object
                 properties:
-                  status:
-                    type: integer
-                    example: 0
-                  message:
+                  transactionId:
                     type: string
-                    example: "Transaction retrieved successfully"
-                  body:
-                    type: object
-                    properties:
-                      transactionId:
-                        type: string
-                      amount:
-                        type: number
-                      date:
-                        type: string
-                      description:
-                        type: string
-                      category:
-                        type: string
-                      note:
-                        type: string
+                  amount:
+                    type: number
+                  date:
+                    type: string
+                  description:
+                    type: string
+                  category:
+                    type: string
+                  note:
+                    type: string
         "400":
           description: Invalid Fields (Token failed)
         "401":
@@ -118,50 +118,48 @@ paths:
         "500":
           description: Internal Server Error
     post:
+      tags:
+        - Transaction Module
       summary: Add information to a transaction
       description: Adds information to a specific transaction.
       parameters:
         - name: Authorization
           in: header
           required: true
-          schema:
-            type: string
+          type: string
           description: JWT token for authentication
-      requestBody:
-        description: Information to add
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                note:
-                  type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+              note:
+                type: string
+          description: Information to add
       responses:
         "200":
           description: Information added successfully
-          content:
-            application/json:
-              schema:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 0
+              message:
+                type: string
+                example: "Information added successfully"
+              body:
                 type: object
                 properties:
-                  status:
-                    type: integer
-                    example: 0
-                  message:
+                  transactionId:
                     type: string
-                    example: "Information added successfully"
-                  body:
-                    type: object
-                    properties:
-                      transactionId:
-                        type: string
-                      category:
-                        type: string
-                      note:
-                        type: string
+                  category:
+                    type: string
+                  note:
+                    type: string
         "400":
           description: Invalid Fields (Token failed)
         "401":
@@ -169,50 +167,48 @@ paths:
         "500":
           description: Internal Server Error
     put:
+      tags:
+        - Transaction Module
       summary: Edit transaction information
       description: Updates information for a specific transaction.
       parameters:
         - name: Authorization
           in: header
           required: true
-          schema:
-            type: string
+          type: string
           description: JWT token for authentication
-      requestBody:
-        description: Information to be updated
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                note:
-                  type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+              note:
+                type: string
+          description: Information to be updated
       responses:
         "200":
-          description: Informations mises à jour avec succès
-          content:
-            application/json:
-              schema:
+          description: Information updated successfully
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 0
+              message:
+                type: string
+                example: "Information updated successfully"
+              body:
                 type: object
                 properties:
-                  status:
-                    type: integer
-                    example: 0
-                  message:
+                  transactionId:
                     type: string
-                    example: "Information updated successfully"
-                  body:
-                    type: object
-                    properties:
-                      transactionId:
-                        type: string
-                      category:
-                        type: string
-                      note:
-                        type: string
+                  category:
+                    type: string
+                  note:
+                    type: string
         "400":
           description: Invalid Fields (Token failed)
         "401":
@@ -220,29 +216,28 @@ paths:
         "500":
           description: Internal Server Error
     delete:
+      tags:
+        - Transaction Module
       summary: Delete transaction information
       description: Removes specific information from a transaction (category and/or note).
       parameters:
         - name: Authorization
           in: header
           required: true
-          schema:
-            type: string
+          type: string
           description: JWT token for authentication
       responses:
         "200":
           description: Information successfully deleted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: 0
-                  message:
-                    type: string
-                    example: "Information successfully deleted"
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 0
+              message:
+                type: string
+                example: "Information successfully deleted"
         "400":
           description: Invalid Fields (Token failed)
         "401":
@@ -250,11 +245,54 @@ paths:
         "500":
           description: Internal Server Error
 
-components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-security:
-  - bearerAuth: []
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Transaction:
+    properties:
+      idTransaction:
+        type: string
+        description: id of transaction
+      date:
+        type: string
+        description: date of transaction
+      month:
+        type: string
+        description: current month
+      description:
+        type: string
+        description: description of transaction
+      amount:
+        type: number
+        description: amount of transaction
+      balance:
+        type: number
+        description: Account balance after transaction
+
+  ApiResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          id:
+            type: string
+          email:
+            type: string
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      userName:
+        type: string
