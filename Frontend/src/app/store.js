@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import thunk from "redux-thunk";
 import authSlice from "../redux/slices/authSlice";
 import userProfileReducer from "../redux/slices/userProfileSlice";
 import editProfileReducer from "../redux/slices/editProfilSlice";

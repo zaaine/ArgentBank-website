@@ -4,7 +4,7 @@ info:
   description: API to manage user banking transactions
   version: "1.0.0"
 host: localhost:3001
-basePath: /api/v2
+basePath: /api/v1
 schemes:
   - http
 paths:
@@ -24,8 +24,7 @@ paths:
           in: query
           required: true
           type: string
-          example: "2024-08"
-          description: Month for which to retrieve transactions
+          description: Month for which to retrieve transactions example  "2024-08"
       responses:
         "200":
           description: List of transactions of current month
@@ -61,7 +60,7 @@ paths:
                       type: string
         "400":
           description: Invalid Fields (Token failed)
-        "401":
+        "404":
           description: No existing transactions
         "500":
           description: Internal Server Error
@@ -113,8 +112,8 @@ paths:
                     type: string
         "400":
           description: Invalid Fields (Token failed)
-        "401":
-          description: Invalid Fields (transactionId)
+        "404":
+          description: Invalid Fields (transactionId not found)
         "500":
           description: Internal Server Error
     post:
@@ -162,14 +161,14 @@ paths:
                     type: string
         "400":
           description: Invalid Fields (Token failed)
-        "401":
-          description: Invalid Fields (transactionId)
+        "404":
+          description: Invalid Fields (transactionId not found)
         "500":
           description: Internal Server Error
     put:
       tags:
         - Transaction Module
-      summary: Edit transaction information
+      summary: update transaction information
       description: Updates information for a specific transaction.
       parameters:
         - name: Authorization
@@ -211,37 +210,8 @@ paths:
                     type: string
         "400":
           description: Invalid Fields (Token failed)
-        "401":
-          description: Invalid Fields (transactionId)
-        "500":
-          description: Internal Server Error
-    delete:
-      tags:
-        - Transaction Module
-      summary: Delete transaction information
-      description: Removes specific information from a transaction (category and/or note).
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          type: string
-          description: JWT token for authentication
-      responses:
-        "200":
-          description: Information successfully deleted
-          schema:
-            type: object
-            properties:
-              status:
-                type: integer
-                example: 0
-              message:
-                type: string
-                example: "Information successfully deleted"
-        "400":
-          description: Invalid Fields (Token failed)
-        "401":
-          description: Invalid Fields (transactionId)
+        "404":
+          description: Invalid Fields (transactionId not found)
         "500":
           description: Internal Server Error
 
@@ -271,7 +241,6 @@ definitions:
       balance:
         type: number
         description: Account balance after transaction
-
   ApiResponse:
     type: object
     properties:
