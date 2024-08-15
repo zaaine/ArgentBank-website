@@ -8,23 +8,27 @@ export default function UserAuthButtton() {
     const token = useSelector((state) => state.auth.token);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleSignOut = () => {
-        dispatch(logout()); //suppression du token
-        dispatch(clearUserProfile()); //Efface le profile utilisateur
-        navigate("/"); //redirection page home
+        dispatch(logout());
+        dispatch(clearUserProfile());
+        navigate("/");
     };
 
     const userProfile = useSelector((state) => state.userProfile);
 
     return token ? (
-        <Link className="main-nav-item" onClick={handleSignOut}>
-            <i className="fa fa-user-circle"></i>
-            {userProfile.userName}
-            <span className="spacer"></span>
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-        </Link>
+        <div className="main-nav-item">
+            <div className="user-profile">
+                <i className="fa fa-user-circle"></i>
+                {userProfile.userName}{" "}
+            </div>
+
+            <Link className="main-nav-item" onClick={handleSignOut}>
+                <span className="spacer"></span>
+                <i className="fa fa-sign-out"></i>
+                Sign Out
+            </Link>
+        </div>
     ) : (
         <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i> Sign In{" "}

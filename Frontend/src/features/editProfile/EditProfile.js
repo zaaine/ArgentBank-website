@@ -16,7 +16,7 @@ export default function EditProfile({ closeForm }) {
     const handleSave = async () => {
         try {
             await dispatch(updateUserName(newUserName)).unwrap();
-            closeForm(); // close formulaire after update
+            closeForm();
         } catch (error) {
             console.error("update username failled", error);
         }

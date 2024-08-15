@@ -9,13 +9,12 @@ export const login = createAsyncThunk(
         "http://localhost:3001/api/v1/user/login",
         { email, password }
       );
-      console.log("Server response:", response.data); // Vérifie la réponse du serveur
-      const { token } = response.data.body; // Extraction  du token
+      const { token } = response.data.body;
       if (token) {
         localStorage.setItem("token", token);
         return token;
       } else {
-        throw new Error("Token is missing in the response"); // faire une rejectwithvalue
+        return rejectWithValue(response?.data?.message || "Login failed");
       }
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");

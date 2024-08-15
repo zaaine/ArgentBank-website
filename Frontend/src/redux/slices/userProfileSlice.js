@@ -22,7 +22,6 @@ export const fetchUserProfile = createAsyncThunk(
       );
 
       if (response.status === 200) {
-        console.log("success status 200");
         localStorage.setItem("userProfile", JSON.stringify(response.data.body));
         return response.data.body;
       }

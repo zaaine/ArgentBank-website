@@ -301,6 +301,17 @@ body {
 
 /* editProfile */
 
+.user-profile{
+  text-decoration: none !important; 
+  display: contents;
+  cursor: default;
+  font-weight: bold;
+  color: #2c3e50;
+}
+:hover {
+  text-decoration: none !important;
+}
+
 .edit-container {
   display: flex;
   justify-content: space-between;

@@ -25,20 +25,14 @@ export const updateUserName = createAsyncThunk(
       );
 
       if (response.status === 200) {
-        console.log("Profile updated successfully");
         dispatch(setUserName(newUserName));
         return { userName: newUserName };
       } else {
         return rejectWithValue("failled to update user Name");
       }
     } catch (error) {
-      if (error.response) {
-        console.error(`Error : ${error.response.data.message}`);
-        return rejectWithValue(error.response.data.message);
-      } else {
-        console.error("Error: ", error.message);
-        return rejectWithValue("An unexpected error occurred");
-      }
+      console.error(`Error : ${error.response.data.message}`);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
