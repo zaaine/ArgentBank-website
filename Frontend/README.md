@@ -46,10 +46,11 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 
-### DOCUMENTATION API/v1 PARTIE TRANSACTIONS 
+## API/v1 Transactions Documentation
 
+### Start the local development server
 
-# Start local dev server
+To start the local development server for API/v1 Transactions, run the following command:
+
+```bash
 npm run dev:server
-
-UTILISER LE PORT 3002
