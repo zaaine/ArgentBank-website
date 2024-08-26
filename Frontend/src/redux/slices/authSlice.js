@@ -17,7 +17,10 @@ export const login = createAsyncThunk(
         return rejectWithValue(response?.data?.message || "Login failed");
       }
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || "Login failed");
+      return rejectWithValue(
+        error.response?.data?.message ||
+          "Internal Server Error or Invalid Fields"
+      );
     }
   }
 );
